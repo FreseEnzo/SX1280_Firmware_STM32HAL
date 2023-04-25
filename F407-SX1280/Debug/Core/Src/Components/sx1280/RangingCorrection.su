@@ -1,0 +1,3 @@
+../Core/Src/Components/sx1280/RangingCorrection.cpp:40:8:double Sx1280RangingCorrection::GetRangingCorrectionPerSfBwGain(RadioLoRaSpreadingFactors_t, RadioLoRaBandwidths_t, int8_t)	32	static
+../Core/Src/Components/sx1280/RangingCorrection.cpp:79:8:double Sx1280RangingCorrection::ComputeRangingCorrectionPolynome(RadioLoRaSpreadingFactors_t, RadioLoRaBandwidths_t, double)	64	static
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\include\c++\10.3.1\cmath:415:5:constexpr typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::pow(_Tp, _Up) [with _Tp = double; _Up = int]	24	static
