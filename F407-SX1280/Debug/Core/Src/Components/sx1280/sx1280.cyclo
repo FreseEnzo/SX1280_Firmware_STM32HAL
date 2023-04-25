@@ -1,0 +1,66 @@
+sx1280.cpp:41:6:void SX1280::Init()	1
+sx1280.cpp:49:6:void SX1280::SetRegistersDefault()	1
+sx1280.cpp:57:10:virtual uint16_t SX1280::GetFirmwareVersion()	1
+sx1280.cpp:62:15:virtual RadioStatus_t SX1280::GetStatus()	1
+sx1280.cpp:72:23:virtual RadioOperatingModes_t SX1280::GetOpMode()	1
+sx1280.cpp:77:6:void SX1280::SetSleep(SleepParams_t)	1
+sx1280.cpp:88:6:void SX1280::SetStandby(RadioStandbyModes_t)	2
+sx1280.cpp:101:6:void SX1280::SetFs()	1
+sx1280.cpp:107:6:void SX1280::SetTx(TickTime_t)	2
+sx1280.cpp:126:6:void SX1280::SetRx(TickTime_t)	2
+sx1280.cpp:145:6:void SX1280::SetRxDutyCycle(RadioTickSizes_t, uint16_t, uint16_t)	1
+sx1280.cpp:158:6:void SX1280::SetCad()	1
+sx1280.cpp:164:6:void SX1280::SetTxContinuousWave()	1
+sx1280.cpp:169:6:void SX1280::SetTxContinuousPreamble()	1
+sx1280.cpp:174:6:void SX1280::SetPacketType(RadioPacketTypes_t)	1
+sx1280.cpp:182:20:RadioPacketTypes_t SX1280::GetPacketType(bool)	3
+sx1280.cpp:200:6:void SX1280::SetRfFrequency(uint32_t)	1
+sx1280.cpp:212:6:void SX1280::SetTxParams(int8_t, RadioRampTimes_t)	1
+sx1280.cpp:223:6:void SX1280::SetCadParams(RadioLoRaCadSymbols_t)	1
+sx1280.cpp:229:6:void SX1280::SetBufferBaseAddresses(uint8_t, uint8_t)	1
+sx1280.cpp:238:6:void SX1280::SetModulationParams(ModulationParams_t*)	7
+sx1280.cpp:282:6:void SX1280::SetPacketParams(PacketParams_t*)	7
+sx1280.cpp:344:6:void SX1280::ForcePreambleLength(RadioPreambleLengths_t)	1
+sx1280.cpp:349:6:void SX1280::GetRxBufferStatus(uint8_t*, uint8_t*)	5
+sx1280.cpp:375:6:void SX1280::GetPacketStatus(PacketStatus_t*)	8
+sx1280.cpp:451:8:int8_t SX1280::GetRssiInst()	1
+sx1280.cpp:460:6:void SX1280::SetDioIrqParams(uint16_t, uint16_t, uint16_t, uint16_t)	1
+sx1280.cpp:475:10:uint16_t SX1280::GetIrqStatus()	1
+sx1280.cpp:482:6:void SX1280::ClearIrqStatus(uint16_t)	1
+sx1280.cpp:491:6:void SX1280::Calibrate(CalibrationParams_t)	1
+sx1280.cpp:502:6:void SX1280::SetRegulatorMode(RadioRegulatorModes_t)	1
+sx1280.cpp:507:6:void SX1280::SetSaveContext()	1
+sx1280.cpp:512:6:void SX1280::SetAutoTx(uint16_t)	1
+sx1280.cpp:522:6:void SX1280::StopAutoTx()	1
+sx1280.cpp:528:6:void SX1280::SetAutoFs(bool)	1
+sx1280.cpp:533:6:void SX1280::SetLongPreamble(bool)	1
+sx1280.cpp:538:6:void SX1280::SetPayload(uint8_t*, uint8_t, uint8_t)	1
+sx1280.cpp:543:9:uint8_t SX1280::GetPayload(uint8_t*, uint8_t*, uint8_t)	2
+sx1280.cpp:556:6:void SX1280::SendPayload(uint8_t*, uint8_t, TickTime_t, uint8_t)	1
+sx1280.cpp:562:9:uint8_t SX1280::SetSyncWord(uint8_t, uint8_t*)	14
+sx1280.cpp:625:6:void SX1280::SetSyncWordErrorTolerance(uint8_t)	1
+sx1280.cpp:631:9:uint8_t SX1280::SetCrcSeed(uint8_t*)	5
+sx1280.cpp:653:6:void SX1280::SetBleAccessAddress(uint32_t)	1
+sx1280.cpp:661:6:void SX1280::SetBleAdvertizerAccessAddress()	1
+sx1280.cpp:666:6:void SX1280::SetCrcPolynomial(uint16_t)	3
+sx1280.cpp:684:6:void SX1280::SetWhiteningSeed(uint8_t)	4
+sx1280.cpp:698:6:void SX1280::EnableManualGain()	1
+sx1280.cpp:704:6:void SX1280::DisableManualGain()	1
+sx1280.cpp:710:6:void SX1280::SetManualGainValue(uint8_t)	1
+sx1280.cpp:715:6:void SX1280::SetLNAGainSetting(RadioLnaSettings_t)	3
+sx1280.cpp:732:6:void SX1280::SetRangingIdLength(RadioRangingIdCheckLengths_t)	2
+sx1280.cpp:744:6:void SX1280::SetDeviceRangingAddress(uint32_t)	2
+sx1280.cpp:758:6:void SX1280::SetRangingRequestAddress(uint32_t)	2
+sx1280.cpp:772:8:double SX1280::GetRangingResult(RadioRangingResultTypes_t)	5
+sx1280.cpp:813:9:uint8_t SX1280::GetRangingPowerDeltaThresholdIndicator()	1
+sx1280.cpp:821:6:void SX1280::SetRangingCalibration(uint16_t)	2
+sx1280.cpp:834:6:void SX1280::RangingClearFilterResult()	1
+sx1280.cpp:843:6:void SX1280::RangingSetFilterNumSamples(uint8_t)	1
+sx1280.cpp:849:6:void SX1280::SetRangingRole(RadioRangingRoles_t)	1
+sx1280.cpp:857:8:double SX1280::GetFrequencyError()	2
+sx1280.cpp:886:6:void SX1280::SetPollingMode()	1
+sx1280.cpp:891:9:static int32_t SX1280::complement2(uint32_t, uint8_t)	2
+sx1280.cpp:901:9:int32_t SX1280::GetLoRaBandwidth()	7
+sx1280.cpp:925:6:void SX1280::SetInterruptMode()	1
+sx1280.cpp:930:6:void SX1280::OnDioIrq()	2
+sx1280.cpp:947:6:void SX1280::ProcessIrqs()	70

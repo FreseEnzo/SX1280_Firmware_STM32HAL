@@ -1,0 +1,7 @@
+StaticFIFO.cpp:12:1:StaticFIFO::StaticFIFO(uint32_t)	2
+StaticFIFO.cpp:16:1:StaticFIFO::~StaticFIFO()	2
+StaticFIFO.cpp:16:1:virtual StaticFIFO::~StaticFIFO()	1
+StaticFIFO.cpp:20:9:int32_t StaticFIFO::push(const char*)	4
+StaticFIFO.cpp:36:9:int32_t StaticFIFO::push(uint8_t*, uint32_t)	4
+StaticFIFO.cpp:52:9:int32_t StaticFIFO::push(char*, uint32_t)	4
+StaticFIFO.cpp:68:9:int32_t StaticFIFO::pop(uint8_t**, uint32_t*, uint32_t)	3

@@ -1,0 +1,3 @@
+RangingCorrection.cpp:40:8:double Sx1280RangingCorrection::GetRangingCorrectionPerSfBwGain(RadioLoRaSpreadingFactors_t, RadioLoRaBandwidths_t, int8_t)	15
+RangingCorrection.cpp:79:8:double Sx1280RangingCorrection::ComputeRangingCorrectionPolynome(RadioLoRaSpreadingFactors_t, RadioLoRaBandwidths_t, double)	16
+cmath:415:5:constexpr typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::pow(_Tp, _Up) [with _Tp = double; _Up = int]	1

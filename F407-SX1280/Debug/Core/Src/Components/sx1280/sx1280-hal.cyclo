@@ -1,0 +1,22 @@
+radio.h:206:5:Radio::Radio(RadioCallbacks_t*)	1
+radio.h:218:13:Radio::~Radio()	1
+radio.h:218:13:virtual Radio::~Radio()	1
+sx1280.h:958:5:SX1280::SX1280(RadioCallbacks_t*)	1
+sx1280.h:969:13:SX1280::~SX1280()	1
+sx1280.h:969:13:virtual SX1280::~SX1280()	1
+sx1280-hal.cpp:43:1:SX1280Hal::SX1280Hal(SPI_HandleTypeDef*, GPIO_TypeDef*, uint16_t, GPIO_TypeDef*, uint16_t, GPIO_TypeDef*, uint16_t, RadioCallbacks_t*)	1
+sx1280-hal.cpp:60:1:SX1280Hal::~SX1280Hal()	1
+sx1280-hal.cpp:60:1:virtual SX1280Hal::~SX1280Hal()	1
+sx1280-hal.cpp:64:6:virtual void SX1280Hal::IoIrqInit(DioIrqHandler)	1
+sx1280-hal.cpp:73:6:virtual void SX1280Hal::Reset()	1
+sx1280-hal.cpp:86:6:virtual void SX1280Hal::Wakeup()	3
+sx1280-hal.cpp:106:6:virtual void SX1280Hal::WriteCommand(RadioCommands_t, uint8_t*, uint16_t)	6
+sx1280-hal.cpp:127:6:virtual void SX1280Hal::ReadCommand(RadioCommands_t, uint8_t*, uint16_t)	6
+sx1280-hal.cpp:155:6:virtual void SX1280Hal::WriteRegister(uint16_t, uint8_t*, uint16_t)	5
+sx1280-hal.cpp:175:6:virtual void SX1280Hal::WriteRegister(uint16_t, uint8_t)	1
+sx1280-hal.cpp:180:6:virtual void SX1280Hal::ReadRegister(uint16_t, uint8_t*, uint16_t)	5
+sx1280-hal.cpp:201:9:virtual uint8_t SX1280Hal::ReadRegister(uint16_t)	1
+sx1280-hal.cpp:209:6:virtual void SX1280Hal::WriteBuffer(uint8_t, uint8_t*, uint8_t)	5
+sx1280-hal.cpp:228:6:virtual void SX1280Hal::ReadBuffer(uint8_t, uint8_t*, uint8_t)	5
+sx1280-hal.cpp:248:9:uint8_t SX1280Hal::SpiTransmitReceiveByte(uint8_t)	1
+sx1280-hal.cpp:256:6:void SX1280Hal::HalInterruptCallback()	5

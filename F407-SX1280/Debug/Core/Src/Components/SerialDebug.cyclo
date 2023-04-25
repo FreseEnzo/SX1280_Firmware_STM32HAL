@@ -1,0 +1,7 @@
+SerialDebug.cpp:11:1:SerialDebug::SerialDebug(UART_HandleTypeDef*, uint32_t)	1
+SerialDebug.cpp:17:6:void SerialDebug::setLevel(SerialDebug::DebugLevel)	1
+SerialDebug.cpp:22:6:void SerialDebug::serialTxCpltCallback()	2
+SerialDebug.cpp:33:6:void SerialDebug::debug(const char*)	4
+SerialDebug.cpp:48:6:void SerialDebug::info(const char*)	4
+SerialDebug.cpp:63:6:void SerialDebug::warn(const char*)	4
+SerialDebug.cpp:78:6:void SerialDebug::error(const char*)	4
