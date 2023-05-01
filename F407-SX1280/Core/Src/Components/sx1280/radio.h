@@ -18,6 +18,7 @@ Maintainer: Miguel Luis, Gregory Cristian and Matthieu Verdy
 
 #include "main.h"
 #include "math.h"
+#include "stdbool.h"
 
 /*!
  * \brief Structure describing the radio status

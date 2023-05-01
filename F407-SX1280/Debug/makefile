@@ -81,8 +81,8 @@ all: main-build
 main-build: F407-SX1280.elf secondary-outputs
 
 # Tool invocations
-F407-SX1280.elf F407-SX1280.map: $(OBJS) $(USER_OBJS) C:\Users\enzog\OneDrive\Documentos\Playground\F407-SX1280\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "F407-SX1280.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\enzog\OneDrive\Documentos\Playground\F407-SX1280\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F407-SX1280.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+F407-SX1280.elf F407-SX1280.map: $(OBJS) $(USER_OBJS) C:\Users\enzog\OneDrive\Documentos\Playground\SX1280_Firmware_STM32HAL\F407-SX1280\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "F407-SX1280.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\enzog\OneDrive\Documentos\Playground\SX1280_Firmware_STM32HAL\F407-SX1280\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F407-SX1280.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

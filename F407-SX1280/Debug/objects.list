@@ -1,3 +1,4 @@
+"./Core/Src/Components/RoboIME_SX1280.o"
 "./Core/Src/Components/SerialDebug.o"
 "./Core/Src/Components/Start.o"
 "./Core/Src/Components/StaticFIFO.o"

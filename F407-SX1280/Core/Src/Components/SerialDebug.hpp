@@ -9,11 +9,9 @@
 #define SRC_COMPONENTS_SERIALDEBUG_HPP_
 
 #include "main.h"
-#include <cstdio>
 #include "StaticFIFO.hpp"
-
-class SerialDebug
-{
+#include <stdio.h>
+class SerialDebug{
 public:
 	enum DebugLevel{
 		DEBUG_LEVEL_DEBUG,

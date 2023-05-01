@@ -1,6 +1,6 @@
-radio.h:206:5:Radio::Radio(RadioCallbacks_t*)	1
-radio.h:218:13:Radio::~Radio()	1
-radio.h:218:13:virtual Radio::~Radio()	1
+radio.h:207:5:Radio::Radio(RadioCallbacks_t*)	1
+radio.h:219:13:Radio::~Radio()	1
+radio.h:219:13:virtual Radio::~Radio()	1
 sx1280.h:958:5:SX1280::SX1280(RadioCallbacks_t*)	1
 sx1280.h:969:13:SX1280::~SX1280()	1
 sx1280.h:969:13:virtual SX1280::~SX1280()	1
