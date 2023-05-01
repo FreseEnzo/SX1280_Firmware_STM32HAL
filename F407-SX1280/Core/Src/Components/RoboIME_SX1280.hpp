@@ -22,10 +22,12 @@ public:
 	void setPayload( uint8_t *buffer, uint8_t size, uint8_t offset );
 	void sendPayload (uint8_t* payload, uint8_t payloadSize);
 	uint8_t receivePayload(uint8_t* payload);
+	void setRX(void);
 	int setup();
 
-	uint8_t bufferSize = 128;
+	static const uint8_t bufferSize = 128;
 private:
+	uint8_t payloadTemp[bufferSize];
 		uint8_t roboId;
 		uint8_t oldCount;
 		PacketParams_t PacketParams;

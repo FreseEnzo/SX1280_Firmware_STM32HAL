@@ -12,12 +12,26 @@ extern UART_HandleTypeDef huart2;
 extern TIM_HandleTypeDef htim6;
 extern SPI_HandleTypeDef hspi2;
 
-SX1280Hal radio0(&hspi2, SX1280_NSS_GPIO_Port, SX1280_NSS_Pin, SX1280_BUSY_GPIO_Port, SX1280_BUSY_Pin, SX1280_RST_GPIO_Port, SX1280_RST_Pin, NULL);
+RadioCallbacks_t callbacks =
+{
+	NULL,        		// txDone
+	NULL,        		// rxDone
+    NULL,             	// syncWordDone
+    NULL,             	// headerDone
+	NULL,     			// txTimeout
+	NULL,     			// rxTimeout
+	NULL,       		// rxError
+    NULL,             	// rangingDone
+    NULL,             	// cadDone
+};
+
+SX1280Hal radio0(&hspi2, SX1280_NSS_GPIO_Port, SX1280_NSS_Pin, SX1280_BUSY_GPIO_Port, SX1280_BUSY_Pin, SX1280_RST_GPIO_Port, SX1280_RST_Pin, &callbacks);
 
 
 //Public methods
 void RoboIME_SX1280::GPIOCallback(void){
 	radio0.HalInterruptCallback();
+	HAL_GPIO_TogglePin(LD5_GPIO_Port, LD5_Pin);
 }
 int RoboIME_SX1280::setup(){
 	/* Modulation Params*/
@@ -30,7 +44,7 @@ int RoboIME_SX1280::setup(){
 	   PacketParams.Params.Flrc.SyncWordLength        = ( RadioFlrcSyncWordLengths_t )FLRC_SYNCWORD_LENGTH_4_BYTE;
 	   PacketParams.Params.Flrc.SyncWordMatch         = ( RadioSyncWordRxMatchs_t )   RADIO_RX_MATCH_SYNCWORD_1;
 	   PacketParams.Params.Flrc.HeaderType            = ( RadioPacketLengthModes_t )  RADIO_PACKET_VARIABLE_LENGTH;
-	   PacketParams.Params.Flrc.PayloadLength         =                               15;
+	   PacketParams.Params.Flrc.PayloadLength         =                               bufferSize-1;
 	   PacketParams.Params.Flrc.CrcLength             = ( RadioCrcTypes_t )           RADIO_CRC_3_BYTES;
 	   PacketParams.Params.Flrc.Whitening             = ( RadioWhiteningModes_t )	  RADIO_WHITENING_OFF;
 
@@ -59,8 +73,8 @@ int RoboIME_SX1280::setup(){
    	radio0.SetDioIrqParams( RxIrqMask, RxIrqMask, IRQ_RADIO_NONE, IRQ_RADIO_NONE );
    	radio0.SetRx( ( TickTime_t ) { RADIO_TICK_SIZE_1000_US, 0xFFFF } );
 
-   	radio0.SetPollingMode( );
-   	radio0.ProcessIrqs( );
+   	//radio0.SetPollingMode( );
+   	//radio0.ProcessIrqs( );
 
    	return 0;
 }
@@ -71,9 +85,9 @@ void RoboIME_SX1280::sendPayload(uint8_t* payload, uint8_t payloadSize){
 	radio0.GetIrqStatus();
 }
 uint8_t RoboIME_SX1280::receivePayload(uint8_t* payload){
-	uint8_t payloadTemp[bufferSize];
 	uint8_t actualBufferSize;
 	radio0.SetDioIrqParams( RxIrqMask, RxIrqMask, IRQ_RADIO_NONE, IRQ_RADIO_NONE );
+	oldCount = payloadTemp[0];
 	radio0.GetPayload(payloadTemp, &actualBufferSize, bufferSize);
 	if (payloadTemp[0] != oldCount && payloadTemp[1] == roboId)
 	{
@@ -97,7 +111,10 @@ int RoboIME_SX1280::setRobotId(uint8_t id){
 	return 0;
 }
 
-
+void RoboIME_SX1280::setRX(void)
+{
+	radio0.SetRx( ( TickTime_t ) { RADIO_TICK_SIZE_1000_US, 0xFFFF } );
+}
 
 
 

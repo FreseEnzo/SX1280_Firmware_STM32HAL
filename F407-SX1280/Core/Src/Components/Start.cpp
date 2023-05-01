@@ -2,7 +2,6 @@
 #include "SerialDebug.hpp"
 #include "usbd_cdc_if.h"
 #include "string.h"
-#include "sx1280/sx1280.h"
 #include "RoboIME_SX1280.hpp"
 
 extern TIM_HandleTypeDef htim6;
@@ -28,7 +27,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	switch (GPIO_Pin){
-	case 8:
+	case GPIO_PIN_8:
 		radio.GPIOCallback();
 		break;
 	default:
