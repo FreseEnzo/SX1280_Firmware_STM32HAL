@@ -23,7 +23,8 @@ public:
 	uint8_t  sendPayload (uint8_t* payload, uint8_t payloadSize);
 	uint8_t receivePayload(uint8_t* payload);
 	void setRX(void);
-	int setup();
+	int setupDataRadio();
+	int setupFeedbackRadio();
 	uint8_t receiveFeedback(uint8_t* payload);
 	uint8_t  sendFeedback(void);
 	void  OnTxDone( void );

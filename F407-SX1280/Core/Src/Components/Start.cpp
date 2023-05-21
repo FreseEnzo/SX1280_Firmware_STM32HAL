@@ -11,6 +11,8 @@ extern UART_HandleTypeDef huart2;
 RoboIME_SX1280 radio;
 
 uint8_t BufferReceived[128];
+uint8_t BufferReceivedFeedback[128];
+uint8_t BufferSentFeedback[128];
 uint8_t count = 0;
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
@@ -37,7 +39,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 void start(){
 
-	radio.setup();
+	radio.setupDataRadio();
    /*Radio Type*/
     bool isMaster = false;
 
@@ -53,6 +55,7 @@ while(1)
 
 	if(isMaster == true)
 	{
+		/*		MASTER    */
 
 		// Send the next PING frame
 		Buffer[0] = count;
@@ -68,19 +71,26 @@ while(1)
 			Buffer[i] = i;
 		}
 
+		/*Data Radio*/
 		if(radio.sendPayload(Buffer, radio.bufferSize))
 		{
 			HAL_GPIO_TogglePin(LD4_GPIO_Port, LD4_Pin); // verde
 			count ++;
-			HAL_Delay(10);
+		//	HAL_Delay(10);
 		}
-
-
+		/*Feedback Radio*/
+		/*if(radio_feedback.receivePayload(BufferReceivedFeedback))
+					{
+						 CDC_Transmit_FS(BufferReceivedFeedback, radio_feedback.bufferSize);
+					}*/
 	}
+
 	else
 	{
+		/*   SLAVE    */
+
 		radio.setRobotId(2);
-		HAL_Delay(10);
+		HAL_Delay(3);
 			if(radio.receivePayload(BufferReceived))
 			{
 				 CDC_Transmit_FS(BufferReceived, radio.bufferSize);
