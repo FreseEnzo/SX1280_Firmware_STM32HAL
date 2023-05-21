@@ -41,6 +41,7 @@ void start(){
    /*Radio Type*/
     bool isMaster = false;
 
+
 	uint8_t Buffer[radio.bufferSize];
 	memset( BufferReceived, 0x00, radio.bufferSize );
 	HAL_Delay(5);
@@ -67,20 +68,25 @@ while(1)
 			Buffer[i] = i;
 		}
 
-		radio.sendPayload(Buffer, radio.bufferSize);
-		HAL_GPIO_TogglePin(LD4_GPIO_Port, LD4_Pin);
-		count ++;
-		HAL_Delay(100);
+		if(radio.sendPayload(Buffer, radio.bufferSize))
+		{
+			HAL_GPIO_TogglePin(LD4_GPIO_Port, LD4_Pin); // verde
+			count ++;
+			HAL_Delay(10);
+		}
+
+
 	}
 	else
 	{
 		radio.setRobotId(2);
+		HAL_Delay(10);
 			if(radio.receivePayload(BufferReceived))
 			{
 				 CDC_Transmit_FS(BufferReceived, radio.bufferSize);
 			}
 
-			 HAL_Delay(100);
+
 	}
 	}
 }

@@ -969,7 +969,6 @@ void SX1280::ProcessIrqs( void )
 #if( SX1280_DEBUG == 1 )
     DigitalOut TEST_PIN_1( D14 );
     DigitalOut TEST_PIN_2( D15 );
-    for( int i = 0x8000; i != 0; i >>= 1 )
     {
         TEST_PIN_2 = 0;
         TEST_PIN_1 = ( ( irqRegs & i ) != 0 ) ? 1 : 0;

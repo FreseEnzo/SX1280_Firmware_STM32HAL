@@ -79,6 +79,14 @@ void Error_Handler(void);
 #define SPI1_MOSI_GPIO_Port GPIOA
 #define BOOT1_Pin GPIO_PIN_2
 #define BOOT1_GPIO_Port GPIOB
+#define SX_FB_RST_Pin GPIO_PIN_10
+#define SX_FB_RST_GPIO_Port GPIOE
+#define SX_FB_BUSY_Pin GPIO_PIN_11
+#define SX_FB_BUSY_GPIO_Port GPIOE
+#define SX_FB_INT_Pin GPIO_PIN_12
+#define SX_FB_INT_GPIO_Port GPIOE
+#define SX_FB_NSS_Pin GPIO_PIN_13
+#define SX_FB_NSS_GPIO_Port GPIOE
 #define CLK_IN_Pin GPIO_PIN_10
 #define CLK_IN_GPIO_Port GPIOB
 #define SX1280_NSS_Pin GPIO_PIN_12

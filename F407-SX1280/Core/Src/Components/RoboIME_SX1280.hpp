@@ -20,10 +20,17 @@ public:
 	int  setRobotId(uint8_t id);
 	void GPIOCallback(void);
 	void setPayload( uint8_t *buffer, uint8_t size, uint8_t offset );
-	void sendPayload (uint8_t* payload, uint8_t payloadSize);
+	uint8_t  sendPayload (uint8_t* payload, uint8_t payloadSize);
 	uint8_t receivePayload(uint8_t* payload);
 	void setRX(void);
 	int setup();
+	uint8_t receiveFeedback(uint8_t* payload);
+	uint8_t  sendFeedback(void);
+	void  OnTxDone( void );
+	void  OnRxDone( void );
+	void  OnTxTimeout( void );
+	void OnRxTimeout( void );
+	void  OnRxError( IrqErrorCode_t errorCode );
 
 	static const uint8_t bufferSize = 128;
 private:
