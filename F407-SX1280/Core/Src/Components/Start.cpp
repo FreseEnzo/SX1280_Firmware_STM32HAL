@@ -41,7 +41,7 @@ void start(){
 
 	radio.setupDataRadio();
    /*Radio Type*/
-    bool isMaster = false;
+    bool isMaster = true;
 
 
 	uint8_t Buffer[radio.bufferSize];
@@ -76,7 +76,7 @@ while(1)
 		{
 			HAL_GPIO_TogglePin(LD4_GPIO_Port, LD4_Pin); // verde
 			count ++;
-		//	HAL_Delay(10);
+			HAL_Delay(1);
 		}
 		/*Feedback Radio*/
 		/*if(radio_feedback.receivePayload(BufferReceivedFeedback))

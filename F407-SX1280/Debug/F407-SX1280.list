@@ -39,13 +39,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  0002a8db  00000000  00000000  00057da0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0002711b  00000000  00000000  0008267b  2**0
+ 18 .debug_line   0002711e  00000000  00000000  0008267b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000ddde6  00000000  00000000  000a9796  2**0
+ 19 .debug_str    000ddde6  00000000  00000000  000a9799  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  0018757c  2**0
+ 20 .comment      00000050  00000000  00000000  0018757f  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  0000885c  00000000  00000000  001875cc  2**2
+ 21 .debug_frame  0000885c  00000000  00000000  001875d0  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1015,7 +1015,7 @@ void RoboIME_SX1280::GPIOCallback(void){
  8000cae:	6078      	str	r0, [r7, #4]
 	radio0.HalInterruptCallback();
  8000cb0:	4805      	ldr	r0, [pc, #20]	; (8000cc8 <_ZN14RoboIME_SX128012GPIOCallbackEv+0x20>)
- 8000cb2:	f000 feae 	bl	8001a12 <_ZN9SX1280Hal20HalInterruptCallbackEv>
+ 8000cb2:	f000 feb0 	bl	8001a16 <_ZN9SX1280Hal20HalInterruptCallbackEv>
 	HAL_GPIO_TogglePin(LD5_GPIO_Port, LD5_Pin);
  8000cb6:	f44f 4180 	mov.w	r1, #16384	; 0x4000
  8000cba:	4804      	ldr	r0, [pc, #16]	; (8000ccc <_ZN14RoboIME_SX128012GPIOCallbackEv+0x24>)
@@ -1093,7 +1093,7 @@ int RoboIME_SX1280::setupDataRadio(){
  8000d3c:	f002 fb92 	bl	8003464 <HAL_Delay>
    	radio0.Init();
  8000d40:	481d      	ldr	r0, [pc, #116]	; (8000db8 <_ZN14RoboIME_SX128014setupDataRadioEv+0xe8>)
- 8000d42:	f000 fe97 	bl	8001a74 <_ZN6SX12804InitEv>
+ 8000d42:	f000 fe99 	bl	8001a78 <_ZN6SX12804InitEv>
    	radio0.SetRegulatorMode(USE_LDO);
  8000d46:	2100      	movs	r1, #0
  8000d48:	481b      	ldr	r0, [pc, #108]	; (8000db8 <_ZN14RoboIME_SX128014setupDataRadioEv+0xe8>)
@@ -1101,14 +1101,14 @@ int RoboIME_SX1280::setupDataRadio(){
    	radio0.SetStandby( STDBY_XOSC);
  8000d4e:	2101      	movs	r1, #1
  8000d50:	4819      	ldr	r0, [pc, #100]	; (8000db8 <_ZN14RoboIME_SX128014setupDataRadioEv+0xe8>)
- 8000d52:	f000 feff 	bl	8001b54 <_ZN6SX128010SetStandbyE19RadioStandbyModes_t>
+ 8000d52:	f000 ff01 	bl	8001b58 <_ZN6SX128010SetStandbyE19RadioStandbyModes_t>
    	//radio0.SetLNAGainSetting(LNA_HIGH_SENSITIVITY_MODE);
    	radio0.SetPacketType( ModulationParams.PacketType );
  8000d56:	687b      	ldr	r3, [r7, #4]
  8000d58:	f893 309f 	ldrb.w	r3, [r3, #159]	; 0x9f
  8000d5c:	4619      	mov	r1, r3
  8000d5e:	4816      	ldr	r0, [pc, #88]	; (8000db8 <_ZN14RoboIME_SX128014setupDataRadioEv+0xe8>)
- 8000d60:	f000 ff83 	bl	8001c6a <_ZN6SX128013SetPacketTypeE18RadioPacketTypes_t>
+ 8000d60:	f000 ff85 	bl	8001c6e <_ZN6SX128013SetPacketTypeE18RadioPacketTypes_t>
    	radio0.SetModulationParams( &ModulationParams );
  8000d64:	687b      	ldr	r3, [r7, #4]
  8000d66:	339f      	adds	r3, #159	; 0x9f
@@ -1247,7 +1247,7 @@ uint8_t RoboIME_SX1280::receivePayload(uint8_t* payload){
  8000e3c:	81fb      	strh	r3, [r7, #14]
  8000e3e:	68f9      	ldr	r1, [r7, #12]
  8000e40:	481f      	ldr	r0, [pc, #124]	; (8000ec0 <_ZN14RoboIME_SX128014receivePayloadEPh+0xac>)
- 8000e42:	f000 fedc 	bl	8001bfe <_ZN6SX12805SetRxE10TickTime_s>
+ 8000e42:	f000 fede 	bl	8001c02 <_ZN6SX12805SetRxE10TickTime_s>
 	oldCount = payloadTemp[0];
  8000e46:	687b      	ldr	r3, [r7, #4]
  8000e48:	781a      	ldrb	r2, [r3, #0]
@@ -1473,7 +1473,7 @@ SX1280Hal radio0(&hspi2, SX1280_NSS_GPIO_Port, SX1280_NSS_Pin, SX1280_BUSY_GPIO_
  8000fa6:	4a0c      	ldr	r2, [pc, #48]	; (8000fd8 <_Z41__static_initialization_and_destruction_0ii+0x68>)
  8000fa8:	490c      	ldr	r1, [pc, #48]	; (8000fdc <_Z41__static_initialization_and_destruction_0ii+0x6c>)
  8000faa:	480d      	ldr	r0, [pc, #52]	; (8000fe0 <_Z41__static_initialization_and_destruction_0ii+0x70>)
- 8000fac:	f000 f99c 	bl	80012e8 <_ZN9SX1280HalC1EP19__SPI_HandleTypeDefP12GPIO_TypeDeftS3_tS3_tP16RadioCallbacks_t>
+ 8000fac:	f000 f99e 	bl	80012ec <_ZN9SX1280HalC1EP19__SPI_HandleTypeDefP12GPIO_TypeDeftS3_tS3_tP16RadioCallbacks_t>
  8000fb0:	687b      	ldr	r3, [r7, #4]
  8000fb2:	2b00      	cmp	r3, #0
  8000fb4:	d107      	bne.n	8000fc6 <_Z41__static_initialization_and_destruction_0ii+0x56>
@@ -1482,7 +1482,7 @@ SX1280Hal radio0(&hspi2, SX1280_NSS_GPIO_Port, SX1280_NSS_Pin, SX1280_BUSY_GPIO_
  8000fbc:	4293      	cmp	r3, r2
  8000fbe:	d102      	bne.n	8000fc6 <_Z41__static_initialization_and_destruction_0ii+0x56>
  8000fc0:	4807      	ldr	r0, [pc, #28]	; (8000fe0 <_Z41__static_initialization_and_destruction_0ii+0x70>)
- 8000fc2:	f000 f9cd 	bl	8001360 <_ZN9SX1280HalD1Ev>
+ 8000fc2:	f000 f9cf 	bl	8001364 <_ZN9SX1280HalD1Ev>
 }
  8000fc6:	bf00      	nop
  8000fc8:	3708      	adds	r7, #8
@@ -1594,11 +1594,11 @@ void start(){
  8001070:	af00      	add	r7, sp, #0
 
 	radio.setupDataRadio();
- 8001072:	4837      	ldr	r0, [pc, #220]	; (8001150 <start+0xe4>)
+ 8001072:	4838      	ldr	r0, [pc, #224]	; (8001154 <start+0xe8>)
  8001074:	f7ff fe2c 	bl	8000cd0 <_ZN14RoboIME_SX128014setupDataRadioEv>
    /*Radio Type*/
-    bool isMaster = false;
- 8001078:	2300      	movs	r3, #0
+    bool isMaster = true;
+ 8001078:	2301      	movs	r3, #1
  800107a:	f887 3087 	strb.w	r3, [r7, #135]	; 0x87
 
 
@@ -1606,7 +1606,7 @@ void start(){
 	memset( BufferReceived, 0x00, radio.bufferSize );
  800107e:	2280      	movs	r2, #128	; 0x80
  8001080:	2100      	movs	r1, #0
- 8001082:	4834      	ldr	r0, [pc, #208]	; (8001154 <start+0xe8>)
+ 8001082:	4835      	ldr	r0, [pc, #212]	; (8001158 <start+0xec>)
  8001084:	f00b fd02 	bl	800ca8c <memset>
 	HAL_Delay(5);
  8001088:	2005      	movs	r0, #5
@@ -1622,7 +1622,7 @@ while(1)
 	if(isMaster == true)
  8001094:	f897 3087 	ldrb.w	r3, [r7, #135]	; 0x87
  8001098:	2b01      	cmp	r3, #1
- 800109a:	d140      	bne.n	800111e <start+0xb2>
+ 800109a:	d143      	bne.n	8001124 <start+0xb8>
 	{
 		/*		MASTER    */
 
@@ -1679,7 +1679,7 @@ while(1)
  80010ec:	1d3b      	adds	r3, r7, #4
  80010ee:	2280      	movs	r2, #128	; 0x80
  80010f0:	4619      	mov	r1, r3
- 80010f2:	4817      	ldr	r0, [pc, #92]	; (8001150 <start+0xe4>)
+ 80010f2:	4818      	ldr	r0, [pc, #96]	; (8001154 <start+0xe8>)
  80010f4:	f7ff fe64 	bl	8000dc0 <_ZN14RoboIME_SX128011sendPayloadEPhh>
  80010f8:	4603      	mov	r3, r0
  80010fa:	2b00      	cmp	r3, #0
@@ -1692,1852 +1692,1852 @@ while(1)
 		{
 			HAL_GPIO_TogglePin(LD4_GPIO_Port, LD4_Pin); // verde
  8001108:	f44f 5180 	mov.w	r1, #4096	; 0x1000
- 800110c:	4812      	ldr	r0, [pc, #72]	; (8001158 <start+0xec>)
+ 800110c:	4813      	ldr	r0, [pc, #76]	; (800115c <start+0xf0>)
  800110e:	f003 f828 	bl	8004162 <HAL_GPIO_TogglePin>
 			count ++;
  8001112:	f8d7 308c 	ldr.w	r3, [r7, #140]	; 0x8c
  8001116:	3301      	adds	r3, #1
  8001118:	f8c7 308c 	str.w	r3, [r7, #140]	; 0x8c
- 800111c:	e7ba      	b.n	8001094 <start+0x28>
+			HAL_Delay(1);
+ 800111c:	2001      	movs	r0, #1
+ 800111e:	f002 f9a1 	bl	8003464 <HAL_Delay>
+ 8001122:	e7b7      	b.n	8001094 <start+0x28>
 
 	else
 	{
 		/*   SLAVE    */
 
 		radio.setRobotId(2);
- 800111e:	2102      	movs	r1, #2
- 8001120:	480b      	ldr	r0, [pc, #44]	; (8001150 <start+0xe4>)
- 8001122:	f7ff fed3 	bl	8000ecc <_ZN14RoboIME_SX128010setRobotIdEh>
+ 8001124:	2102      	movs	r1, #2
+ 8001126:	480b      	ldr	r0, [pc, #44]	; (8001154 <start+0xe8>)
+ 8001128:	f7ff fed0 	bl	8000ecc <_ZN14RoboIME_SX128010setRobotIdEh>
 		HAL_Delay(3);
- 8001126:	2003      	movs	r0, #3
- 8001128:	f002 f99c 	bl	8003464 <HAL_Delay>
+ 800112c:	2003      	movs	r0, #3
+ 800112e:	f002 f999 	bl	8003464 <HAL_Delay>
 			if(radio.receivePayload(BufferReceived))
- 800112c:	4909      	ldr	r1, [pc, #36]	; (8001154 <start+0xe8>)
- 800112e:	4808      	ldr	r0, [pc, #32]	; (8001150 <start+0xe4>)
- 8001130:	f7ff fe70 	bl	8000e14 <_ZN14RoboIME_SX128014receivePayloadEPh>
- 8001134:	4603      	mov	r3, r0
- 8001136:	2b00      	cmp	r3, #0
- 8001138:	bf14      	ite	ne
- 800113a:	2301      	movne	r3, #1
- 800113c:	2300      	moveq	r3, #0
- 800113e:	b2db      	uxtb	r3, r3
- 8001140:	2b00      	cmp	r3, #0
- 8001142:	d0a7      	beq.n	8001094 <start+0x28>
+ 8001132:	4909      	ldr	r1, [pc, #36]	; (8001158 <start+0xec>)
+ 8001134:	4807      	ldr	r0, [pc, #28]	; (8001154 <start+0xe8>)
+ 8001136:	f7ff fe6d 	bl	8000e14 <_ZN14RoboIME_SX128014receivePayloadEPh>
+ 800113a:	4603      	mov	r3, r0
+ 800113c:	2b00      	cmp	r3, #0
+ 800113e:	bf14      	ite	ne
+ 8001140:	2301      	movne	r3, #1
+ 8001142:	2300      	moveq	r3, #0
+ 8001144:	b2db      	uxtb	r3, r3
+ 8001146:	2b00      	cmp	r3, #0
+ 8001148:	d0a4      	beq.n	8001094 <start+0x28>
 			{
 				 CDC_Transmit_FS(BufferReceived, radio.bufferSize);
- 8001144:	2180      	movs	r1, #128	; 0x80
- 8001146:	4803      	ldr	r0, [pc, #12]	; (8001154 <start+0xe8>)
- 8001148:	f00a ffd6 	bl	800c0f8 <CDC_Transmit_FS>
+ 800114a:	2180      	movs	r1, #128	; 0x80
+ 800114c:	4802      	ldr	r0, [pc, #8]	; (8001158 <start+0xec>)
+ 800114e:	f00a ffd3 	bl	800c0f8 <CDC_Transmit_FS>
 			}
 
 
 	}
 	}
- 800114c:	e7a2      	b.n	8001094 <start+0x28>
- 800114e:	bf00      	nop
- 8001150:	2000020c 	.word	0x2000020c
- 8001154:	20000300 	.word	0x20000300
- 8001158:	40020c00 	.word	0x40020c00
+ 8001152:	e79f      	b.n	8001094 <start+0x28>
+ 8001154:	2000020c 	.word	0x2000020c
+ 8001158:	20000300 	.word	0x20000300
+ 800115c:	40020c00 	.word	0x40020c00
 
-0800115c <_Z41__static_initialization_and_destruction_0ii>:
+08001160 <_Z41__static_initialization_and_destruction_0ii>:
 }
- 800115c:	b580      	push	{r7, lr}
- 800115e:	b082      	sub	sp, #8
- 8001160:	af00      	add	r7, sp, #0
- 8001162:	6078      	str	r0, [r7, #4]
- 8001164:	6039      	str	r1, [r7, #0]
- 8001166:	687b      	ldr	r3, [r7, #4]
- 8001168:	2b01      	cmp	r3, #1
- 800116a:	d107      	bne.n	800117c <_Z41__static_initialization_and_destruction_0ii+0x20>
- 800116c:	683b      	ldr	r3, [r7, #0]
- 800116e:	f64f 72ff 	movw	r2, #65535	; 0xffff
- 8001172:	4293      	cmp	r3, r2
- 8001174:	d102      	bne.n	800117c <_Z41__static_initialization_and_destruction_0ii+0x20>
+ 8001160:	b580      	push	{r7, lr}
+ 8001162:	b082      	sub	sp, #8
+ 8001164:	af00      	add	r7, sp, #0
+ 8001166:	6078      	str	r0, [r7, #4]
+ 8001168:	6039      	str	r1, [r7, #0]
+ 800116a:	687b      	ldr	r3, [r7, #4]
+ 800116c:	2b01      	cmp	r3, #1
+ 800116e:	d107      	bne.n	8001180 <_Z41__static_initialization_and_destruction_0ii+0x20>
+ 8001170:	683b      	ldr	r3, [r7, #0]
+ 8001172:	f64f 72ff 	movw	r2, #65535	; 0xffff
+ 8001176:	4293      	cmp	r3, r2
+ 8001178:	d102      	bne.n	8001180 <_Z41__static_initialization_and_destruction_0ii+0x20>
 RoboIME_SX1280 radio;
- 8001176:	4803      	ldr	r0, [pc, #12]	; (8001184 <_Z41__static_initialization_and_destruction_0ii+0x28>)
- 8001178:	f7ff ff44 	bl	8001004 <_ZN14RoboIME_SX1280C1Ev>
+ 800117a:	4803      	ldr	r0, [pc, #12]	; (8001188 <_Z41__static_initialization_and_destruction_0ii+0x28>)
+ 800117c:	f7ff ff42 	bl	8001004 <_ZN14RoboIME_SX1280C1Ev>
 }
- 800117c:	bf00      	nop
- 800117e:	3708      	adds	r7, #8
- 8001180:	46bd      	mov	sp, r7
- 8001182:	bd80      	pop	{r7, pc}
- 8001184:	2000020c 	.word	0x2000020c
+ 8001180:	bf00      	nop
+ 8001182:	3708      	adds	r7, #8
+ 8001184:	46bd      	mov	sp, r7
+ 8001186:	bd80      	pop	{r7, pc}
+ 8001188:	2000020c 	.word	0x2000020c
 
-08001188 <_GLOBAL__sub_I_radio>:
- 8001188:	b580      	push	{r7, lr}
- 800118a:	af00      	add	r7, sp, #0
- 800118c:	f64f 71ff 	movw	r1, #65535	; 0xffff
- 8001190:	2001      	movs	r0, #1
- 8001192:	f7ff ffe3 	bl	800115c <_Z41__static_initialization_and_destruction_0ii>
- 8001196:	bd80      	pop	{r7, pc}
+0800118c <_GLOBAL__sub_I_radio>:
+ 800118c:	b580      	push	{r7, lr}
+ 800118e:	af00      	add	r7, sp, #0
+ 8001190:	f64f 71ff 	movw	r1, #65535	; 0xffff
+ 8001194:	2001      	movs	r0, #1
+ 8001196:	f7ff ffe3 	bl	8001160 <_Z41__static_initialization_and_destruction_0ii>
+ 800119a:	bd80      	pop	{r7, pc}
 
-08001198 <_ZN5RadioC1EP16RadioCallbacks_t>:
+0800119c <_ZN5RadioC1EP16RadioCallbacks_t>:
      *
      * \param [in]  callbacks     The structure of callbacks function pointers
      *                            to be called on radio interrupts
      *
      */
     Radio( RadioCallbacks_t *callbacks )
- 8001198:	b480      	push	{r7}
- 800119a:	b083      	sub	sp, #12
- 800119c:	af00      	add	r7, sp, #0
- 800119e:	6078      	str	r0, [r7, #4]
- 80011a0:	6039      	str	r1, [r7, #0]
+ 800119c:	b480      	push	{r7}
+ 800119e:	b083      	sub	sp, #12
+ 80011a0:	af00      	add	r7, sp, #0
+ 80011a2:	6078      	str	r0, [r7, #4]
+ 80011a4:	6039      	str	r1, [r7, #0]
     {
- 80011a2:	4a17      	ldr	r2, [pc, #92]	; (8001200 <_ZN5RadioC1EP16RadioCallbacks_t+0x68>)
- 80011a4:	687b      	ldr	r3, [r7, #4]
- 80011a6:	601a      	str	r2, [r3, #0]
+ 80011a6:	4a17      	ldr	r2, [pc, #92]	; (8001204 <_ZN5RadioC1EP16RadioCallbacks_t+0x68>)
+ 80011a8:	687b      	ldr	r3, [r7, #4]
+ 80011aa:	601a      	str	r2, [r3, #0]
         this->txDone = callbacks->txDone;
- 80011a8:	683b      	ldr	r3, [r7, #0]
- 80011aa:	681a      	ldr	r2, [r3, #0]
- 80011ac:	687b      	ldr	r3, [r7, #4]
- 80011ae:	605a      	str	r2, [r3, #4]
+ 80011ac:	683b      	ldr	r3, [r7, #0]
+ 80011ae:	681a      	ldr	r2, [r3, #0]
+ 80011b0:	687b      	ldr	r3, [r7, #4]
+ 80011b2:	605a      	str	r2, [r3, #4]
         this->rxDone = callbacks->rxDone;
- 80011b0:	683b      	ldr	r3, [r7, #0]
- 80011b2:	685a      	ldr	r2, [r3, #4]
- 80011b4:	687b      	ldr	r3, [r7, #4]
- 80011b6:	609a      	str	r2, [r3, #8]
+ 80011b4:	683b      	ldr	r3, [r7, #0]
+ 80011b6:	685a      	ldr	r2, [r3, #4]
+ 80011b8:	687b      	ldr	r3, [r7, #4]
+ 80011ba:	609a      	str	r2, [r3, #8]
         this->rxSyncWordDone = callbacks->rxSyncWordDone;
- 80011b8:	683b      	ldr	r3, [r7, #0]
- 80011ba:	689a      	ldr	r2, [r3, #8]
- 80011bc:	687b      	ldr	r3, [r7, #4]
- 80011be:	60da      	str	r2, [r3, #12]
+ 80011bc:	683b      	ldr	r3, [r7, #0]
+ 80011be:	689a      	ldr	r2, [r3, #8]
+ 80011c0:	687b      	ldr	r3, [r7, #4]
+ 80011c2:	60da      	str	r2, [r3, #12]
         this->rxHeaderDone = callbacks->rxHeaderDone;
- 80011c0:	683b      	ldr	r3, [r7, #0]
- 80011c2:	68da      	ldr	r2, [r3, #12]
- 80011c4:	687b      	ldr	r3, [r7, #4]
- 80011c6:	611a      	str	r2, [r3, #16]
+ 80011c4:	683b      	ldr	r3, [r7, #0]
+ 80011c6:	68da      	ldr	r2, [r3, #12]
+ 80011c8:	687b      	ldr	r3, [r7, #4]
+ 80011ca:	611a      	str	r2, [r3, #16]
         this->txTimeout = callbacks->txTimeout;
- 80011c8:	683b      	ldr	r3, [r7, #0]
- 80011ca:	691a      	ldr	r2, [r3, #16]
- 80011cc:	687b      	ldr	r3, [r7, #4]
- 80011ce:	615a      	str	r2, [r3, #20]
+ 80011cc:	683b      	ldr	r3, [r7, #0]
+ 80011ce:	691a      	ldr	r2, [r3, #16]
+ 80011d0:	687b      	ldr	r3, [r7, #4]
+ 80011d2:	615a      	str	r2, [r3, #20]
         this->rxTimeout = callbacks->rxTimeout;
- 80011d0:	683b      	ldr	r3, [r7, #0]
- 80011d2:	695a      	ldr	r2, [r3, #20]
- 80011d4:	687b      	ldr	r3, [r7, #4]
- 80011d6:	619a      	str	r2, [r3, #24]
+ 80011d4:	683b      	ldr	r3, [r7, #0]
+ 80011d6:	695a      	ldr	r2, [r3, #20]
+ 80011d8:	687b      	ldr	r3, [r7, #4]
+ 80011da:	619a      	str	r2, [r3, #24]
         this->rxError = callbacks->rxError;
- 80011d8:	683b      	ldr	r3, [r7, #0]
- 80011da:	699a      	ldr	r2, [r3, #24]
- 80011dc:	687b      	ldr	r3, [r7, #4]
- 80011de:	61da      	str	r2, [r3, #28]
+ 80011dc:	683b      	ldr	r3, [r7, #0]
+ 80011de:	699a      	ldr	r2, [r3, #24]
+ 80011e0:	687b      	ldr	r3, [r7, #4]
+ 80011e2:	61da      	str	r2, [r3, #28]
         this->rangingDone = callbacks->rangingDone;
- 80011e0:	683b      	ldr	r3, [r7, #0]
- 80011e2:	69da      	ldr	r2, [r3, #28]
- 80011e4:	687b      	ldr	r3, [r7, #4]
- 80011e6:	621a      	str	r2, [r3, #32]
+ 80011e4:	683b      	ldr	r3, [r7, #0]
+ 80011e6:	69da      	ldr	r2, [r3, #28]
+ 80011e8:	687b      	ldr	r3, [r7, #4]
+ 80011ea:	621a      	str	r2, [r3, #32]
         this->cadDone = callbacks->cadDone;
- 80011e8:	683b      	ldr	r3, [r7, #0]
- 80011ea:	6a1a      	ldr	r2, [r3, #32]
- 80011ec:	687b      	ldr	r3, [r7, #4]
- 80011ee:	625a      	str	r2, [r3, #36]	; 0x24
-    }
+ 80011ec:	683b      	ldr	r3, [r7, #0]
+ 80011ee:	6a1a      	ldr	r2, [r3, #32]
  80011f0:	687b      	ldr	r3, [r7, #4]
- 80011f2:	4618      	mov	r0, r3
- 80011f4:	370c      	adds	r7, #12
- 80011f6:	46bd      	mov	sp, r7
- 80011f8:	f85d 7b04 	ldr.w	r7, [sp], #4
- 80011fc:	4770      	bx	lr
- 80011fe:	bf00      	nop
- 8001200:	0800cc8c 	.word	0x0800cc8c
+ 80011f2:	625a      	str	r2, [r3, #36]	; 0x24
+    }
+ 80011f4:	687b      	ldr	r3, [r7, #4]
+ 80011f6:	4618      	mov	r0, r3
+ 80011f8:	370c      	adds	r7, #12
+ 80011fa:	46bd      	mov	sp, r7
+ 80011fc:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8001200:	4770      	bx	lr
+ 8001202:	bf00      	nop
+ 8001204:	0800cc8c 	.word	0x0800cc8c
 
-08001204 <_ZN5RadioD1Ev>:
+08001208 <_ZN5RadioD1Ev>:
     virtual ~Radio( void ){ };
- 8001204:	b480      	push	{r7}
- 8001206:	b083      	sub	sp, #12
- 8001208:	af00      	add	r7, sp, #0
- 800120a:	6078      	str	r0, [r7, #4]
- 800120c:	4a04      	ldr	r2, [pc, #16]	; (8001220 <_ZN5RadioD1Ev+0x1c>)
- 800120e:	687b      	ldr	r3, [r7, #4]
- 8001210:	601a      	str	r2, [r3, #0]
+ 8001208:	b480      	push	{r7}
+ 800120a:	b083      	sub	sp, #12
+ 800120c:	af00      	add	r7, sp, #0
+ 800120e:	6078      	str	r0, [r7, #4]
+ 8001210:	4a04      	ldr	r2, [pc, #16]	; (8001224 <_ZN5RadioD1Ev+0x1c>)
  8001212:	687b      	ldr	r3, [r7, #4]
- 8001214:	4618      	mov	r0, r3
- 8001216:	370c      	adds	r7, #12
- 8001218:	46bd      	mov	sp, r7
- 800121a:	f85d 7b04 	ldr.w	r7, [sp], #4
- 800121e:	4770      	bx	lr
- 8001220:	0800cc8c 	.word	0x0800cc8c
+ 8001214:	601a      	str	r2, [r3, #0]
+ 8001216:	687b      	ldr	r3, [r7, #4]
+ 8001218:	4618      	mov	r0, r3
+ 800121a:	370c      	adds	r7, #12
+ 800121c:	46bd      	mov	sp, r7
+ 800121e:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8001222:	4770      	bx	lr
+ 8001224:	0800cc8c 	.word	0x0800cc8c
 
-08001224 <_ZN5RadioD0Ev>:
- 8001224:	b580      	push	{r7, lr}
- 8001226:	b082      	sub	sp, #8
- 8001228:	af00      	add	r7, sp, #0
- 800122a:	6078      	str	r0, [r7, #4]
- 800122c:	6878      	ldr	r0, [r7, #4]
- 800122e:	f7ff ffe9 	bl	8001204 <_ZN5RadioD1Ev>
- 8001232:	2128      	movs	r1, #40	; 0x28
- 8001234:	6878      	ldr	r0, [r7, #4]
- 8001236:	f00b fbc9 	bl	800c9cc <_ZdlPvj>
- 800123a:	687b      	ldr	r3, [r7, #4]
- 800123c:	4618      	mov	r0, r3
- 800123e:	3708      	adds	r7, #8
- 8001240:	46bd      	mov	sp, r7
- 8001242:	bd80      	pop	{r7, pc}
+08001228 <_ZN5RadioD0Ev>:
+ 8001228:	b580      	push	{r7, lr}
+ 800122a:	b082      	sub	sp, #8
+ 800122c:	af00      	add	r7, sp, #0
+ 800122e:	6078      	str	r0, [r7, #4]
+ 8001230:	6878      	ldr	r0, [r7, #4]
+ 8001232:	f7ff ffe9 	bl	8001208 <_ZN5RadioD1Ev>
+ 8001236:	2128      	movs	r1, #40	; 0x28
+ 8001238:	6878      	ldr	r0, [r7, #4]
+ 800123a:	f00b fbc7 	bl	800c9cc <_ZdlPvj>
+ 800123e:	687b      	ldr	r3, [r7, #4]
+ 8001240:	4618      	mov	r0, r3
+ 8001242:	3708      	adds	r7, #8
+ 8001244:	46bd      	mov	sp, r7
+ 8001246:	bd80      	pop	{r7, pc}
 
-08001244 <_ZN6SX1280C1EP16RadioCallbacks_t>:
+08001248 <_ZN6SX1280C1EP16RadioCallbacks_t>:
      * \brief Instantiates a SX1280 object and provides API functions to communicates with the radio
      *
      * \param [in]  callbacks      Pointer to the callbacks structure defining
      *                             all callbacks function pointers
      */
     SX1280( RadioCallbacks_t *callbacks ):
- 8001244:	b580      	push	{r7, lr}
- 8001246:	b082      	sub	sp, #8
- 8001248:	af00      	add	r7, sp, #0
- 800124a:	6078      	str	r0, [r7, #4]
- 800124c:	6039      	str	r1, [r7, #0]
+ 8001248:	b580      	push	{r7, lr}
+ 800124a:	b082      	sub	sp, #8
+ 800124c:	af00      	add	r7, sp, #0
+ 800124e:	6078      	str	r0, [r7, #4]
+ 8001250:	6039      	str	r1, [r7, #0]
         // The class members are value-initialiazed in member-initilaizer list
         Radio( callbacks ), OperatingMode( MODE_STDBY_RC ), PacketType( PACKET_TYPE_NONE ),
         LoRaBandwidth( LORA_BW_1600 ), IrqState( false ), PollingMode( false )
- 800124e:	687b      	ldr	r3, [r7, #4]
- 8001250:	6839      	ldr	r1, [r7, #0]
- 8001252:	4618      	mov	r0, r3
- 8001254:	f7ff ffa0 	bl	8001198 <_ZN5RadioC1EP16RadioCallbacks_t>
- 8001258:	4a10      	ldr	r2, [pc, #64]	; (800129c <_ZN6SX1280C1EP16RadioCallbacks_t+0x58>)
- 800125a:	687b      	ldr	r3, [r7, #4]
- 800125c:	601a      	str	r2, [r3, #0]
+ 8001252:	687b      	ldr	r3, [r7, #4]
+ 8001254:	6839      	ldr	r1, [r7, #0]
+ 8001256:	4618      	mov	r0, r3
+ 8001258:	f7ff ffa0 	bl	800119c <_ZN5RadioC1EP16RadioCallbacks_t>
+ 800125c:	4a10      	ldr	r2, [pc, #64]	; (80012a0 <_ZN6SX1280C1EP16RadioCallbacks_t+0x58>)
  800125e:	687b      	ldr	r3, [r7, #4]
- 8001260:	2202      	movs	r2, #2
- 8001262:	f883 2028 	strb.w	r2, [r3, #40]	; 0x28
- 8001266:	687b      	ldr	r3, [r7, #4]
- 8001268:	220f      	movs	r2, #15
- 800126a:	f883 2029 	strb.w	r2, [r3, #41]	; 0x29
- 800126e:	687b      	ldr	r3, [r7, #4]
- 8001270:	220a      	movs	r2, #10
- 8001272:	f883 202a 	strb.w	r2, [r3, #42]	; 0x2a
- 8001276:	687b      	ldr	r3, [r7, #4]
- 8001278:	2200      	movs	r2, #0
- 800127a:	f883 202b 	strb.w	r2, [r3, #43]	; 0x2b
- 800127e:	687b      	ldr	r3, [r7, #4]
- 8001280:	2200      	movs	r2, #0
- 8001282:	f883 2034 	strb.w	r2, [r3, #52]	; 0x34
+ 8001260:	601a      	str	r2, [r3, #0]
+ 8001262:	687b      	ldr	r3, [r7, #4]
+ 8001264:	2202      	movs	r2, #2
+ 8001266:	f883 2028 	strb.w	r2, [r3, #40]	; 0x28
+ 800126a:	687b      	ldr	r3, [r7, #4]
+ 800126c:	220f      	movs	r2, #15
+ 800126e:	f883 2029 	strb.w	r2, [r3, #41]	; 0x29
+ 8001272:	687b      	ldr	r3, [r7, #4]
+ 8001274:	220a      	movs	r2, #10
+ 8001276:	f883 202a 	strb.w	r2, [r3, #42]	; 0x2a
+ 800127a:	687b      	ldr	r3, [r7, #4]
+ 800127c:	2200      	movs	r2, #0
+ 800127e:	f883 202b 	strb.w	r2, [r3, #43]	; 0x2b
+ 8001282:	687b      	ldr	r3, [r7, #4]
+ 8001284:	2200      	movs	r2, #0
+ 8001286:	f883 2034 	strb.w	r2, [r3, #52]	; 0x34
     {
         this->dioIrq        = &SX1280::OnDioIrq;
- 8001286:	687b      	ldr	r3, [r7, #4]
- 8001288:	4a05      	ldr	r2, [pc, #20]	; (80012a0 <_ZN6SX1280C1EP16RadioCallbacks_t+0x5c>)
- 800128a:	62da      	str	r2, [r3, #44]	; 0x2c
- 800128c:	687b      	ldr	r3, [r7, #4]
- 800128e:	2200      	movs	r2, #0
- 8001290:	631a      	str	r2, [r3, #48]	; 0x30
+ 800128a:	687b      	ldr	r3, [r7, #4]
+ 800128c:	4a05      	ldr	r2, [pc, #20]	; (80012a4 <_ZN6SX1280C1EP16RadioCallbacks_t+0x5c>)
+ 800128e:	62da      	str	r2, [r3, #44]	; 0x2c
+ 8001290:	687b      	ldr	r3, [r7, #4]
+ 8001292:	2200      	movs	r2, #0
+ 8001294:	631a      	str	r2, [r3, #48]	; 0x30
 
         // Warning: this constructor set the LoRaBandwidth member to a valid
         // value, but it is not related to the actual radio configuration!
     }
- 8001292:	687b      	ldr	r3, [r7, #4]
- 8001294:	4618      	mov	r0, r3
- 8001296:	3708      	adds	r7, #8
- 8001298:	46bd      	mov	sp, r7
- 800129a:	bd80      	pop	{r7, pc}
- 800129c:	0800ccc8 	.word	0x0800ccc8
- 80012a0:	0800228d 	.word	0x0800228d
+ 8001296:	687b      	ldr	r3, [r7, #4]
+ 8001298:	4618      	mov	r0, r3
+ 800129a:	3708      	adds	r7, #8
+ 800129c:	46bd      	mov	sp, r7
+ 800129e:	bd80      	pop	{r7, pc}
+ 80012a0:	0800ccc8 	.word	0x0800ccc8
+ 80012a4:	0800228d 	.word	0x0800228d
 
-080012a4 <_ZN6SX1280D1Ev>:
+080012a8 <_ZN6SX1280D1Ev>:
 
     virtual ~SX1280( )
- 80012a4:	b580      	push	{r7, lr}
- 80012a6:	b082      	sub	sp, #8
- 80012a8:	af00      	add	r7, sp, #0
- 80012aa:	6078      	str	r0, [r7, #4]
+ 80012a8:	b580      	push	{r7, lr}
+ 80012aa:	b082      	sub	sp, #8
+ 80012ac:	af00      	add	r7, sp, #0
+ 80012ae:	6078      	str	r0, [r7, #4]
     {
- 80012ac:	4a05      	ldr	r2, [pc, #20]	; (80012c4 <_ZN6SX1280D1Ev+0x20>)
- 80012ae:	687b      	ldr	r3, [r7, #4]
- 80012b0:	601a      	str	r2, [r3, #0]
+ 80012b0:	4a05      	ldr	r2, [pc, #20]	; (80012c8 <_ZN6SX1280D1Ev+0x20>)
  80012b2:	687b      	ldr	r3, [r7, #4]
- 80012b4:	4618      	mov	r0, r3
- 80012b6:	f7ff ffa5 	bl	8001204 <_ZN5RadioD1Ev>
+ 80012b4:	601a      	str	r2, [r3, #0]
+ 80012b6:	687b      	ldr	r3, [r7, #4]
+ 80012b8:	4618      	mov	r0, r3
+ 80012ba:	f7ff ffa5 	bl	8001208 <_ZN5RadioD1Ev>
     }
- 80012ba:	687b      	ldr	r3, [r7, #4]
- 80012bc:	4618      	mov	r0, r3
- 80012be:	3708      	adds	r7, #8
- 80012c0:	46bd      	mov	sp, r7
- 80012c2:	bd80      	pop	{r7, pc}
- 80012c4:	0800ccc8 	.word	0x0800ccc8
+ 80012be:	687b      	ldr	r3, [r7, #4]
+ 80012c0:	4618      	mov	r0, r3
+ 80012c2:	3708      	adds	r7, #8
+ 80012c4:	46bd      	mov	sp, r7
+ 80012c6:	bd80      	pop	{r7, pc}
+ 80012c8:	0800ccc8 	.word	0x0800ccc8
 
-080012c8 <_ZN6SX1280D0Ev>:
+080012cc <_ZN6SX1280D0Ev>:
     virtual ~SX1280( )
- 80012c8:	b580      	push	{r7, lr}
- 80012ca:	b082      	sub	sp, #8
- 80012cc:	af00      	add	r7, sp, #0
- 80012ce:	6078      	str	r0, [r7, #4]
+ 80012cc:	b580      	push	{r7, lr}
+ 80012ce:	b082      	sub	sp, #8
+ 80012d0:	af00      	add	r7, sp, #0
+ 80012d2:	6078      	str	r0, [r7, #4]
     }
- 80012d0:	6878      	ldr	r0, [r7, #4]
- 80012d2:	f7ff ffe7 	bl	80012a4 <_ZN6SX1280D1Ev>
- 80012d6:	2138      	movs	r1, #56	; 0x38
- 80012d8:	6878      	ldr	r0, [r7, #4]
- 80012da:	f00b fb77 	bl	800c9cc <_ZdlPvj>
- 80012de:	687b      	ldr	r3, [r7, #4]
- 80012e0:	4618      	mov	r0, r3
- 80012e2:	3708      	adds	r7, #8
- 80012e4:	46bd      	mov	sp, r7
- 80012e6:	bd80      	pop	{r7, pc}
+ 80012d4:	6878      	ldr	r0, [r7, #4]
+ 80012d6:	f7ff ffe7 	bl	80012a8 <_ZN6SX1280D1Ev>
+ 80012da:	2138      	movs	r1, #56	; 0x38
+ 80012dc:	6878      	ldr	r0, [r7, #4]
+ 80012de:	f00b fb75 	bl	800c9cc <_ZdlPvj>
+ 80012e2:	687b      	ldr	r3, [r7, #4]
+ 80012e4:	4618      	mov	r0, r3
+ 80012e6:	3708      	adds	r7, #8
+ 80012e8:	46bd      	mov	sp, r7
+ 80012ea:	bd80      	pop	{r7, pc}
 
-080012e8 <_ZN9SX1280HalC1EP19__SPI_HandleTypeDefP12GPIO_TypeDeftS3_tS3_tP16RadioCallbacks_t>:
+080012ec <_ZN9SX1280HalC1EP19__SPI_HandleTypeDefP12GPIO_TypeDeftS3_tS3_tP16RadioCallbacks_t>:
 // This code handles cases where assert_param is undefined
 #ifndef assert_param
 #define assert_param( ... )
 #endif
 
 SX1280Hal::SX1280Hal( SPI_HandleTypeDef* hspi,
- 80012e8:	b580      	push	{r7, lr}
- 80012ea:	b084      	sub	sp, #16
- 80012ec:	af00      	add	r7, sp, #0
- 80012ee:	60f8      	str	r0, [r7, #12]
- 80012f0:	60b9      	str	r1, [r7, #8]
- 80012f2:	607a      	str	r2, [r7, #4]
- 80012f4:	807b      	strh	r3, [r7, #2]
+ 80012ec:	b580      	push	{r7, lr}
+ 80012ee:	b084      	sub	sp, #16
+ 80012f0:	af00      	add	r7, sp, #0
+ 80012f2:	60f8      	str	r0, [r7, #12]
+ 80012f4:	60b9      	str	r1, [r7, #8]
+ 80012f6:	607a      	str	r2, [r7, #4]
+ 80012f8:	807b      	strh	r3, [r7, #2]
                       RadioCallbacks_t *callbacks )
         :   SX1280( callbacks ),
             RadioNssPort( nssPort ), RadioNssPin( nssPin ),
             RadioResetPort( rstPort ), RadioResetPin( rstPin ),
             RadioCtsnPort( nullptr ), RadioCtsnPin( 0 ),
             BUSYPort( busyPort ), BUSYPin( busyPin )
- 80012f6:	68fb      	ldr	r3, [r7, #12]
- 80012f8:	6ab9      	ldr	r1, [r7, #40]	; 0x28
- 80012fa:	4618      	mov	r0, r3
- 80012fc:	f7ff ffa2 	bl	8001244 <_ZN6SX1280C1EP16RadioCallbacks_t>
- 8001300:	4a16      	ldr	r2, [pc, #88]	; (800135c <_ZN9SX1280HalC1EP19__SPI_HandleTypeDefP12GPIO_TypeDeftS3_tS3_tP16RadioCallbacks_t+0x74>)
- 8001302:	68fb      	ldr	r3, [r7, #12]
- 8001304:	601a      	str	r2, [r3, #0]
+ 80012fa:	68fb      	ldr	r3, [r7, #12]
+ 80012fc:	6ab9      	ldr	r1, [r7, #40]	; 0x28
+ 80012fe:	4618      	mov	r0, r3
+ 8001300:	f7ff ffa2 	bl	8001248 <_ZN6SX1280C1EP16RadioCallbacks_t>
+ 8001304:	4a16      	ldr	r2, [pc, #88]	; (8001360 <_ZN9SX1280HalC1EP19__SPI_HandleTypeDefP12GPIO_TypeDeftS3_tS3_tP16RadioCallbacks_t+0x74>)
  8001306:	68fb      	ldr	r3, [r7, #12]
- 8001308:	687a      	ldr	r2, [r7, #4]
- 800130a:	63da      	str	r2, [r3, #60]	; 0x3c
- 800130c:	68fb      	ldr	r3, [r7, #12]
- 800130e:	887a      	ldrh	r2, [r7, #2]
- 8001310:	f8a3 2040 	strh.w	r2, [r3, #64]	; 0x40
- 8001314:	68fb      	ldr	r3, [r7, #12]
- 8001316:	6a3a      	ldr	r2, [r7, #32]
- 8001318:	645a      	str	r2, [r3, #68]	; 0x44
- 800131a:	68fb      	ldr	r3, [r7, #12]
- 800131c:	8cba      	ldrh	r2, [r7, #36]	; 0x24
- 800131e:	f8a3 2048 	strh.w	r2, [r3, #72]	; 0x48
- 8001322:	68fb      	ldr	r3, [r7, #12]
- 8001324:	2200      	movs	r2, #0
- 8001326:	64da      	str	r2, [r3, #76]	; 0x4c
- 8001328:	68fb      	ldr	r3, [r7, #12]
- 800132a:	2200      	movs	r2, #0
- 800132c:	f8a3 2050 	strh.w	r2, [r3, #80]	; 0x50
- 8001330:	68fb      	ldr	r3, [r7, #12]
- 8001332:	69ba      	ldr	r2, [r7, #24]
- 8001334:	655a      	str	r2, [r3, #84]	; 0x54
- 8001336:	68fb      	ldr	r3, [r7, #12]
- 8001338:	8bba      	ldrh	r2, [r7, #28]
- 800133a:	f8a3 2058 	strh.w	r2, [r3, #88]	; 0x58
- 800133e:	68fb      	ldr	r3, [r7, #12]
- 8001340:	2200      	movs	r2, #0
- 8001342:	65da      	str	r2, [r3, #92]	; 0x5c
- 8001344:	68fb      	ldr	r3, [r7, #12]
- 8001346:	2200      	movs	r2, #0
- 8001348:	661a      	str	r2, [r3, #96]	; 0x60
+ 8001308:	601a      	str	r2, [r3, #0]
+ 800130a:	68fb      	ldr	r3, [r7, #12]
+ 800130c:	687a      	ldr	r2, [r7, #4]
+ 800130e:	63da      	str	r2, [r3, #60]	; 0x3c
+ 8001310:	68fb      	ldr	r3, [r7, #12]
+ 8001312:	887a      	ldrh	r2, [r7, #2]
+ 8001314:	f8a3 2040 	strh.w	r2, [r3, #64]	; 0x40
+ 8001318:	68fb      	ldr	r3, [r7, #12]
+ 800131a:	6a3a      	ldr	r2, [r7, #32]
+ 800131c:	645a      	str	r2, [r3, #68]	; 0x44
+ 800131e:	68fb      	ldr	r3, [r7, #12]
+ 8001320:	8cba      	ldrh	r2, [r7, #36]	; 0x24
+ 8001322:	f8a3 2048 	strh.w	r2, [r3, #72]	; 0x48
+ 8001326:	68fb      	ldr	r3, [r7, #12]
+ 8001328:	2200      	movs	r2, #0
+ 800132a:	64da      	str	r2, [r3, #76]	; 0x4c
+ 800132c:	68fb      	ldr	r3, [r7, #12]
+ 800132e:	2200      	movs	r2, #0
+ 8001330:	f8a3 2050 	strh.w	r2, [r3, #80]	; 0x50
+ 8001334:	68fb      	ldr	r3, [r7, #12]
+ 8001336:	69ba      	ldr	r2, [r7, #24]
+ 8001338:	655a      	str	r2, [r3, #84]	; 0x54
+ 800133a:	68fb      	ldr	r3, [r7, #12]
+ 800133c:	8bba      	ldrh	r2, [r7, #28]
+ 800133e:	f8a3 2058 	strh.w	r2, [r3, #88]	; 0x58
+ 8001342:	68fb      	ldr	r3, [r7, #12]
+ 8001344:	2200      	movs	r2, #0
+ 8001346:	65da      	str	r2, [r3, #92]	; 0x5c
+ 8001348:	68fb      	ldr	r3, [r7, #12]
+ 800134a:	2200      	movs	r2, #0
+ 800134c:	661a      	str	r2, [r3, #96]	; 0x60
 {
     RadioSpi = hspi;
- 800134a:	68fb      	ldr	r3, [r7, #12]
- 800134c:	68ba      	ldr	r2, [r7, #8]
- 800134e:	639a      	str	r2, [r3, #56]	; 0x38
+ 800134e:	68fb      	ldr	r3, [r7, #12]
+ 8001350:	68ba      	ldr	r2, [r7, #8]
+ 8001352:	639a      	str	r2, [r3, #56]	; 0x38
 
     //HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_SET);
     //HAL_GPIO_WritePin(RadioResetPort, RadioResetPin, GPIO_PIN_SET);
 }
- 8001350:	68fb      	ldr	r3, [r7, #12]
- 8001352:	4618      	mov	r0, r3
- 8001354:	3710      	adds	r7, #16
- 8001356:	46bd      	mov	sp, r7
- 8001358:	bd80      	pop	{r7, pc}
- 800135a:	bf00      	nop
- 800135c:	0800cc44 	.word	0x0800cc44
+ 8001354:	68fb      	ldr	r3, [r7, #12]
+ 8001356:	4618      	mov	r0, r3
+ 8001358:	3710      	adds	r7, #16
+ 800135a:	46bd      	mov	sp, r7
+ 800135c:	bd80      	pop	{r7, pc}
+ 800135e:	bf00      	nop
+ 8001360:	0800cc44 	.word	0x0800cc44
 
-08001360 <_ZN9SX1280HalD1Ev>:
+08001364 <_ZN9SX1280HalD1Ev>:
 
 SX1280Hal::~SX1280Hal( void )
- 8001360:	b580      	push	{r7, lr}
- 8001362:	b082      	sub	sp, #8
- 8001364:	af00      	add	r7, sp, #0
- 8001366:	6078      	str	r0, [r7, #4]
- 8001368:	4a05      	ldr	r2, [pc, #20]	; (8001380 <_ZN9SX1280HalD1Ev+0x20>)
- 800136a:	687b      	ldr	r3, [r7, #4]
- 800136c:	601a      	str	r2, [r3, #0]
+ 8001364:	b580      	push	{r7, lr}
+ 8001366:	b082      	sub	sp, #8
+ 8001368:	af00      	add	r7, sp, #0
+ 800136a:	6078      	str	r0, [r7, #4]
+ 800136c:	4a05      	ldr	r2, [pc, #20]	; (8001384 <_ZN9SX1280HalD1Ev+0x20>)
  800136e:	687b      	ldr	r3, [r7, #4]
- 8001370:	4618      	mov	r0, r3
- 8001372:	f7ff ff97 	bl	80012a4 <_ZN6SX1280D1Ev>
+ 8001370:	601a      	str	r2, [r3, #0]
+ 8001372:	687b      	ldr	r3, [r7, #4]
+ 8001374:	4618      	mov	r0, r3
+ 8001376:	f7ff ff97 	bl	80012a8 <_ZN6SX1280D1Ev>
 {
 };
- 8001376:	687b      	ldr	r3, [r7, #4]
- 8001378:	4618      	mov	r0, r3
- 800137a:	3708      	adds	r7, #8
- 800137c:	46bd      	mov	sp, r7
- 800137e:	bd80      	pop	{r7, pc}
- 8001380:	0800cc44 	.word	0x0800cc44
+ 800137a:	687b      	ldr	r3, [r7, #4]
+ 800137c:	4618      	mov	r0, r3
+ 800137e:	3708      	adds	r7, #8
+ 8001380:	46bd      	mov	sp, r7
+ 8001382:	bd80      	pop	{r7, pc}
+ 8001384:	0800cc44 	.word	0x0800cc44
 
-08001384 <_ZN9SX1280HalD0Ev>:
+08001388 <_ZN9SX1280HalD0Ev>:
 SX1280Hal::~SX1280Hal( void )
- 8001384:	b580      	push	{r7, lr}
- 8001386:	b082      	sub	sp, #8
- 8001388:	af00      	add	r7, sp, #0
- 800138a:	6078      	str	r0, [r7, #4]
+ 8001388:	b580      	push	{r7, lr}
+ 800138a:	b082      	sub	sp, #8
+ 800138c:	af00      	add	r7, sp, #0
+ 800138e:	6078      	str	r0, [r7, #4]
 };
- 800138c:	6878      	ldr	r0, [r7, #4]
- 800138e:	f7ff ffe7 	bl	8001360 <_ZN9SX1280HalD1Ev>
- 8001392:	2164      	movs	r1, #100	; 0x64
- 8001394:	6878      	ldr	r0, [r7, #4]
- 8001396:	f00b fb19 	bl	800c9cc <_ZdlPvj>
- 800139a:	687b      	ldr	r3, [r7, #4]
- 800139c:	4618      	mov	r0, r3
- 800139e:	3708      	adds	r7, #8
- 80013a0:	46bd      	mov	sp, r7
- 80013a2:	bd80      	pop	{r7, pc}
+ 8001390:	6878      	ldr	r0, [r7, #4]
+ 8001392:	f7ff ffe7 	bl	8001364 <_ZN9SX1280HalD1Ev>
+ 8001396:	2164      	movs	r1, #100	; 0x64
+ 8001398:	6878      	ldr	r0, [r7, #4]
+ 800139a:	f00b fb17 	bl	800c9cc <_ZdlPvj>
+ 800139e:	687b      	ldr	r3, [r7, #4]
+ 80013a0:	4618      	mov	r0, r3
+ 80013a2:	3708      	adds	r7, #8
+ 80013a4:	46bd      	mov	sp, r7
+ 80013a6:	bd80      	pop	{r7, pc}
 
-080013a4 <_ZN9SX1280Hal9IoIrqInitEM6SX1280FvvE>:
+080013a8 <_ZN9SX1280Hal9IoIrqInitEM6SX1280FvvE>:
 
 void SX1280Hal::IoIrqInit( DioIrqHandler irqHandler )
 {
- 80013a4:	b480      	push	{r7}
- 80013a6:	b085      	sub	sp, #20
- 80013a8:	af00      	add	r7, sp, #0
- 80013aa:	60f8      	str	r0, [r7, #12]
- 80013ac:	1d3b      	adds	r3, r7, #4
- 80013ae:	e883 0006 	stmia.w	r3, {r1, r2}
+ 80013a8:	b480      	push	{r7}
+ 80013aa:	b085      	sub	sp, #20
+ 80013ac:	af00      	add	r7, sp, #0
+ 80013ae:	60f8      	str	r0, [r7, #12]
+ 80013b0:	1d3b      	adds	r3, r7, #4
+ 80013b2:	e883 0006 	stmia.w	r3, {r1, r2}
     assert_param( RadioSpi != NULL);
     // BUSY.mode( PullNone );
     //Conexão entre interrupt do HAL e da biblioteca
     //irqHandler é o ponteiro para a função que deve ser chamada em caso de interrupt
     RadioIrqHandler = irqHandler;
- 80013b2:	68fb      	ldr	r3, [r7, #12]
- 80013b4:	335c      	adds	r3, #92	; 0x5c
- 80013b6:	1d3a      	adds	r2, r7, #4
- 80013b8:	e892 0003 	ldmia.w	r2, {r0, r1}
- 80013bc:	e883 0003 	stmia.w	r3, {r0, r1}
+ 80013b6:	68fb      	ldr	r3, [r7, #12]
+ 80013b8:	335c      	adds	r3, #92	; 0x5c
+ 80013ba:	1d3a      	adds	r2, r7, #4
+ 80013bc:	e892 0003 	ldmia.w	r2, {r0, r1}
+ 80013c0:	e883 0003 	stmia.w	r3, {r0, r1}
 }
- 80013c0:	bf00      	nop
- 80013c2:	3714      	adds	r7, #20
- 80013c4:	46bd      	mov	sp, r7
- 80013c6:	f85d 7b04 	ldr.w	r7, [sp], #4
- 80013ca:	4770      	bx	lr
+ 80013c4:	bf00      	nop
+ 80013c6:	3714      	adds	r7, #20
+ 80013c8:	46bd      	mov	sp, r7
+ 80013ca:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80013ce:	4770      	bx	lr
 
-080013cc <_ZN9SX1280Hal5ResetEv>:
+080013d0 <_ZN9SX1280Hal5ResetEv>:
 
 void SX1280Hal::Reset( void )
 {
- 80013cc:	b580      	push	{r7, lr}
- 80013ce:	b082      	sub	sp, #8
- 80013d0:	af00      	add	r7, sp, #0
- 80013d2:	6078      	str	r0, [r7, #4]
+ 80013d0:	b580      	push	{r7, lr}
+ 80013d2:	b082      	sub	sp, #8
+ 80013d4:	af00      	add	r7, sp, #0
+ 80013d6:	6078      	str	r0, [r7, #4]
 	//Por que desliga o IRQ?
 	/* Habilitar o delay de outra forma*/
     //__disable_irq( );
     HAL_Delay( 20 );
- 80013d4:	2014      	movs	r0, #20
- 80013d6:	f002 f845 	bl	8003464 <HAL_Delay>
+ 80013d8:	2014      	movs	r0, #20
+ 80013da:	f002 f843 	bl	8003464 <HAL_Delay>
     HAL_GPIO_WritePin(RadioResetPort, RadioResetPin, GPIO_PIN_RESET);
- 80013da:	687b      	ldr	r3, [r7, #4]
- 80013dc:	6c58      	ldr	r0, [r3, #68]	; 0x44
  80013de:	687b      	ldr	r3, [r7, #4]
- 80013e0:	f8b3 3048 	ldrh.w	r3, [r3, #72]	; 0x48
- 80013e4:	2200      	movs	r2, #0
- 80013e6:	4619      	mov	r1, r3
- 80013e8:	f002 fea2 	bl	8004130 <HAL_GPIO_WritePin>
+ 80013e0:	6c58      	ldr	r0, [r3, #68]	; 0x44
+ 80013e2:	687b      	ldr	r3, [r7, #4]
+ 80013e4:	f8b3 3048 	ldrh.w	r3, [r3, #72]	; 0x48
+ 80013e8:	2200      	movs	r2, #0
+ 80013ea:	4619      	mov	r1, r3
+ 80013ec:	f002 fea0 	bl	8004130 <HAL_GPIO_WritePin>
     HAL_Delay( 50 );
- 80013ec:	2032      	movs	r0, #50	; 0x32
- 80013ee:	f002 f839 	bl	8003464 <HAL_Delay>
+ 80013f0:	2032      	movs	r0, #50	; 0x32
+ 80013f2:	f002 f837 	bl	8003464 <HAL_Delay>
     HAL_GPIO_WritePin(RadioResetPort, RadioResetPin, GPIO_PIN_SET);
- 80013f2:	687b      	ldr	r3, [r7, #4]
- 80013f4:	6c58      	ldr	r0, [r3, #68]	; 0x44
  80013f6:	687b      	ldr	r3, [r7, #4]
- 80013f8:	f8b3 3048 	ldrh.w	r3, [r3, #72]	; 0x48
- 80013fc:	2201      	movs	r2, #1
- 80013fe:	4619      	mov	r1, r3
- 8001400:	f002 fe96 	bl	8004130 <HAL_GPIO_WritePin>
+ 80013f8:	6c58      	ldr	r0, [r3, #68]	; 0x44
+ 80013fa:	687b      	ldr	r3, [r7, #4]
+ 80013fc:	f8b3 3048 	ldrh.w	r3, [r3, #72]	; 0x48
+ 8001400:	2201      	movs	r2, #1
+ 8001402:	4619      	mov	r1, r3
+ 8001404:	f002 fe94 	bl	8004130 <HAL_GPIO_WritePin>
     HAL_Delay( 20 );
- 8001404:	2014      	movs	r0, #20
- 8001406:	f002 f82d 	bl	8003464 <HAL_Delay>
+ 8001408:	2014      	movs	r0, #20
+ 800140a:	f002 f82b 	bl	8003464 <HAL_Delay>
    // __enable_irq( );
 }
- 800140a:	bf00      	nop
- 800140c:	3708      	adds	r7, #8
- 800140e:	46bd      	mov	sp, r7
- 8001410:	bd80      	pop	{r7, pc}
+ 800140e:	bf00      	nop
+ 8001410:	3708      	adds	r7, #8
+ 8001412:	46bd      	mov	sp, r7
+ 8001414:	bd80      	pop	{r7, pc}
 
-08001412 <_ZN9SX1280Hal6WakeupEv>:
+08001416 <_ZN9SX1280Hal6WakeupEv>:
 
 void SX1280Hal::Wakeup( void )
 {
- 8001412:	b580      	push	{r7, lr}
- 8001414:	b082      	sub	sp, #8
- 8001416:	af00      	add	r7, sp, #0
- 8001418:	6078      	str	r0, [r7, #4]
+ 8001416:	b580      	push	{r7, lr}
+ 8001418:	b082      	sub	sp, #8
+ 800141a:	af00      	add	r7, sp, #0
+ 800141c:	6078      	str	r0, [r7, #4]
   \details Disables IRQ interrupts by setting the I-bit in the CPSR.
            Can only be executed in Privileged modes.
  */
 __STATIC_FORCEINLINE void __disable_irq(void)
 {
   __ASM volatile ("cpsid i" : : : "memory");
- 800141a:	b672      	cpsid	i
+ 800141e:	b672      	cpsid	i
 }
- 800141c:	bf00      	nop
+ 8001420:	bf00      	nop
     __disable_irq( );
 
     //Don't wait for BUSY here
 
     if( RadioSpi != NULL )
- 800141e:	687b      	ldr	r3, [r7, #4]
- 8001420:	6b9b      	ldr	r3, [r3, #56]	; 0x38
- 8001422:	2b00      	cmp	r3, #0
- 8001424:	d019      	beq.n	800145a <_ZN9SX1280Hal6WakeupEv+0x48>
+ 8001422:	687b      	ldr	r3, [r7, #4]
+ 8001424:	6b9b      	ldr	r3, [r3, #56]	; 0x38
+ 8001426:	2b00      	cmp	r3, #0
+ 8001428:	d019      	beq.n	800145e <_ZN9SX1280Hal6WakeupEv+0x48>
     {
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_RESET);
- 8001426:	687b      	ldr	r3, [r7, #4]
- 8001428:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  800142a:	687b      	ldr	r3, [r7, #4]
- 800142c:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 8001430:	2200      	movs	r2, #0
- 8001432:	4619      	mov	r1, r3
- 8001434:	f002 fe7c 	bl	8004130 <HAL_GPIO_WritePin>
+ 800142c:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 800142e:	687b      	ldr	r3, [r7, #4]
+ 8001430:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 8001434:	2200      	movs	r2, #0
+ 8001436:	4619      	mov	r1, r3
+ 8001438:	f002 fe7a 	bl	8004130 <HAL_GPIO_WritePin>
         SpiTransmitReceiveByte( RADIO_GET_STATUS );
- 8001438:	21c0      	movs	r1, #192	; 0xc0
- 800143a:	6878      	ldr	r0, [r7, #4]
- 800143c:	f000 fad4 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 800143c:	21c0      	movs	r1, #192	; 0xc0
+ 800143e:	6878      	ldr	r0, [r7, #4]
+ 8001440:	f000 fad4 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         SpiTransmitReceiveByte( 0 );
- 8001440:	2100      	movs	r1, #0
- 8001442:	6878      	ldr	r0, [r7, #4]
- 8001444:	f000 fad0 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 8001444:	2100      	movs	r1, #0
+ 8001446:	6878      	ldr	r0, [r7, #4]
+ 8001448:	f000 fad0 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_SET);
- 8001448:	687b      	ldr	r3, [r7, #4]
- 800144a:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  800144c:	687b      	ldr	r3, [r7, #4]
- 800144e:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 8001452:	2201      	movs	r2, #1
- 8001454:	4619      	mov	r1, r3
- 8001456:	f002 fe6b 	bl	8004130 <HAL_GPIO_WritePin>
+ 800144e:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 8001450:	687b      	ldr	r3, [r7, #4]
+ 8001452:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 8001456:	2201      	movs	r2, #1
+ 8001458:	4619      	mov	r1, r3
+ 800145a:	f002 fe69 	bl	8004130 <HAL_GPIO_WritePin>
     }
 
     // Wait for chip to be ready.
     WaitOnBusy( );
- 800145a:	687b      	ldr	r3, [r7, #4]
- 800145c:	6d5a      	ldr	r2, [r3, #84]	; 0x54
  800145e:	687b      	ldr	r3, [r7, #4]
- 8001460:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
- 8001464:	4619      	mov	r1, r3
- 8001466:	4610      	mov	r0, r2
- 8001468:	f002 fe4a 	bl	8004100 <HAL_GPIO_ReadPin>
- 800146c:	4603      	mov	r3, r0
- 800146e:	2b00      	cmp	r3, #0
- 8001470:	bf14      	ite	ne
- 8001472:	2301      	movne	r3, #1
- 8001474:	2300      	moveq	r3, #0
- 8001476:	b2db      	uxtb	r3, r3
- 8001478:	2b00      	cmp	r3, #0
- 800147a:	d000      	beq.n	800147e <_ZN9SX1280Hal6WakeupEv+0x6c>
- 800147c:	e7ed      	b.n	800145a <_ZN9SX1280Hal6WakeupEv+0x48>
+ 8001460:	6d5a      	ldr	r2, [r3, #84]	; 0x54
+ 8001462:	687b      	ldr	r3, [r7, #4]
+ 8001464:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
+ 8001468:	4619      	mov	r1, r3
+ 800146a:	4610      	mov	r0, r2
+ 800146c:	f002 fe48 	bl	8004100 <HAL_GPIO_ReadPin>
+ 8001470:	4603      	mov	r3, r0
+ 8001472:	2b00      	cmp	r3, #0
+ 8001474:	bf14      	ite	ne
+ 8001476:	2301      	movne	r3, #1
+ 8001478:	2300      	moveq	r3, #0
+ 800147a:	b2db      	uxtb	r3, r3
+ 800147c:	2b00      	cmp	r3, #0
+ 800147e:	d000      	beq.n	8001482 <_ZN9SX1280Hal6WakeupEv+0x6c>
+ 8001480:	e7ed      	b.n	800145e <_ZN9SX1280Hal6WakeupEv+0x48>
   __ASM volatile ("cpsie i" : : : "memory");
- 800147e:	b662      	cpsie	i
+ 8001482:	b662      	cpsie	i
 }
- 8001480:	bf00      	nop
+ 8001484:	bf00      	nop
 
     __enable_irq( );
 }
- 8001482:	bf00      	nop
- 8001484:	3708      	adds	r7, #8
- 8001486:	46bd      	mov	sp, r7
- 8001488:	bd80      	pop	{r7, pc}
+ 8001486:	bf00      	nop
+ 8001488:	3708      	adds	r7, #8
+ 800148a:	46bd      	mov	sp, r7
+ 800148c:	bd80      	pop	{r7, pc}
 
-0800148a <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht>:
+0800148e <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht>:
 
 void SX1280Hal::WriteCommand( RadioCommands_t command, uint8_t *buffer, uint16_t size )
 {
- 800148a:	b580      	push	{r7, lr}
- 800148c:	b086      	sub	sp, #24
- 800148e:	af00      	add	r7, sp, #0
- 8001490:	60f8      	str	r0, [r7, #12]
- 8001492:	607a      	str	r2, [r7, #4]
- 8001494:	461a      	mov	r2, r3
- 8001496:	460b      	mov	r3, r1
- 8001498:	72fb      	strb	r3, [r7, #11]
- 800149a:	4613      	mov	r3, r2
- 800149c:	813b      	strh	r3, [r7, #8]
+ 800148e:	b580      	push	{r7, lr}
+ 8001490:	b086      	sub	sp, #24
+ 8001492:	af00      	add	r7, sp, #0
+ 8001494:	60f8      	str	r0, [r7, #12]
+ 8001496:	607a      	str	r2, [r7, #4]
+ 8001498:	461a      	mov	r2, r3
+ 800149a:	460b      	mov	r3, r1
+ 800149c:	72fb      	strb	r3, [r7, #11]
+ 800149e:	4613      	mov	r3, r2
+ 80014a0:	813b      	strh	r3, [r7, #8]
     WaitOnBusy( );
- 800149e:	68fb      	ldr	r3, [r7, #12]
- 80014a0:	6d5a      	ldr	r2, [r3, #84]	; 0x54
  80014a2:	68fb      	ldr	r3, [r7, #12]
- 80014a4:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
- 80014a8:	4619      	mov	r1, r3
- 80014aa:	4610      	mov	r0, r2
- 80014ac:	f002 fe28 	bl	8004100 <HAL_GPIO_ReadPin>
- 80014b0:	4603      	mov	r3, r0
- 80014b2:	2b00      	cmp	r3, #0
- 80014b4:	bf14      	ite	ne
- 80014b6:	2301      	movne	r3, #1
- 80014b8:	2300      	moveq	r3, #0
- 80014ba:	b2db      	uxtb	r3, r3
- 80014bc:	2b00      	cmp	r3, #0
- 80014be:	d000      	beq.n	80014c2 <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0x38>
- 80014c0:	e7ed      	b.n	800149e <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0x14>
+ 80014a4:	6d5a      	ldr	r2, [r3, #84]	; 0x54
+ 80014a6:	68fb      	ldr	r3, [r7, #12]
+ 80014a8:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
+ 80014ac:	4619      	mov	r1, r3
+ 80014ae:	4610      	mov	r0, r2
+ 80014b0:	f002 fe26 	bl	8004100 <HAL_GPIO_ReadPin>
+ 80014b4:	4603      	mov	r3, r0
+ 80014b6:	2b00      	cmp	r3, #0
+ 80014b8:	bf14      	ite	ne
+ 80014ba:	2301      	movne	r3, #1
+ 80014bc:	2300      	moveq	r3, #0
+ 80014be:	b2db      	uxtb	r3, r3
+ 80014c0:	2b00      	cmp	r3, #0
+ 80014c2:	d000      	beq.n	80014c6 <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0x38>
+ 80014c4:	e7ed      	b.n	80014a2 <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0x14>
 
     if( RadioSpi != NULL )
- 80014c2:	68fb      	ldr	r3, [r7, #12]
- 80014c4:	6b9b      	ldr	r3, [r3, #56]	; 0x38
- 80014c6:	2b00      	cmp	r3, #0
- 80014c8:	d028      	beq.n	800151c <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0x92>
+ 80014c6:	68fb      	ldr	r3, [r7, #12]
+ 80014c8:	6b9b      	ldr	r3, [r3, #56]	; 0x38
+ 80014ca:	2b00      	cmp	r3, #0
+ 80014cc:	d028      	beq.n	8001520 <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0x92>
     {
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_RESET);
- 80014ca:	68fb      	ldr	r3, [r7, #12]
- 80014cc:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  80014ce:	68fb      	ldr	r3, [r7, #12]
- 80014d0:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 80014d4:	2200      	movs	r2, #0
- 80014d6:	4619      	mov	r1, r3
- 80014d8:	f002 fe2a 	bl	8004130 <HAL_GPIO_WritePin>
+ 80014d0:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 80014d2:	68fb      	ldr	r3, [r7, #12]
+ 80014d4:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 80014d8:	2200      	movs	r2, #0
+ 80014da:	4619      	mov	r1, r3
+ 80014dc:	f002 fe28 	bl	8004130 <HAL_GPIO_WritePin>
         SpiTransmitReceiveByte( ( uint8_t )command );
- 80014dc:	7afb      	ldrb	r3, [r7, #11]
- 80014de:	4619      	mov	r1, r3
- 80014e0:	68f8      	ldr	r0, [r7, #12]
- 80014e2:	f000 fa81 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80014e0:	7afb      	ldrb	r3, [r7, #11]
+ 80014e2:	4619      	mov	r1, r3
+ 80014e4:	68f8      	ldr	r0, [r7, #12]
+ 80014e6:	f000 fa81 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         for( uint16_t i = 0; i < size; i++ )
- 80014e6:	2300      	movs	r3, #0
- 80014e8:	82fb      	strh	r3, [r7, #22]
- 80014ea:	8afa      	ldrh	r2, [r7, #22]
- 80014ec:	893b      	ldrh	r3, [r7, #8]
- 80014ee:	429a      	cmp	r2, r3
- 80014f0:	d20b      	bcs.n	800150a <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0x80>
+ 80014ea:	2300      	movs	r3, #0
+ 80014ec:	82fb      	strh	r3, [r7, #22]
+ 80014ee:	8afa      	ldrh	r2, [r7, #22]
+ 80014f0:	893b      	ldrh	r3, [r7, #8]
+ 80014f2:	429a      	cmp	r2, r3
+ 80014f4:	d20b      	bcs.n	800150e <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0x80>
         {
             SpiTransmitReceiveByte( buffer[i] );
- 80014f2:	8afb      	ldrh	r3, [r7, #22]
- 80014f4:	687a      	ldr	r2, [r7, #4]
- 80014f6:	4413      	add	r3, r2
- 80014f8:	781b      	ldrb	r3, [r3, #0]
- 80014fa:	4619      	mov	r1, r3
- 80014fc:	68f8      	ldr	r0, [r7, #12]
- 80014fe:	f000 fa73 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80014f6:	8afb      	ldrh	r3, [r7, #22]
+ 80014f8:	687a      	ldr	r2, [r7, #4]
+ 80014fa:	4413      	add	r3, r2
+ 80014fc:	781b      	ldrb	r3, [r3, #0]
+ 80014fe:	4619      	mov	r1, r3
+ 8001500:	68f8      	ldr	r0, [r7, #12]
+ 8001502:	f000 fa73 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         for( uint16_t i = 0; i < size; i++ )
- 8001502:	8afb      	ldrh	r3, [r7, #22]
- 8001504:	3301      	adds	r3, #1
- 8001506:	82fb      	strh	r3, [r7, #22]
- 8001508:	e7ef      	b.n	80014ea <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0x60>
+ 8001506:	8afb      	ldrh	r3, [r7, #22]
+ 8001508:	3301      	adds	r3, #1
+ 800150a:	82fb      	strh	r3, [r7, #22]
+ 800150c:	e7ef      	b.n	80014ee <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0x60>
         }
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_SET);
- 800150a:	68fb      	ldr	r3, [r7, #12]
- 800150c:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  800150e:	68fb      	ldr	r3, [r7, #12]
- 8001510:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 8001514:	2201      	movs	r2, #1
- 8001516:	4619      	mov	r1, r3
- 8001518:	f002 fe0a 	bl	8004130 <HAL_GPIO_WritePin>
+ 8001510:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 8001512:	68fb      	ldr	r3, [r7, #12]
+ 8001514:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 8001518:	2201      	movs	r2, #1
+ 800151a:	4619      	mov	r1, r3
+ 800151c:	f002 fe08 	bl	8004130 <HAL_GPIO_WritePin>
     }
 
     if( command != RADIO_SET_SLEEP )
- 800151c:	7afb      	ldrb	r3, [r7, #11]
- 800151e:	2b84      	cmp	r3, #132	; 0x84
- 8001520:	d011      	beq.n	8001546 <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0xbc>
+ 8001520:	7afb      	ldrb	r3, [r7, #11]
+ 8001522:	2b84      	cmp	r3, #132	; 0x84
+ 8001524:	d011      	beq.n	800154a <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0xbc>
     {
         WaitOnBusy( );
- 8001522:	68fb      	ldr	r3, [r7, #12]
- 8001524:	6d5a      	ldr	r2, [r3, #84]	; 0x54
  8001526:	68fb      	ldr	r3, [r7, #12]
- 8001528:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
- 800152c:	4619      	mov	r1, r3
- 800152e:	4610      	mov	r0, r2
- 8001530:	f002 fde6 	bl	8004100 <HAL_GPIO_ReadPin>
- 8001534:	4603      	mov	r3, r0
- 8001536:	2b00      	cmp	r3, #0
- 8001538:	bf14      	ite	ne
- 800153a:	2301      	movne	r3, #1
- 800153c:	2300      	moveq	r3, #0
- 800153e:	b2db      	uxtb	r3, r3
- 8001540:	2b00      	cmp	r3, #0
- 8001542:	d000      	beq.n	8001546 <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0xbc>
- 8001544:	e7ed      	b.n	8001522 <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0x98>
+ 8001528:	6d5a      	ldr	r2, [r3, #84]	; 0x54
+ 800152a:	68fb      	ldr	r3, [r7, #12]
+ 800152c:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
+ 8001530:	4619      	mov	r1, r3
+ 8001532:	4610      	mov	r0, r2
+ 8001534:	f002 fde4 	bl	8004100 <HAL_GPIO_ReadPin>
+ 8001538:	4603      	mov	r3, r0
+ 800153a:	2b00      	cmp	r3, #0
+ 800153c:	bf14      	ite	ne
+ 800153e:	2301      	movne	r3, #1
+ 8001540:	2300      	moveq	r3, #0
+ 8001542:	b2db      	uxtb	r3, r3
+ 8001544:	2b00      	cmp	r3, #0
+ 8001546:	d000      	beq.n	800154a <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0xbc>
+ 8001548:	e7ed      	b.n	8001526 <_ZN9SX1280Hal12WriteCommandE15RadioCommands_uPht+0x98>
     }
 }
- 8001546:	bf00      	nop
- 8001548:	3718      	adds	r7, #24
- 800154a:	46bd      	mov	sp, r7
- 800154c:	bd80      	pop	{r7, pc}
+ 800154a:	bf00      	nop
+ 800154c:	3718      	adds	r7, #24
+ 800154e:	46bd      	mov	sp, r7
+ 8001550:	bd80      	pop	{r7, pc}
 
-0800154e <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht>:
+08001552 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht>:
 
 void SX1280Hal::ReadCommand( RadioCommands_t command, uint8_t *buffer, uint16_t size )
 {
- 800154e:	b590      	push	{r4, r7, lr}
- 8001550:	b087      	sub	sp, #28
- 8001552:	af00      	add	r7, sp, #0
- 8001554:	60f8      	str	r0, [r7, #12]
- 8001556:	607a      	str	r2, [r7, #4]
- 8001558:	461a      	mov	r2, r3
- 800155a:	460b      	mov	r3, r1
- 800155c:	72fb      	strb	r3, [r7, #11]
- 800155e:	4613      	mov	r3, r2
- 8001560:	813b      	strh	r3, [r7, #8]
+ 8001552:	b590      	push	{r4, r7, lr}
+ 8001554:	b087      	sub	sp, #28
+ 8001556:	af00      	add	r7, sp, #0
+ 8001558:	60f8      	str	r0, [r7, #12]
+ 800155a:	607a      	str	r2, [r7, #4]
+ 800155c:	461a      	mov	r2, r3
+ 800155e:	460b      	mov	r3, r1
+ 8001560:	72fb      	strb	r3, [r7, #11]
+ 8001562:	4613      	mov	r3, r2
+ 8001564:	813b      	strh	r3, [r7, #8]
     WaitOnBusy( );
- 8001562:	68fb      	ldr	r3, [r7, #12]
- 8001564:	6d5a      	ldr	r2, [r3, #84]	; 0x54
  8001566:	68fb      	ldr	r3, [r7, #12]
- 8001568:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
- 800156c:	4619      	mov	r1, r3
- 800156e:	4610      	mov	r0, r2
- 8001570:	f002 fdc6 	bl	8004100 <HAL_GPIO_ReadPin>
- 8001574:	4603      	mov	r3, r0
- 8001576:	2b00      	cmp	r3, #0
- 8001578:	bf14      	ite	ne
- 800157a:	2301      	movne	r3, #1
- 800157c:	2300      	moveq	r3, #0
- 800157e:	b2db      	uxtb	r3, r3
- 8001580:	2b00      	cmp	r3, #0
- 8001582:	d000      	beq.n	8001586 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0x38>
- 8001584:	e7ed      	b.n	8001562 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0x14>
+ 8001568:	6d5a      	ldr	r2, [r3, #84]	; 0x54
+ 800156a:	68fb      	ldr	r3, [r7, #12]
+ 800156c:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
+ 8001570:	4619      	mov	r1, r3
+ 8001572:	4610      	mov	r0, r2
+ 8001574:	f002 fdc4 	bl	8004100 <HAL_GPIO_ReadPin>
+ 8001578:	4603      	mov	r3, r0
+ 800157a:	2b00      	cmp	r3, #0
+ 800157c:	bf14      	ite	ne
+ 800157e:	2301      	movne	r3, #1
+ 8001580:	2300      	moveq	r3, #0
+ 8001582:	b2db      	uxtb	r3, r3
+ 8001584:	2b00      	cmp	r3, #0
+ 8001586:	d000      	beq.n	800158a <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0x38>
+ 8001588:	e7ed      	b.n	8001566 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0x14>
 
     if( RadioSpi != NULL )
- 8001586:	68fb      	ldr	r3, [r7, #12]
- 8001588:	6b9b      	ldr	r3, [r3, #56]	; 0x38
- 800158a:	2b00      	cmp	r3, #0
- 800158c:	d042      	beq.n	8001614 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0xc6>
+ 800158a:	68fb      	ldr	r3, [r7, #12]
+ 800158c:	6b9b      	ldr	r3, [r3, #56]	; 0x38
+ 800158e:	2b00      	cmp	r3, #0
+ 8001590:	d042      	beq.n	8001618 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0xc6>
     {
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_RESET);
- 800158e:	68fb      	ldr	r3, [r7, #12]
- 8001590:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  8001592:	68fb      	ldr	r3, [r7, #12]
- 8001594:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 8001598:	2200      	movs	r2, #0
- 800159a:	4619      	mov	r1, r3
- 800159c:	f002 fdc8 	bl	8004130 <HAL_GPIO_WritePin>
+ 8001594:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 8001596:	68fb      	ldr	r3, [r7, #12]
+ 8001598:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 800159c:	2200      	movs	r2, #0
+ 800159e:	4619      	mov	r1, r3
+ 80015a0:	f002 fdc6 	bl	8004130 <HAL_GPIO_WritePin>
         if( command == RADIO_GET_STATUS )
- 80015a0:	7afb      	ldrb	r3, [r7, #11]
- 80015a2:	2bc0      	cmp	r3, #192	; 0xc0
- 80015a4:	d111      	bne.n	80015ca <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0x7c>
+ 80015a4:	7afb      	ldrb	r3, [r7, #11]
+ 80015a6:	2bc0      	cmp	r3, #192	; 0xc0
+ 80015a8:	d111      	bne.n	80015ce <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0x7c>
         {
             buffer[0] = SpiTransmitReceiveByte( ( uint8_t )command );
- 80015a6:	7afb      	ldrb	r3, [r7, #11]
- 80015a8:	4619      	mov	r1, r3
- 80015aa:	68f8      	ldr	r0, [r7, #12]
- 80015ac:	f000 fa1c 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
- 80015b0:	4603      	mov	r3, r0
- 80015b2:	461a      	mov	r2, r3
- 80015b4:	687b      	ldr	r3, [r7, #4]
- 80015b6:	701a      	strb	r2, [r3, #0]
+ 80015aa:	7afb      	ldrb	r3, [r7, #11]
+ 80015ac:	4619      	mov	r1, r3
+ 80015ae:	68f8      	ldr	r0, [r7, #12]
+ 80015b0:	f000 fa1c 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80015b4:	4603      	mov	r3, r0
+ 80015b6:	461a      	mov	r2, r3
+ 80015b8:	687b      	ldr	r3, [r7, #4]
+ 80015ba:	701a      	strb	r2, [r3, #0]
             SpiTransmitReceiveByte( 0 );
- 80015b8:	2100      	movs	r1, #0
- 80015ba:	68f8      	ldr	r0, [r7, #12]
- 80015bc:	f000 fa14 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80015bc:	2100      	movs	r1, #0
+ 80015be:	68f8      	ldr	r0, [r7, #12]
+ 80015c0:	f000 fa14 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
             SpiTransmitReceiveByte( 0 );
- 80015c0:	2100      	movs	r1, #0
- 80015c2:	68f8      	ldr	r0, [r7, #12]
- 80015c4:	f000 fa10 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
- 80015c8:	e01b      	b.n	8001602 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0xb4>
+ 80015c4:	2100      	movs	r1, #0
+ 80015c6:	68f8      	ldr	r0, [r7, #12]
+ 80015c8:	f000 fa10 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80015cc:	e01b      	b.n	8001606 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0xb4>
         }
         else
         {
             SpiTransmitReceiveByte( ( uint8_t )command );
- 80015ca:	7afb      	ldrb	r3, [r7, #11]
- 80015cc:	4619      	mov	r1, r3
- 80015ce:	68f8      	ldr	r0, [r7, #12]
- 80015d0:	f000 fa0a 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80015ce:	7afb      	ldrb	r3, [r7, #11]
+ 80015d0:	4619      	mov	r1, r3
+ 80015d2:	68f8      	ldr	r0, [r7, #12]
+ 80015d4:	f000 fa0a 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
             SpiTransmitReceiveByte( 0 );
- 80015d4:	2100      	movs	r1, #0
- 80015d6:	68f8      	ldr	r0, [r7, #12]
- 80015d8:	f000 fa06 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80015d8:	2100      	movs	r1, #0
+ 80015da:	68f8      	ldr	r0, [r7, #12]
+ 80015dc:	f000 fa06 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
             for( uint16_t i = 0; i < size; i++ )
- 80015dc:	2300      	movs	r3, #0
- 80015de:	82fb      	strh	r3, [r7, #22]
- 80015e0:	8afa      	ldrh	r2, [r7, #22]
- 80015e2:	893b      	ldrh	r3, [r7, #8]
- 80015e4:	429a      	cmp	r2, r3
- 80015e6:	d20c      	bcs.n	8001602 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0xb4>
+ 80015e0:	2300      	movs	r3, #0
+ 80015e2:	82fb      	strh	r3, [r7, #22]
+ 80015e4:	8afa      	ldrh	r2, [r7, #22]
+ 80015e6:	893b      	ldrh	r3, [r7, #8]
+ 80015e8:	429a      	cmp	r2, r3
+ 80015ea:	d20c      	bcs.n	8001606 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0xb4>
             {
                  buffer[i] = SpiTransmitReceiveByte( 0 );
- 80015e8:	8afb      	ldrh	r3, [r7, #22]
- 80015ea:	687a      	ldr	r2, [r7, #4]
- 80015ec:	18d4      	adds	r4, r2, r3
- 80015ee:	2100      	movs	r1, #0
- 80015f0:	68f8      	ldr	r0, [r7, #12]
- 80015f2:	f000 f9f9 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
- 80015f6:	4603      	mov	r3, r0
- 80015f8:	7023      	strb	r3, [r4, #0]
+ 80015ec:	8afb      	ldrh	r3, [r7, #22]
+ 80015ee:	687a      	ldr	r2, [r7, #4]
+ 80015f0:	18d4      	adds	r4, r2, r3
+ 80015f2:	2100      	movs	r1, #0
+ 80015f4:	68f8      	ldr	r0, [r7, #12]
+ 80015f6:	f000 f9f9 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80015fa:	4603      	mov	r3, r0
+ 80015fc:	7023      	strb	r3, [r4, #0]
             for( uint16_t i = 0; i < size; i++ )
- 80015fa:	8afb      	ldrh	r3, [r7, #22]
- 80015fc:	3301      	adds	r3, #1
- 80015fe:	82fb      	strh	r3, [r7, #22]
- 8001600:	e7ee      	b.n	80015e0 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0x92>
+ 80015fe:	8afb      	ldrh	r3, [r7, #22]
+ 8001600:	3301      	adds	r3, #1
+ 8001602:	82fb      	strh	r3, [r7, #22]
+ 8001604:	e7ee      	b.n	80015e4 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0x92>
             }
         }
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_SET);
- 8001602:	68fb      	ldr	r3, [r7, #12]
- 8001604:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  8001606:	68fb      	ldr	r3, [r7, #12]
- 8001608:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 800160c:	2201      	movs	r2, #1
- 800160e:	4619      	mov	r1, r3
- 8001610:	f002 fd8e 	bl	8004130 <HAL_GPIO_WritePin>
+ 8001608:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 800160a:	68fb      	ldr	r3, [r7, #12]
+ 800160c:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 8001610:	2201      	movs	r2, #1
+ 8001612:	4619      	mov	r1, r3
+ 8001614:	f002 fd8c 	bl	8004130 <HAL_GPIO_WritePin>
     }
 
     WaitOnBusy( );
- 8001614:	68fb      	ldr	r3, [r7, #12]
- 8001616:	6d5a      	ldr	r2, [r3, #84]	; 0x54
  8001618:	68fb      	ldr	r3, [r7, #12]
- 800161a:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
- 800161e:	4619      	mov	r1, r3
- 8001620:	4610      	mov	r0, r2
- 8001622:	f002 fd6d 	bl	8004100 <HAL_GPIO_ReadPin>
- 8001626:	4603      	mov	r3, r0
- 8001628:	2b00      	cmp	r3, #0
- 800162a:	bf14      	ite	ne
- 800162c:	2301      	movne	r3, #1
- 800162e:	2300      	moveq	r3, #0
- 8001630:	b2db      	uxtb	r3, r3
- 8001632:	2b00      	cmp	r3, #0
- 8001634:	d000      	beq.n	8001638 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0xea>
- 8001636:	e7ed      	b.n	8001614 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0xc6>
+ 800161a:	6d5a      	ldr	r2, [r3, #84]	; 0x54
+ 800161c:	68fb      	ldr	r3, [r7, #12]
+ 800161e:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
+ 8001622:	4619      	mov	r1, r3
+ 8001624:	4610      	mov	r0, r2
+ 8001626:	f002 fd6b 	bl	8004100 <HAL_GPIO_ReadPin>
+ 800162a:	4603      	mov	r3, r0
+ 800162c:	2b00      	cmp	r3, #0
+ 800162e:	bf14      	ite	ne
+ 8001630:	2301      	movne	r3, #1
+ 8001632:	2300      	moveq	r3, #0
+ 8001634:	b2db      	uxtb	r3, r3
+ 8001636:	2b00      	cmp	r3, #0
+ 8001638:	d000      	beq.n	800163c <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0xea>
+ 800163a:	e7ed      	b.n	8001618 <_ZN9SX1280Hal11ReadCommandE15RadioCommands_uPht+0xc6>
 }
- 8001638:	bf00      	nop
- 800163a:	371c      	adds	r7, #28
- 800163c:	46bd      	mov	sp, r7
- 800163e:	bd90      	pop	{r4, r7, pc}
+ 800163c:	bf00      	nop
+ 800163e:	371c      	adds	r7, #28
+ 8001640:	46bd      	mov	sp, r7
+ 8001642:	bd90      	pop	{r4, r7, pc}
 
-08001640 <_ZN9SX1280Hal13WriteRegisterEtPht>:
+08001644 <_ZN9SX1280Hal13WriteRegisterEtPht>:
 
 void SX1280Hal::WriteRegister( uint16_t address, uint8_t *buffer, uint16_t size )
 {
- 8001640:	b580      	push	{r7, lr}
- 8001642:	b086      	sub	sp, #24
- 8001644:	af00      	add	r7, sp, #0
- 8001646:	60f8      	str	r0, [r7, #12]
- 8001648:	607a      	str	r2, [r7, #4]
- 800164a:	461a      	mov	r2, r3
- 800164c:	460b      	mov	r3, r1
- 800164e:	817b      	strh	r3, [r7, #10]
- 8001650:	4613      	mov	r3, r2
- 8001652:	813b      	strh	r3, [r7, #8]
+ 8001644:	b580      	push	{r7, lr}
+ 8001646:	b086      	sub	sp, #24
+ 8001648:	af00      	add	r7, sp, #0
+ 800164a:	60f8      	str	r0, [r7, #12]
+ 800164c:	607a      	str	r2, [r7, #4]
+ 800164e:	461a      	mov	r2, r3
+ 8001650:	460b      	mov	r3, r1
+ 8001652:	817b      	strh	r3, [r7, #10]
+ 8001654:	4613      	mov	r3, r2
+ 8001656:	813b      	strh	r3, [r7, #8]
     WaitOnBusy( );
- 8001654:	68fb      	ldr	r3, [r7, #12]
- 8001656:	6d5a      	ldr	r2, [r3, #84]	; 0x54
  8001658:	68fb      	ldr	r3, [r7, #12]
- 800165a:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
- 800165e:	4619      	mov	r1, r3
- 8001660:	4610      	mov	r0, r2
- 8001662:	f002 fd4d 	bl	8004100 <HAL_GPIO_ReadPin>
- 8001666:	4603      	mov	r3, r0
- 8001668:	2b00      	cmp	r3, #0
- 800166a:	bf14      	ite	ne
- 800166c:	2301      	movne	r3, #1
- 800166e:	2300      	moveq	r3, #0
- 8001670:	b2db      	uxtb	r3, r3
- 8001672:	2b00      	cmp	r3, #0
- 8001674:	d000      	beq.n	8001678 <_ZN9SX1280Hal13WriteRegisterEtPht+0x38>
- 8001676:	e7ed      	b.n	8001654 <_ZN9SX1280Hal13WriteRegisterEtPht+0x14>
+ 800165a:	6d5a      	ldr	r2, [r3, #84]	; 0x54
+ 800165c:	68fb      	ldr	r3, [r7, #12]
+ 800165e:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
+ 8001662:	4619      	mov	r1, r3
+ 8001664:	4610      	mov	r0, r2
+ 8001666:	f002 fd4b 	bl	8004100 <HAL_GPIO_ReadPin>
+ 800166a:	4603      	mov	r3, r0
+ 800166c:	2b00      	cmp	r3, #0
+ 800166e:	bf14      	ite	ne
+ 8001670:	2301      	movne	r3, #1
+ 8001672:	2300      	moveq	r3, #0
+ 8001674:	b2db      	uxtb	r3, r3
+ 8001676:	2b00      	cmp	r3, #0
+ 8001678:	d000      	beq.n	800167c <_ZN9SX1280Hal13WriteRegisterEtPht+0x38>
+ 800167a:	e7ed      	b.n	8001658 <_ZN9SX1280Hal13WriteRegisterEtPht+0x14>
 
     if( RadioSpi != NULL )
- 8001678:	68fb      	ldr	r3, [r7, #12]
- 800167a:	6b9b      	ldr	r3, [r3, #56]	; 0x38
- 800167c:	2b00      	cmp	r3, #0
- 800167e:	d035      	beq.n	80016ec <_ZN9SX1280Hal13WriteRegisterEtPht+0xac>
+ 800167c:	68fb      	ldr	r3, [r7, #12]
+ 800167e:	6b9b      	ldr	r3, [r3, #56]	; 0x38
+ 8001680:	2b00      	cmp	r3, #0
+ 8001682:	d035      	beq.n	80016f0 <_ZN9SX1280Hal13WriteRegisterEtPht+0xac>
     {
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_RESET);
- 8001680:	68fb      	ldr	r3, [r7, #12]
- 8001682:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  8001684:	68fb      	ldr	r3, [r7, #12]
- 8001686:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 800168a:	2200      	movs	r2, #0
- 800168c:	4619      	mov	r1, r3
- 800168e:	f002 fd4f 	bl	8004130 <HAL_GPIO_WritePin>
+ 8001686:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 8001688:	68fb      	ldr	r3, [r7, #12]
+ 800168a:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 800168e:	2200      	movs	r2, #0
+ 8001690:	4619      	mov	r1, r3
+ 8001692:	f002 fd4d 	bl	8004130 <HAL_GPIO_WritePin>
         SpiTransmitReceiveByte( RADIO_WRITE_REGISTER );
- 8001692:	2118      	movs	r1, #24
- 8001694:	68f8      	ldr	r0, [r7, #12]
- 8001696:	f000 f9a7 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 8001696:	2118      	movs	r1, #24
+ 8001698:	68f8      	ldr	r0, [r7, #12]
+ 800169a:	f000 f9a7 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         SpiTransmitReceiveByte( ( address & 0xFF00 ) >> 8 );
- 800169a:	897b      	ldrh	r3, [r7, #10]
- 800169c:	0a1b      	lsrs	r3, r3, #8
- 800169e:	b29b      	uxth	r3, r3
- 80016a0:	b2db      	uxtb	r3, r3
- 80016a2:	4619      	mov	r1, r3
- 80016a4:	68f8      	ldr	r0, [r7, #12]
- 80016a6:	f000 f99f 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 800169e:	897b      	ldrh	r3, [r7, #10]
+ 80016a0:	0a1b      	lsrs	r3, r3, #8
+ 80016a2:	b29b      	uxth	r3, r3
+ 80016a4:	b2db      	uxtb	r3, r3
+ 80016a6:	4619      	mov	r1, r3
+ 80016a8:	68f8      	ldr	r0, [r7, #12]
+ 80016aa:	f000 f99f 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         SpiTransmitReceiveByte( address & 0x00FF );
- 80016aa:	897b      	ldrh	r3, [r7, #10]
- 80016ac:	b2db      	uxtb	r3, r3
- 80016ae:	4619      	mov	r1, r3
- 80016b0:	68f8      	ldr	r0, [r7, #12]
- 80016b2:	f000 f999 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80016ae:	897b      	ldrh	r3, [r7, #10]
+ 80016b0:	b2db      	uxtb	r3, r3
+ 80016b2:	4619      	mov	r1, r3
+ 80016b4:	68f8      	ldr	r0, [r7, #12]
+ 80016b6:	f000 f999 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         for( uint16_t i = 0; i < size; i++ )
- 80016b6:	2300      	movs	r3, #0
- 80016b8:	82fb      	strh	r3, [r7, #22]
- 80016ba:	8afa      	ldrh	r2, [r7, #22]
- 80016bc:	893b      	ldrh	r3, [r7, #8]
- 80016be:	429a      	cmp	r2, r3
- 80016c0:	d20b      	bcs.n	80016da <_ZN9SX1280Hal13WriteRegisterEtPht+0x9a>
+ 80016ba:	2300      	movs	r3, #0
+ 80016bc:	82fb      	strh	r3, [r7, #22]
+ 80016be:	8afa      	ldrh	r2, [r7, #22]
+ 80016c0:	893b      	ldrh	r3, [r7, #8]
+ 80016c2:	429a      	cmp	r2, r3
+ 80016c4:	d20b      	bcs.n	80016de <_ZN9SX1280Hal13WriteRegisterEtPht+0x9a>
         {
             SpiTransmitReceiveByte( buffer[i] );
- 80016c2:	8afb      	ldrh	r3, [r7, #22]
- 80016c4:	687a      	ldr	r2, [r7, #4]
- 80016c6:	4413      	add	r3, r2
- 80016c8:	781b      	ldrb	r3, [r3, #0]
- 80016ca:	4619      	mov	r1, r3
- 80016cc:	68f8      	ldr	r0, [r7, #12]
- 80016ce:	f000 f98b 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80016c6:	8afb      	ldrh	r3, [r7, #22]
+ 80016c8:	687a      	ldr	r2, [r7, #4]
+ 80016ca:	4413      	add	r3, r2
+ 80016cc:	781b      	ldrb	r3, [r3, #0]
+ 80016ce:	4619      	mov	r1, r3
+ 80016d0:	68f8      	ldr	r0, [r7, #12]
+ 80016d2:	f000 f98b 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         for( uint16_t i = 0; i < size; i++ )
- 80016d2:	8afb      	ldrh	r3, [r7, #22]
- 80016d4:	3301      	adds	r3, #1
- 80016d6:	82fb      	strh	r3, [r7, #22]
- 80016d8:	e7ef      	b.n	80016ba <_ZN9SX1280Hal13WriteRegisterEtPht+0x7a>
+ 80016d6:	8afb      	ldrh	r3, [r7, #22]
+ 80016d8:	3301      	adds	r3, #1
+ 80016da:	82fb      	strh	r3, [r7, #22]
+ 80016dc:	e7ef      	b.n	80016be <_ZN9SX1280Hal13WriteRegisterEtPht+0x7a>
         }
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_SET);
- 80016da:	68fb      	ldr	r3, [r7, #12]
- 80016dc:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  80016de:	68fb      	ldr	r3, [r7, #12]
- 80016e0:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 80016e4:	2201      	movs	r2, #1
- 80016e6:	4619      	mov	r1, r3
- 80016e8:	f002 fd22 	bl	8004130 <HAL_GPIO_WritePin>
+ 80016e0:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 80016e2:	68fb      	ldr	r3, [r7, #12]
+ 80016e4:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 80016e8:	2201      	movs	r2, #1
+ 80016ea:	4619      	mov	r1, r3
+ 80016ec:	f002 fd20 	bl	8004130 <HAL_GPIO_WritePin>
     }
 
     WaitOnBusy( );
- 80016ec:	68fb      	ldr	r3, [r7, #12]
- 80016ee:	6d5a      	ldr	r2, [r3, #84]	; 0x54
  80016f0:	68fb      	ldr	r3, [r7, #12]
- 80016f2:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
- 80016f6:	4619      	mov	r1, r3
- 80016f8:	4610      	mov	r0, r2
- 80016fa:	f002 fd01 	bl	8004100 <HAL_GPIO_ReadPin>
- 80016fe:	4603      	mov	r3, r0
- 8001700:	2b00      	cmp	r3, #0
- 8001702:	bf14      	ite	ne
- 8001704:	2301      	movne	r3, #1
- 8001706:	2300      	moveq	r3, #0
- 8001708:	b2db      	uxtb	r3, r3
- 800170a:	2b00      	cmp	r3, #0
- 800170c:	d000      	beq.n	8001710 <_ZN9SX1280Hal13WriteRegisterEtPht+0xd0>
- 800170e:	e7ed      	b.n	80016ec <_ZN9SX1280Hal13WriteRegisterEtPht+0xac>
+ 80016f2:	6d5a      	ldr	r2, [r3, #84]	; 0x54
+ 80016f4:	68fb      	ldr	r3, [r7, #12]
+ 80016f6:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
+ 80016fa:	4619      	mov	r1, r3
+ 80016fc:	4610      	mov	r0, r2
+ 80016fe:	f002 fcff 	bl	8004100 <HAL_GPIO_ReadPin>
+ 8001702:	4603      	mov	r3, r0
+ 8001704:	2b00      	cmp	r3, #0
+ 8001706:	bf14      	ite	ne
+ 8001708:	2301      	movne	r3, #1
+ 800170a:	2300      	moveq	r3, #0
+ 800170c:	b2db      	uxtb	r3, r3
+ 800170e:	2b00      	cmp	r3, #0
+ 8001710:	d000      	beq.n	8001714 <_ZN9SX1280Hal13WriteRegisterEtPht+0xd0>
+ 8001712:	e7ed      	b.n	80016f0 <_ZN9SX1280Hal13WriteRegisterEtPht+0xac>
 }
- 8001710:	bf00      	nop
- 8001712:	3718      	adds	r7, #24
- 8001714:	46bd      	mov	sp, r7
- 8001716:	bd80      	pop	{r7, pc}
+ 8001714:	bf00      	nop
+ 8001716:	3718      	adds	r7, #24
+ 8001718:	46bd      	mov	sp, r7
+ 800171a:	bd80      	pop	{r7, pc}
 
-08001718 <_ZN9SX1280Hal13WriteRegisterEth>:
+0800171c <_ZN9SX1280Hal13WriteRegisterEth>:
 
 void SX1280Hal::WriteRegister( uint16_t address, uint8_t value )
 {
- 8001718:	b590      	push	{r4, r7, lr}
- 800171a:	b083      	sub	sp, #12
- 800171c:	af00      	add	r7, sp, #0
- 800171e:	6078      	str	r0, [r7, #4]
- 8001720:	460b      	mov	r3, r1
- 8001722:	807b      	strh	r3, [r7, #2]
- 8001724:	4613      	mov	r3, r2
- 8001726:	707b      	strb	r3, [r7, #1]
+ 800171c:	b590      	push	{r4, r7, lr}
+ 800171e:	b083      	sub	sp, #12
+ 8001720:	af00      	add	r7, sp, #0
+ 8001722:	6078      	str	r0, [r7, #4]
+ 8001724:	460b      	mov	r3, r1
+ 8001726:	807b      	strh	r3, [r7, #2]
+ 8001728:	4613      	mov	r3, r2
+ 800172a:	707b      	strb	r3, [r7, #1]
     WriteRegister( address, &value, 1 );
- 8001728:	687b      	ldr	r3, [r7, #4]
- 800172a:	681b      	ldr	r3, [r3, #0]
- 800172c:	3318      	adds	r3, #24
- 800172e:	681c      	ldr	r4, [r3, #0]
- 8001730:	1c7a      	adds	r2, r7, #1
- 8001732:	8879      	ldrh	r1, [r7, #2]
- 8001734:	2301      	movs	r3, #1
- 8001736:	6878      	ldr	r0, [r7, #4]
- 8001738:	47a0      	blx	r4
+ 800172c:	687b      	ldr	r3, [r7, #4]
+ 800172e:	681b      	ldr	r3, [r3, #0]
+ 8001730:	3318      	adds	r3, #24
+ 8001732:	681c      	ldr	r4, [r3, #0]
+ 8001734:	1c7a      	adds	r2, r7, #1
+ 8001736:	8879      	ldrh	r1, [r7, #2]
+ 8001738:	2301      	movs	r3, #1
+ 800173a:	6878      	ldr	r0, [r7, #4]
+ 800173c:	47a0      	blx	r4
 }
- 800173a:	bf00      	nop
- 800173c:	370c      	adds	r7, #12
- 800173e:	46bd      	mov	sp, r7
- 8001740:	bd90      	pop	{r4, r7, pc}
+ 800173e:	bf00      	nop
+ 8001740:	370c      	adds	r7, #12
+ 8001742:	46bd      	mov	sp, r7
+ 8001744:	bd90      	pop	{r4, r7, pc}
 
-08001742 <_ZN9SX1280Hal12ReadRegisterEtPht>:
+08001746 <_ZN9SX1280Hal12ReadRegisterEtPht>:
 
 void SX1280Hal::ReadRegister( uint16_t address, uint8_t *buffer, uint16_t size )
 {
- 8001742:	b590      	push	{r4, r7, lr}
- 8001744:	b087      	sub	sp, #28
- 8001746:	af00      	add	r7, sp, #0
- 8001748:	60f8      	str	r0, [r7, #12]
- 800174a:	607a      	str	r2, [r7, #4]
- 800174c:	461a      	mov	r2, r3
- 800174e:	460b      	mov	r3, r1
- 8001750:	817b      	strh	r3, [r7, #10]
- 8001752:	4613      	mov	r3, r2
- 8001754:	813b      	strh	r3, [r7, #8]
+ 8001746:	b590      	push	{r4, r7, lr}
+ 8001748:	b087      	sub	sp, #28
+ 800174a:	af00      	add	r7, sp, #0
+ 800174c:	60f8      	str	r0, [r7, #12]
+ 800174e:	607a      	str	r2, [r7, #4]
+ 8001750:	461a      	mov	r2, r3
+ 8001752:	460b      	mov	r3, r1
+ 8001754:	817b      	strh	r3, [r7, #10]
+ 8001756:	4613      	mov	r3, r2
+ 8001758:	813b      	strh	r3, [r7, #8]
     WaitOnBusy( );
- 8001756:	68fb      	ldr	r3, [r7, #12]
- 8001758:	6d5a      	ldr	r2, [r3, #84]	; 0x54
  800175a:	68fb      	ldr	r3, [r7, #12]
- 800175c:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
- 8001760:	4619      	mov	r1, r3
- 8001762:	4610      	mov	r0, r2
- 8001764:	f002 fccc 	bl	8004100 <HAL_GPIO_ReadPin>
- 8001768:	4603      	mov	r3, r0
- 800176a:	2b00      	cmp	r3, #0
- 800176c:	bf14      	ite	ne
- 800176e:	2301      	movne	r3, #1
- 8001770:	2300      	moveq	r3, #0
- 8001772:	b2db      	uxtb	r3, r3
- 8001774:	2b00      	cmp	r3, #0
- 8001776:	d000      	beq.n	800177a <_ZN9SX1280Hal12ReadRegisterEtPht+0x38>
- 8001778:	e7ed      	b.n	8001756 <_ZN9SX1280Hal12ReadRegisterEtPht+0x14>
+ 800175c:	6d5a      	ldr	r2, [r3, #84]	; 0x54
+ 800175e:	68fb      	ldr	r3, [r7, #12]
+ 8001760:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
+ 8001764:	4619      	mov	r1, r3
+ 8001766:	4610      	mov	r0, r2
+ 8001768:	f002 fcca 	bl	8004100 <HAL_GPIO_ReadPin>
+ 800176c:	4603      	mov	r3, r0
+ 800176e:	2b00      	cmp	r3, #0
+ 8001770:	bf14      	ite	ne
+ 8001772:	2301      	movne	r3, #1
+ 8001774:	2300      	moveq	r3, #0
+ 8001776:	b2db      	uxtb	r3, r3
+ 8001778:	2b00      	cmp	r3, #0
+ 800177a:	d000      	beq.n	800177e <_ZN9SX1280Hal12ReadRegisterEtPht+0x38>
+ 800177c:	e7ed      	b.n	800175a <_ZN9SX1280Hal12ReadRegisterEtPht+0x14>
 
     if( RadioSpi != NULL )
- 800177a:	68fb      	ldr	r3, [r7, #12]
- 800177c:	6b9b      	ldr	r3, [r3, #56]	; 0x38
- 800177e:	2b00      	cmp	r3, #0
- 8001780:	d03a      	beq.n	80017f8 <_ZN9SX1280Hal12ReadRegisterEtPht+0xb6>
+ 800177e:	68fb      	ldr	r3, [r7, #12]
+ 8001780:	6b9b      	ldr	r3, [r3, #56]	; 0x38
+ 8001782:	2b00      	cmp	r3, #0
+ 8001784:	d03a      	beq.n	80017fc <_ZN9SX1280Hal12ReadRegisterEtPht+0xb6>
     {
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_RESET);
- 8001782:	68fb      	ldr	r3, [r7, #12]
- 8001784:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  8001786:	68fb      	ldr	r3, [r7, #12]
- 8001788:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 800178c:	2200      	movs	r2, #0
- 800178e:	4619      	mov	r1, r3
- 8001790:	f002 fcce 	bl	8004130 <HAL_GPIO_WritePin>
+ 8001788:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 800178a:	68fb      	ldr	r3, [r7, #12]
+ 800178c:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 8001790:	2200      	movs	r2, #0
+ 8001792:	4619      	mov	r1, r3
+ 8001794:	f002 fccc 	bl	8004130 <HAL_GPIO_WritePin>
         SpiTransmitReceiveByte( RADIO_READ_REGISTER );
- 8001794:	2119      	movs	r1, #25
- 8001796:	68f8      	ldr	r0, [r7, #12]
- 8001798:	f000 f926 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 8001798:	2119      	movs	r1, #25
+ 800179a:	68f8      	ldr	r0, [r7, #12]
+ 800179c:	f000 f926 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         SpiTransmitReceiveByte( ( address & 0xFF00 ) >> 8 );
- 800179c:	897b      	ldrh	r3, [r7, #10]
- 800179e:	0a1b      	lsrs	r3, r3, #8
- 80017a0:	b29b      	uxth	r3, r3
- 80017a2:	b2db      	uxtb	r3, r3
- 80017a4:	4619      	mov	r1, r3
- 80017a6:	68f8      	ldr	r0, [r7, #12]
- 80017a8:	f000 f91e 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80017a0:	897b      	ldrh	r3, [r7, #10]
+ 80017a2:	0a1b      	lsrs	r3, r3, #8
+ 80017a4:	b29b      	uxth	r3, r3
+ 80017a6:	b2db      	uxtb	r3, r3
+ 80017a8:	4619      	mov	r1, r3
+ 80017aa:	68f8      	ldr	r0, [r7, #12]
+ 80017ac:	f000 f91e 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         SpiTransmitReceiveByte( address & 0x00FF );
- 80017ac:	897b      	ldrh	r3, [r7, #10]
- 80017ae:	b2db      	uxtb	r3, r3
- 80017b0:	4619      	mov	r1, r3
- 80017b2:	68f8      	ldr	r0, [r7, #12]
- 80017b4:	f000 f918 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80017b0:	897b      	ldrh	r3, [r7, #10]
+ 80017b2:	b2db      	uxtb	r3, r3
+ 80017b4:	4619      	mov	r1, r3
+ 80017b6:	68f8      	ldr	r0, [r7, #12]
+ 80017b8:	f000 f918 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         SpiTransmitReceiveByte( 0 );
- 80017b8:	2100      	movs	r1, #0
- 80017ba:	68f8      	ldr	r0, [r7, #12]
- 80017bc:	f000 f914 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80017bc:	2100      	movs	r1, #0
+ 80017be:	68f8      	ldr	r0, [r7, #12]
+ 80017c0:	f000 f914 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         for( uint16_t i = 0; i < size; i++ )
- 80017c0:	2300      	movs	r3, #0
- 80017c2:	82fb      	strh	r3, [r7, #22]
- 80017c4:	8afa      	ldrh	r2, [r7, #22]
- 80017c6:	893b      	ldrh	r3, [r7, #8]
- 80017c8:	429a      	cmp	r2, r3
- 80017ca:	d20c      	bcs.n	80017e6 <_ZN9SX1280Hal12ReadRegisterEtPht+0xa4>
+ 80017c4:	2300      	movs	r3, #0
+ 80017c6:	82fb      	strh	r3, [r7, #22]
+ 80017c8:	8afa      	ldrh	r2, [r7, #22]
+ 80017ca:	893b      	ldrh	r3, [r7, #8]
+ 80017cc:	429a      	cmp	r2, r3
+ 80017ce:	d20c      	bcs.n	80017ea <_ZN9SX1280Hal12ReadRegisterEtPht+0xa4>
         {
             buffer[i] = SpiTransmitReceiveByte( 0 );
- 80017cc:	8afb      	ldrh	r3, [r7, #22]
- 80017ce:	687a      	ldr	r2, [r7, #4]
- 80017d0:	18d4      	adds	r4, r2, r3
- 80017d2:	2100      	movs	r1, #0
- 80017d4:	68f8      	ldr	r0, [r7, #12]
- 80017d6:	f000 f907 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
- 80017da:	4603      	mov	r3, r0
- 80017dc:	7023      	strb	r3, [r4, #0]
+ 80017d0:	8afb      	ldrh	r3, [r7, #22]
+ 80017d2:	687a      	ldr	r2, [r7, #4]
+ 80017d4:	18d4      	adds	r4, r2, r3
+ 80017d6:	2100      	movs	r1, #0
+ 80017d8:	68f8      	ldr	r0, [r7, #12]
+ 80017da:	f000 f907 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80017de:	4603      	mov	r3, r0
+ 80017e0:	7023      	strb	r3, [r4, #0]
         for( uint16_t i = 0; i < size; i++ )
- 80017de:	8afb      	ldrh	r3, [r7, #22]
- 80017e0:	3301      	adds	r3, #1
- 80017e2:	82fb      	strh	r3, [r7, #22]
- 80017e4:	e7ee      	b.n	80017c4 <_ZN9SX1280Hal12ReadRegisterEtPht+0x82>
+ 80017e2:	8afb      	ldrh	r3, [r7, #22]
+ 80017e4:	3301      	adds	r3, #1
+ 80017e6:	82fb      	strh	r3, [r7, #22]
+ 80017e8:	e7ee      	b.n	80017c8 <_ZN9SX1280Hal12ReadRegisterEtPht+0x82>
         }
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_SET);
- 80017e6:	68fb      	ldr	r3, [r7, #12]
- 80017e8:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  80017ea:	68fb      	ldr	r3, [r7, #12]
- 80017ec:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 80017f0:	2201      	movs	r2, #1
- 80017f2:	4619      	mov	r1, r3
- 80017f4:	f002 fc9c 	bl	8004130 <HAL_GPIO_WritePin>
+ 80017ec:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 80017ee:	68fb      	ldr	r3, [r7, #12]
+ 80017f0:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 80017f4:	2201      	movs	r2, #1
+ 80017f6:	4619      	mov	r1, r3
+ 80017f8:	f002 fc9a 	bl	8004130 <HAL_GPIO_WritePin>
     }
 
     WaitOnBusy( );
- 80017f8:	68fb      	ldr	r3, [r7, #12]
- 80017fa:	6d5a      	ldr	r2, [r3, #84]	; 0x54
  80017fc:	68fb      	ldr	r3, [r7, #12]
- 80017fe:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
- 8001802:	4619      	mov	r1, r3
- 8001804:	4610      	mov	r0, r2
- 8001806:	f002 fc7b 	bl	8004100 <HAL_GPIO_ReadPin>
- 800180a:	4603      	mov	r3, r0
- 800180c:	2b00      	cmp	r3, #0
- 800180e:	bf14      	ite	ne
- 8001810:	2301      	movne	r3, #1
- 8001812:	2300      	moveq	r3, #0
- 8001814:	b2db      	uxtb	r3, r3
- 8001816:	2b00      	cmp	r3, #0
- 8001818:	d000      	beq.n	800181c <_ZN9SX1280Hal12ReadRegisterEtPht+0xda>
- 800181a:	e7ed      	b.n	80017f8 <_ZN9SX1280Hal12ReadRegisterEtPht+0xb6>
+ 80017fe:	6d5a      	ldr	r2, [r3, #84]	; 0x54
+ 8001800:	68fb      	ldr	r3, [r7, #12]
+ 8001802:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
+ 8001806:	4619      	mov	r1, r3
+ 8001808:	4610      	mov	r0, r2
+ 800180a:	f002 fc79 	bl	8004100 <HAL_GPIO_ReadPin>
+ 800180e:	4603      	mov	r3, r0
+ 8001810:	2b00      	cmp	r3, #0
+ 8001812:	bf14      	ite	ne
+ 8001814:	2301      	movne	r3, #1
+ 8001816:	2300      	moveq	r3, #0
+ 8001818:	b2db      	uxtb	r3, r3
+ 800181a:	2b00      	cmp	r3, #0
+ 800181c:	d000      	beq.n	8001820 <_ZN9SX1280Hal12ReadRegisterEtPht+0xda>
+ 800181e:	e7ed      	b.n	80017fc <_ZN9SX1280Hal12ReadRegisterEtPht+0xb6>
 }
- 800181c:	bf00      	nop
- 800181e:	371c      	adds	r7, #28
- 8001820:	46bd      	mov	sp, r7
- 8001822:	bd90      	pop	{r4, r7, pc}
+ 8001820:	bf00      	nop
+ 8001822:	371c      	adds	r7, #28
+ 8001824:	46bd      	mov	sp, r7
+ 8001826:	bd90      	pop	{r4, r7, pc}
 
-08001824 <_ZN9SX1280Hal12ReadRegisterEt>:
+08001828 <_ZN9SX1280Hal12ReadRegisterEt>:
 
 uint8_t SX1280Hal::ReadRegister( uint16_t address )
 {
- 8001824:	b590      	push	{r4, r7, lr}
- 8001826:	b085      	sub	sp, #20
- 8001828:	af00      	add	r7, sp, #0
- 800182a:	6078      	str	r0, [r7, #4]
- 800182c:	460b      	mov	r3, r1
- 800182e:	807b      	strh	r3, [r7, #2]
+ 8001828:	b590      	push	{r4, r7, lr}
+ 800182a:	b085      	sub	sp, #20
+ 800182c:	af00      	add	r7, sp, #0
+ 800182e:	6078      	str	r0, [r7, #4]
+ 8001830:	460b      	mov	r3, r1
+ 8001832:	807b      	strh	r3, [r7, #2]
     uint8_t data;
 
     ReadRegister( address, &data, 1 );
- 8001830:	687b      	ldr	r3, [r7, #4]
- 8001832:	681b      	ldr	r3, [r3, #0]
- 8001834:	3320      	adds	r3, #32
- 8001836:	681c      	ldr	r4, [r3, #0]
- 8001838:	f107 020f 	add.w	r2, r7, #15
- 800183c:	8879      	ldrh	r1, [r7, #2]
- 800183e:	2301      	movs	r3, #1
- 8001840:	6878      	ldr	r0, [r7, #4]
- 8001842:	47a0      	blx	r4
+ 8001834:	687b      	ldr	r3, [r7, #4]
+ 8001836:	681b      	ldr	r3, [r3, #0]
+ 8001838:	3320      	adds	r3, #32
+ 800183a:	681c      	ldr	r4, [r3, #0]
+ 800183c:	f107 020f 	add.w	r2, r7, #15
+ 8001840:	8879      	ldrh	r1, [r7, #2]
+ 8001842:	2301      	movs	r3, #1
+ 8001844:	6878      	ldr	r0, [r7, #4]
+ 8001846:	47a0      	blx	r4
     return data;
- 8001844:	7bfb      	ldrb	r3, [r7, #15]
+ 8001848:	7bfb      	ldrb	r3, [r7, #15]
 }
- 8001846:	4618      	mov	r0, r3
- 8001848:	3714      	adds	r7, #20
- 800184a:	46bd      	mov	sp, r7
- 800184c:	bd90      	pop	{r4, r7, pc}
+ 800184a:	4618      	mov	r0, r3
+ 800184c:	3714      	adds	r7, #20
+ 800184e:	46bd      	mov	sp, r7
+ 8001850:	bd90      	pop	{r4, r7, pc}
 
-0800184e <_ZN9SX1280Hal11WriteBufferEhPhh>:
+08001852 <_ZN9SX1280Hal11WriteBufferEhPhh>:
 
 void SX1280Hal::WriteBuffer( uint8_t offset, uint8_t *buffer, uint8_t size )
 {
- 800184e:	b580      	push	{r7, lr}
- 8001850:	b086      	sub	sp, #24
- 8001852:	af00      	add	r7, sp, #0
- 8001854:	60f8      	str	r0, [r7, #12]
- 8001856:	607a      	str	r2, [r7, #4]
- 8001858:	461a      	mov	r2, r3
- 800185a:	460b      	mov	r3, r1
- 800185c:	72fb      	strb	r3, [r7, #11]
- 800185e:	4613      	mov	r3, r2
- 8001860:	72bb      	strb	r3, [r7, #10]
+ 8001852:	b580      	push	{r7, lr}
+ 8001854:	b086      	sub	sp, #24
+ 8001856:	af00      	add	r7, sp, #0
+ 8001858:	60f8      	str	r0, [r7, #12]
+ 800185a:	607a      	str	r2, [r7, #4]
+ 800185c:	461a      	mov	r2, r3
+ 800185e:	460b      	mov	r3, r1
+ 8001860:	72fb      	strb	r3, [r7, #11]
+ 8001862:	4613      	mov	r3, r2
+ 8001864:	72bb      	strb	r3, [r7, #10]
     WaitOnBusy( );
- 8001862:	68fb      	ldr	r3, [r7, #12]
- 8001864:	6d5a      	ldr	r2, [r3, #84]	; 0x54
  8001866:	68fb      	ldr	r3, [r7, #12]
- 8001868:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
- 800186c:	4619      	mov	r1, r3
- 800186e:	4610      	mov	r0, r2
- 8001870:	f002 fc46 	bl	8004100 <HAL_GPIO_ReadPin>
- 8001874:	4603      	mov	r3, r0
- 8001876:	2b00      	cmp	r3, #0
- 8001878:	bf14      	ite	ne
- 800187a:	2301      	movne	r3, #1
- 800187c:	2300      	moveq	r3, #0
- 800187e:	b2db      	uxtb	r3, r3
- 8001880:	2b00      	cmp	r3, #0
- 8001882:	d000      	beq.n	8001886 <_ZN9SX1280Hal11WriteBufferEhPhh+0x38>
- 8001884:	e7ed      	b.n	8001862 <_ZN9SX1280Hal11WriteBufferEhPhh+0x14>
+ 8001868:	6d5a      	ldr	r2, [r3, #84]	; 0x54
+ 800186a:	68fb      	ldr	r3, [r7, #12]
+ 800186c:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
+ 8001870:	4619      	mov	r1, r3
+ 8001872:	4610      	mov	r0, r2
+ 8001874:	f002 fc44 	bl	8004100 <HAL_GPIO_ReadPin>
+ 8001878:	4603      	mov	r3, r0
+ 800187a:	2b00      	cmp	r3, #0
+ 800187c:	bf14      	ite	ne
+ 800187e:	2301      	movne	r3, #1
+ 8001880:	2300      	moveq	r3, #0
+ 8001882:	b2db      	uxtb	r3, r3
+ 8001884:	2b00      	cmp	r3, #0
+ 8001886:	d000      	beq.n	800188a <_ZN9SX1280Hal11WriteBufferEhPhh+0x38>
+ 8001888:	e7ed      	b.n	8001866 <_ZN9SX1280Hal11WriteBufferEhPhh+0x14>
 
     if( RadioSpi != NULL )
- 8001886:	68fb      	ldr	r3, [r7, #12]
- 8001888:	6b9b      	ldr	r3, [r3, #56]	; 0x38
- 800188a:	2b00      	cmp	r3, #0
- 800188c:	d02d      	beq.n	80018ea <_ZN9SX1280Hal11WriteBufferEhPhh+0x9c>
+ 800188a:	68fb      	ldr	r3, [r7, #12]
+ 800188c:	6b9b      	ldr	r3, [r3, #56]	; 0x38
+ 800188e:	2b00      	cmp	r3, #0
+ 8001890:	d02d      	beq.n	80018ee <_ZN9SX1280Hal11WriteBufferEhPhh+0x9c>
     {
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_RESET);
- 800188e:	68fb      	ldr	r3, [r7, #12]
- 8001890:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  8001892:	68fb      	ldr	r3, [r7, #12]
- 8001894:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 8001898:	2200      	movs	r2, #0
- 800189a:	4619      	mov	r1, r3
- 800189c:	f002 fc48 	bl	8004130 <HAL_GPIO_WritePin>
+ 8001894:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 8001896:	68fb      	ldr	r3, [r7, #12]
+ 8001898:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 800189c:	2200      	movs	r2, #0
+ 800189e:	4619      	mov	r1, r3
+ 80018a0:	f002 fc46 	bl	8004130 <HAL_GPIO_WritePin>
         SpiTransmitReceiveByte( RADIO_WRITE_BUFFER );
- 80018a0:	211a      	movs	r1, #26
- 80018a2:	68f8      	ldr	r0, [r7, #12]
- 80018a4:	f000 f8a0 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80018a4:	211a      	movs	r1, #26
+ 80018a6:	68f8      	ldr	r0, [r7, #12]
+ 80018a8:	f000 f8a0 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         SpiTransmitReceiveByte( offset );
- 80018a8:	7afb      	ldrb	r3, [r7, #11]
- 80018aa:	4619      	mov	r1, r3
- 80018ac:	68f8      	ldr	r0, [r7, #12]
- 80018ae:	f000 f89b 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80018ac:	7afb      	ldrb	r3, [r7, #11]
+ 80018ae:	4619      	mov	r1, r3
+ 80018b0:	68f8      	ldr	r0, [r7, #12]
+ 80018b2:	f000 f89b 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         for( uint16_t i = 0; i < size; i++ )
- 80018b2:	2300      	movs	r3, #0
- 80018b4:	82fb      	strh	r3, [r7, #22]
- 80018b6:	7abb      	ldrb	r3, [r7, #10]
- 80018b8:	b29b      	uxth	r3, r3
- 80018ba:	8afa      	ldrh	r2, [r7, #22]
- 80018bc:	429a      	cmp	r2, r3
- 80018be:	d20b      	bcs.n	80018d8 <_ZN9SX1280Hal11WriteBufferEhPhh+0x8a>
+ 80018b6:	2300      	movs	r3, #0
+ 80018b8:	82fb      	strh	r3, [r7, #22]
+ 80018ba:	7abb      	ldrb	r3, [r7, #10]
+ 80018bc:	b29b      	uxth	r3, r3
+ 80018be:	8afa      	ldrh	r2, [r7, #22]
+ 80018c0:	429a      	cmp	r2, r3
+ 80018c2:	d20b      	bcs.n	80018dc <_ZN9SX1280Hal11WriteBufferEhPhh+0x8a>
         {
             SpiTransmitReceiveByte( buffer[i] );
- 80018c0:	8afb      	ldrh	r3, [r7, #22]
- 80018c2:	687a      	ldr	r2, [r7, #4]
- 80018c4:	4413      	add	r3, r2
- 80018c6:	781b      	ldrb	r3, [r3, #0]
- 80018c8:	4619      	mov	r1, r3
- 80018ca:	68f8      	ldr	r0, [r7, #12]
- 80018cc:	f000 f88c 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80018c4:	8afb      	ldrh	r3, [r7, #22]
+ 80018c6:	687a      	ldr	r2, [r7, #4]
+ 80018c8:	4413      	add	r3, r2
+ 80018ca:	781b      	ldrb	r3, [r3, #0]
+ 80018cc:	4619      	mov	r1, r3
+ 80018ce:	68f8      	ldr	r0, [r7, #12]
+ 80018d0:	f000 f88c 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         for( uint16_t i = 0; i < size; i++ )
- 80018d0:	8afb      	ldrh	r3, [r7, #22]
- 80018d2:	3301      	adds	r3, #1
- 80018d4:	82fb      	strh	r3, [r7, #22]
- 80018d6:	e7ee      	b.n	80018b6 <_ZN9SX1280Hal11WriteBufferEhPhh+0x68>
+ 80018d4:	8afb      	ldrh	r3, [r7, #22]
+ 80018d6:	3301      	adds	r3, #1
+ 80018d8:	82fb      	strh	r3, [r7, #22]
+ 80018da:	e7ee      	b.n	80018ba <_ZN9SX1280Hal11WriteBufferEhPhh+0x68>
         }
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_SET);
- 80018d8:	68fb      	ldr	r3, [r7, #12]
- 80018da:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  80018dc:	68fb      	ldr	r3, [r7, #12]
- 80018de:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 80018e2:	2201      	movs	r2, #1
- 80018e4:	4619      	mov	r1, r3
- 80018e6:	f002 fc23 	bl	8004130 <HAL_GPIO_WritePin>
+ 80018de:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 80018e0:	68fb      	ldr	r3, [r7, #12]
+ 80018e2:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 80018e6:	2201      	movs	r2, #1
+ 80018e8:	4619      	mov	r1, r3
+ 80018ea:	f002 fc21 	bl	8004130 <HAL_GPIO_WritePin>
     }
 
     WaitOnBusy( );
- 80018ea:	68fb      	ldr	r3, [r7, #12]
- 80018ec:	6d5a      	ldr	r2, [r3, #84]	; 0x54
  80018ee:	68fb      	ldr	r3, [r7, #12]
- 80018f0:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
- 80018f4:	4619      	mov	r1, r3
- 80018f6:	4610      	mov	r0, r2
- 80018f8:	f002 fc02 	bl	8004100 <HAL_GPIO_ReadPin>
- 80018fc:	4603      	mov	r3, r0
- 80018fe:	2b00      	cmp	r3, #0
- 8001900:	bf14      	ite	ne
- 8001902:	2301      	movne	r3, #1
- 8001904:	2300      	moveq	r3, #0
- 8001906:	b2db      	uxtb	r3, r3
- 8001908:	2b00      	cmp	r3, #0
- 800190a:	d000      	beq.n	800190e <_ZN9SX1280Hal11WriteBufferEhPhh+0xc0>
- 800190c:	e7ed      	b.n	80018ea <_ZN9SX1280Hal11WriteBufferEhPhh+0x9c>
+ 80018f0:	6d5a      	ldr	r2, [r3, #84]	; 0x54
+ 80018f2:	68fb      	ldr	r3, [r7, #12]
+ 80018f4:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
+ 80018f8:	4619      	mov	r1, r3
+ 80018fa:	4610      	mov	r0, r2
+ 80018fc:	f002 fc00 	bl	8004100 <HAL_GPIO_ReadPin>
+ 8001900:	4603      	mov	r3, r0
+ 8001902:	2b00      	cmp	r3, #0
+ 8001904:	bf14      	ite	ne
+ 8001906:	2301      	movne	r3, #1
+ 8001908:	2300      	moveq	r3, #0
+ 800190a:	b2db      	uxtb	r3, r3
+ 800190c:	2b00      	cmp	r3, #0
+ 800190e:	d000      	beq.n	8001912 <_ZN9SX1280Hal11WriteBufferEhPhh+0xc0>
+ 8001910:	e7ed      	b.n	80018ee <_ZN9SX1280Hal11WriteBufferEhPhh+0x9c>
 }
- 800190e:	bf00      	nop
- 8001910:	3718      	adds	r7, #24
- 8001912:	46bd      	mov	sp, r7
- 8001914:	bd80      	pop	{r7, pc}
+ 8001912:	bf00      	nop
+ 8001914:	3718      	adds	r7, #24
+ 8001916:	46bd      	mov	sp, r7
+ 8001918:	bd80      	pop	{r7, pc}
 
-08001916 <_ZN9SX1280Hal10ReadBufferEhPhh>:
+0800191a <_ZN9SX1280Hal10ReadBufferEhPhh>:
 
 void SX1280Hal::ReadBuffer( uint8_t offset, uint8_t *buffer, uint8_t size )
 {
- 8001916:	b590      	push	{r4, r7, lr}
- 8001918:	b087      	sub	sp, #28
- 800191a:	af00      	add	r7, sp, #0
- 800191c:	60f8      	str	r0, [r7, #12]
- 800191e:	607a      	str	r2, [r7, #4]
- 8001920:	461a      	mov	r2, r3
- 8001922:	460b      	mov	r3, r1
- 8001924:	72fb      	strb	r3, [r7, #11]
- 8001926:	4613      	mov	r3, r2
- 8001928:	72bb      	strb	r3, [r7, #10]
+ 800191a:	b590      	push	{r4, r7, lr}
+ 800191c:	b087      	sub	sp, #28
+ 800191e:	af00      	add	r7, sp, #0
+ 8001920:	60f8      	str	r0, [r7, #12]
+ 8001922:	607a      	str	r2, [r7, #4]
+ 8001924:	461a      	mov	r2, r3
+ 8001926:	460b      	mov	r3, r1
+ 8001928:	72fb      	strb	r3, [r7, #11]
+ 800192a:	4613      	mov	r3, r2
+ 800192c:	72bb      	strb	r3, [r7, #10]
     WaitOnBusy( );
- 800192a:	68fb      	ldr	r3, [r7, #12]
- 800192c:	6d5a      	ldr	r2, [r3, #84]	; 0x54
  800192e:	68fb      	ldr	r3, [r7, #12]
- 8001930:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
- 8001934:	4619      	mov	r1, r3
- 8001936:	4610      	mov	r0, r2
- 8001938:	f002 fbe2 	bl	8004100 <HAL_GPIO_ReadPin>
- 800193c:	4603      	mov	r3, r0
- 800193e:	2b00      	cmp	r3, #0
- 8001940:	bf14      	ite	ne
- 8001942:	2301      	movne	r3, #1
- 8001944:	2300      	moveq	r3, #0
- 8001946:	b2db      	uxtb	r3, r3
- 8001948:	2b00      	cmp	r3, #0
- 800194a:	d000      	beq.n	800194e <_ZN9SX1280Hal10ReadBufferEhPhh+0x38>
- 800194c:	e7ed      	b.n	800192a <_ZN9SX1280Hal10ReadBufferEhPhh+0x14>
+ 8001930:	6d5a      	ldr	r2, [r3, #84]	; 0x54
+ 8001932:	68fb      	ldr	r3, [r7, #12]
+ 8001934:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
+ 8001938:	4619      	mov	r1, r3
+ 800193a:	4610      	mov	r0, r2
+ 800193c:	f002 fbe0 	bl	8004100 <HAL_GPIO_ReadPin>
+ 8001940:	4603      	mov	r3, r0
+ 8001942:	2b00      	cmp	r3, #0
+ 8001944:	bf14      	ite	ne
+ 8001946:	2301      	movne	r3, #1
+ 8001948:	2300      	moveq	r3, #0
+ 800194a:	b2db      	uxtb	r3, r3
+ 800194c:	2b00      	cmp	r3, #0
+ 800194e:	d000      	beq.n	8001952 <_ZN9SX1280Hal10ReadBufferEhPhh+0x38>
+ 8001950:	e7ed      	b.n	800192e <_ZN9SX1280Hal10ReadBufferEhPhh+0x14>
 
     if( RadioSpi != NULL )
- 800194e:	68fb      	ldr	r3, [r7, #12]
- 8001950:	6b9b      	ldr	r3, [r3, #56]	; 0x38
- 8001952:	2b00      	cmp	r3, #0
- 8001954:	d032      	beq.n	80019bc <_ZN9SX1280Hal10ReadBufferEhPhh+0xa6>
+ 8001952:	68fb      	ldr	r3, [r7, #12]
+ 8001954:	6b9b      	ldr	r3, [r3, #56]	; 0x38
+ 8001956:	2b00      	cmp	r3, #0
+ 8001958:	d032      	beq.n	80019c0 <_ZN9SX1280Hal10ReadBufferEhPhh+0xa6>
     {
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_RESET);
- 8001956:	68fb      	ldr	r3, [r7, #12]
- 8001958:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  800195a:	68fb      	ldr	r3, [r7, #12]
- 800195c:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 8001960:	2200      	movs	r2, #0
- 8001962:	4619      	mov	r1, r3
- 8001964:	f002 fbe4 	bl	8004130 <HAL_GPIO_WritePin>
+ 800195c:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 800195e:	68fb      	ldr	r3, [r7, #12]
+ 8001960:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 8001964:	2200      	movs	r2, #0
+ 8001966:	4619      	mov	r1, r3
+ 8001968:	f002 fbe2 	bl	8004130 <HAL_GPIO_WritePin>
         SpiTransmitReceiveByte( RADIO_READ_BUFFER );
- 8001968:	211b      	movs	r1, #27
- 800196a:	68f8      	ldr	r0, [r7, #12]
- 800196c:	f000 f83c 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 800196c:	211b      	movs	r1, #27
+ 800196e:	68f8      	ldr	r0, [r7, #12]
+ 8001970:	f000 f83c 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         SpiTransmitReceiveByte( offset );
- 8001970:	7afb      	ldrb	r3, [r7, #11]
- 8001972:	4619      	mov	r1, r3
- 8001974:	68f8      	ldr	r0, [r7, #12]
- 8001976:	f000 f837 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 8001974:	7afb      	ldrb	r3, [r7, #11]
+ 8001976:	4619      	mov	r1, r3
+ 8001978:	68f8      	ldr	r0, [r7, #12]
+ 800197a:	f000 f837 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         SpiTransmitReceiveByte( 0 );
- 800197a:	2100      	movs	r1, #0
- 800197c:	68f8      	ldr	r0, [r7, #12]
- 800197e:	f000 f833 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 800197e:	2100      	movs	r1, #0
+ 8001980:	68f8      	ldr	r0, [r7, #12]
+ 8001982:	f000 f833 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
         for( uint16_t i = 0; i < size; i++ )
- 8001982:	2300      	movs	r3, #0
- 8001984:	82fb      	strh	r3, [r7, #22]
- 8001986:	7abb      	ldrb	r3, [r7, #10]
- 8001988:	b29b      	uxth	r3, r3
- 800198a:	8afa      	ldrh	r2, [r7, #22]
- 800198c:	429a      	cmp	r2, r3
- 800198e:	d20c      	bcs.n	80019aa <_ZN9SX1280Hal10ReadBufferEhPhh+0x94>
+ 8001986:	2300      	movs	r3, #0
+ 8001988:	82fb      	strh	r3, [r7, #22]
+ 800198a:	7abb      	ldrb	r3, [r7, #10]
+ 800198c:	b29b      	uxth	r3, r3
+ 800198e:	8afa      	ldrh	r2, [r7, #22]
+ 8001990:	429a      	cmp	r2, r3
+ 8001992:	d20c      	bcs.n	80019ae <_ZN9SX1280Hal10ReadBufferEhPhh+0x94>
         {
             buffer[i] = SpiTransmitReceiveByte( 0 );
- 8001990:	8afb      	ldrh	r3, [r7, #22]
- 8001992:	687a      	ldr	r2, [r7, #4]
- 8001994:	18d4      	adds	r4, r2, r3
- 8001996:	2100      	movs	r1, #0
- 8001998:	68f8      	ldr	r0, [r7, #12]
- 800199a:	f000 f825 	bl	80019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
- 800199e:	4603      	mov	r3, r0
- 80019a0:	7023      	strb	r3, [r4, #0]
+ 8001994:	8afb      	ldrh	r3, [r7, #22]
+ 8001996:	687a      	ldr	r2, [r7, #4]
+ 8001998:	18d4      	adds	r4, r2, r3
+ 800199a:	2100      	movs	r1, #0
+ 800199c:	68f8      	ldr	r0, [r7, #12]
+ 800199e:	f000 f825 	bl	80019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>
+ 80019a2:	4603      	mov	r3, r0
+ 80019a4:	7023      	strb	r3, [r4, #0]
         for( uint16_t i = 0; i < size; i++ )
- 80019a2:	8afb      	ldrh	r3, [r7, #22]
- 80019a4:	3301      	adds	r3, #1
- 80019a6:	82fb      	strh	r3, [r7, #22]
- 80019a8:	e7ed      	b.n	8001986 <_ZN9SX1280Hal10ReadBufferEhPhh+0x70>
+ 80019a6:	8afb      	ldrh	r3, [r7, #22]
+ 80019a8:	3301      	adds	r3, #1
+ 80019aa:	82fb      	strh	r3, [r7, #22]
+ 80019ac:	e7ed      	b.n	800198a <_ZN9SX1280Hal10ReadBufferEhPhh+0x70>
         }
         HAL_GPIO_WritePin(RadioNssPort, RadioNssPin, GPIO_PIN_SET);
- 80019aa:	68fb      	ldr	r3, [r7, #12]
- 80019ac:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
  80019ae:	68fb      	ldr	r3, [r7, #12]
- 80019b0:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
- 80019b4:	2201      	movs	r2, #1
- 80019b6:	4619      	mov	r1, r3
- 80019b8:	f002 fbba 	bl	8004130 <HAL_GPIO_WritePin>
+ 80019b0:	6bd8      	ldr	r0, [r3, #60]	; 0x3c
+ 80019b2:	68fb      	ldr	r3, [r7, #12]
+ 80019b4:	f8b3 3040 	ldrh.w	r3, [r3, #64]	; 0x40
+ 80019b8:	2201      	movs	r2, #1
+ 80019ba:	4619      	mov	r1, r3
+ 80019bc:	f002 fbb8 	bl	8004130 <HAL_GPIO_WritePin>
     }
 
     WaitOnBusy( );
- 80019bc:	68fb      	ldr	r3, [r7, #12]
- 80019be:	6d5a      	ldr	r2, [r3, #84]	; 0x54
  80019c0:	68fb      	ldr	r3, [r7, #12]
- 80019c2:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
- 80019c6:	4619      	mov	r1, r3
- 80019c8:	4610      	mov	r0, r2
- 80019ca:	f002 fb99 	bl	8004100 <HAL_GPIO_ReadPin>
- 80019ce:	4603      	mov	r3, r0
- 80019d0:	2b00      	cmp	r3, #0
- 80019d2:	bf14      	ite	ne
- 80019d4:	2301      	movne	r3, #1
- 80019d6:	2300      	moveq	r3, #0
- 80019d8:	b2db      	uxtb	r3, r3
- 80019da:	2b00      	cmp	r3, #0
- 80019dc:	d000      	beq.n	80019e0 <_ZN9SX1280Hal10ReadBufferEhPhh+0xca>
- 80019de:	e7ed      	b.n	80019bc <_ZN9SX1280Hal10ReadBufferEhPhh+0xa6>
+ 80019c2:	6d5a      	ldr	r2, [r3, #84]	; 0x54
+ 80019c4:	68fb      	ldr	r3, [r7, #12]
+ 80019c6:	f8b3 3058 	ldrh.w	r3, [r3, #88]	; 0x58
+ 80019ca:	4619      	mov	r1, r3
+ 80019cc:	4610      	mov	r0, r2
+ 80019ce:	f002 fb97 	bl	8004100 <HAL_GPIO_ReadPin>
+ 80019d2:	4603      	mov	r3, r0
+ 80019d4:	2b00      	cmp	r3, #0
+ 80019d6:	bf14      	ite	ne
+ 80019d8:	2301      	movne	r3, #1
+ 80019da:	2300      	moveq	r3, #0
+ 80019dc:	b2db      	uxtb	r3, r3
+ 80019de:	2b00      	cmp	r3, #0
+ 80019e0:	d000      	beq.n	80019e4 <_ZN9SX1280Hal10ReadBufferEhPhh+0xca>
+ 80019e2:	e7ed      	b.n	80019c0 <_ZN9SX1280Hal10ReadBufferEhPhh+0xa6>
 }
- 80019e0:	bf00      	nop
- 80019e2:	371c      	adds	r7, #28
- 80019e4:	46bd      	mov	sp, r7
- 80019e6:	bd90      	pop	{r4, r7, pc}
+ 80019e4:	bf00      	nop
+ 80019e6:	371c      	adds	r7, #28
+ 80019e8:	46bd      	mov	sp, r7
+ 80019ea:	bd90      	pop	{r4, r7, pc}
 
-080019e8 <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>:
+080019ec <_ZN9SX1280Hal22SpiTransmitReceiveByteEh>:
 
 uint8_t SX1280Hal::SpiTransmitReceiveByte( uint8_t byte )
 {
- 80019e8:	b580      	push	{r7, lr}
- 80019ea:	b086      	sub	sp, #24
- 80019ec:	af02      	add	r7, sp, #8
- 80019ee:	6078      	str	r0, [r7, #4]
- 80019f0:	460b      	mov	r3, r1
- 80019f2:	70fb      	strb	r3, [r7, #3]
+ 80019ec:	b580      	push	{r7, lr}
+ 80019ee:	b086      	sub	sp, #24
+ 80019f0:	af02      	add	r7, sp, #8
+ 80019f2:	6078      	str	r0, [r7, #4]
+ 80019f4:	460b      	mov	r3, r1
+ 80019f6:	70fb      	strb	r3, [r7, #3]
 	//Se for IT ou DMA a função acaba antes de terminar de transmitir
 	uint8_t receivedByte;
 	HAL_SPI_TransmitReceive(RadioSpi, &byte, &receivedByte, 1, 100);
- 80019f4:	687b      	ldr	r3, [r7, #4]
- 80019f6:	6b98      	ldr	r0, [r3, #56]	; 0x38
- 80019f8:	f107 020f 	add.w	r2, r7, #15
- 80019fc:	1cf9      	adds	r1, r7, #3
- 80019fe:	2364      	movs	r3, #100	; 0x64
- 8001a00:	9300      	str	r3, [sp, #0]
- 8001a02:	2301      	movs	r3, #1
- 8001a04:	f005 faa3 	bl	8006f4e <HAL_SPI_TransmitReceive>
+ 80019f8:	687b      	ldr	r3, [r7, #4]
+ 80019fa:	6b98      	ldr	r0, [r3, #56]	; 0x38
+ 80019fc:	f107 020f 	add.w	r2, r7, #15
+ 8001a00:	1cf9      	adds	r1, r7, #3
+ 8001a02:	2364      	movs	r3, #100	; 0x64
+ 8001a04:	9300      	str	r3, [sp, #0]
+ 8001a06:	2301      	movs	r3, #1
+ 8001a08:	f005 faa1 	bl	8006f4e <HAL_SPI_TransmitReceive>
 	return receivedByte;
- 8001a08:	7bfb      	ldrb	r3, [r7, #15]
+ 8001a0c:	7bfb      	ldrb	r3, [r7, #15]
 }
- 8001a0a:	4618      	mov	r0, r3
- 8001a0c:	3710      	adds	r7, #16
- 8001a0e:	46bd      	mov	sp, r7
- 8001a10:	bd80      	pop	{r7, pc}
+ 8001a0e:	4618      	mov	r0, r3
+ 8001a10:	3710      	adds	r7, #16
+ 8001a12:	46bd      	mov	sp, r7
+ 8001a14:	bd80      	pop	{r7, pc}
 
-08001a12 <_ZN9SX1280Hal20HalInterruptCallbackEv>:
+08001a16 <_ZN9SX1280Hal20HalInterruptCallbackEv>:
 
 void SX1280Hal::HalInterruptCallback(void){
- 8001a12:	b580      	push	{r7, lr}
- 8001a14:	b082      	sub	sp, #8
- 8001a16:	af00      	add	r7, sp, #0
- 8001a18:	6078      	str	r0, [r7, #4]
+ 8001a16:	b580      	push	{r7, lr}
+ 8001a18:	b082      	sub	sp, #8
+ 8001a1a:	af00      	add	r7, sp, #0
+ 8001a1c:	6078      	str	r0, [r7, #4]
 	if(RadioIrqHandler != NULL){
- 8001a1a:	687b      	ldr	r3, [r7, #4]
- 8001a1c:	6ddb      	ldr	r3, [r3, #92]	; 0x5c
- 8001a1e:	2b00      	cmp	r3, #0
- 8001a20:	d107      	bne.n	8001a32 <_ZN9SX1280Hal20HalInterruptCallbackEv+0x20>
- 8001a22:	687b      	ldr	r3, [r7, #4]
- 8001a24:	6e1b      	ldr	r3, [r3, #96]	; 0x60
- 8001a26:	f003 0301 	and.w	r3, r3, #1
- 8001a2a:	2b00      	cmp	r3, #0
- 8001a2c:	d101      	bne.n	8001a32 <_ZN9SX1280Hal20HalInterruptCallbackEv+0x20>
- 8001a2e:	2301      	movs	r3, #1
- 8001a30:	e000      	b.n	8001a34 <_ZN9SX1280Hal20HalInterruptCallbackEv+0x22>
- 8001a32:	2300      	movs	r3, #0
- 8001a34:	2b01      	cmp	r3, #1
- 8001a36:	d019      	beq.n	8001a6c <_ZN9SX1280Hal20HalInterruptCallbackEv+0x5a>
+ 8001a1e:	687b      	ldr	r3, [r7, #4]
+ 8001a20:	6ddb      	ldr	r3, [r3, #92]	; 0x5c
+ 8001a22:	2b00      	cmp	r3, #0
+ 8001a24:	d107      	bne.n	8001a36 <_ZN9SX1280Hal20HalInterruptCallbackEv+0x20>
+ 8001a26:	687b      	ldr	r3, [r7, #4]
+ 8001a28:	6e1b      	ldr	r3, [r3, #96]	; 0x60
+ 8001a2a:	f003 0301 	and.w	r3, r3, #1
+ 8001a2e:	2b00      	cmp	r3, #0
+ 8001a30:	d101      	bne.n	8001a36 <_ZN9SX1280Hal20HalInterruptCallbackEv+0x20>
+ 8001a32:	2301      	movs	r3, #1
+ 8001a34:	e000      	b.n	8001a38 <_ZN9SX1280Hal20HalInterruptCallbackEv+0x22>
+ 8001a36:	2300      	movs	r3, #0
+ 8001a38:	2b01      	cmp	r3, #1
+ 8001a3a:	d019      	beq.n	8001a70 <_ZN9SX1280Hal20HalInterruptCallbackEv+0x5a>
 		(this->*RadioIrqHandler)();
- 8001a38:	687b      	ldr	r3, [r7, #4]
- 8001a3a:	687a      	ldr	r2, [r7, #4]
- 8001a3c:	6e12      	ldr	r2, [r2, #96]	; 0x60
- 8001a3e:	1052      	asrs	r2, r2, #1
- 8001a40:	1899      	adds	r1, r3, r2
- 8001a42:	687b      	ldr	r3, [r7, #4]
- 8001a44:	6e1b      	ldr	r3, [r3, #96]	; 0x60
- 8001a46:	f003 0301 	and.w	r3, r3, #1
- 8001a4a:	2b00      	cmp	r3, #0
- 8001a4c:	d102      	bne.n	8001a54 <_ZN9SX1280Hal20HalInterruptCallbackEv+0x42>
- 8001a4e:	687b      	ldr	r3, [r7, #4]
- 8001a50:	6ddb      	ldr	r3, [r3, #92]	; 0x5c
- 8001a52:	e009      	b.n	8001a68 <_ZN9SX1280Hal20HalInterruptCallbackEv+0x56>
- 8001a54:	687b      	ldr	r3, [r7, #4]
- 8001a56:	687a      	ldr	r2, [r7, #4]
- 8001a58:	6e12      	ldr	r2, [r2, #96]	; 0x60
- 8001a5a:	1052      	asrs	r2, r2, #1
- 8001a5c:	4413      	add	r3, r2
- 8001a5e:	681b      	ldr	r3, [r3, #0]
- 8001a60:	687a      	ldr	r2, [r7, #4]
- 8001a62:	6dd2      	ldr	r2, [r2, #92]	; 0x5c
- 8001a64:	4413      	add	r3, r2
- 8001a66:	681b      	ldr	r3, [r3, #0]
- 8001a68:	4608      	mov	r0, r1
- 8001a6a:	4798      	blx	r3
+ 8001a3c:	687b      	ldr	r3, [r7, #4]
+ 8001a3e:	687a      	ldr	r2, [r7, #4]
+ 8001a40:	6e12      	ldr	r2, [r2, #96]	; 0x60
+ 8001a42:	1052      	asrs	r2, r2, #1
+ 8001a44:	1899      	adds	r1, r3, r2
+ 8001a46:	687b      	ldr	r3, [r7, #4]
+ 8001a48:	6e1b      	ldr	r3, [r3, #96]	; 0x60
+ 8001a4a:	f003 0301 	and.w	r3, r3, #1
+ 8001a4e:	2b00      	cmp	r3, #0
+ 8001a50:	d102      	bne.n	8001a58 <_ZN9SX1280Hal20HalInterruptCallbackEv+0x42>
+ 8001a52:	687b      	ldr	r3, [r7, #4]
+ 8001a54:	6ddb      	ldr	r3, [r3, #92]	; 0x5c
+ 8001a56:	e009      	b.n	8001a6c <_ZN9SX1280Hal20HalInterruptCallbackEv+0x56>
+ 8001a58:	687b      	ldr	r3, [r7, #4]
+ 8001a5a:	687a      	ldr	r2, [r7, #4]
+ 8001a5c:	6e12      	ldr	r2, [r2, #96]	; 0x60
+ 8001a5e:	1052      	asrs	r2, r2, #1
+ 8001a60:	4413      	add	r3, r2
+ 8001a62:	681b      	ldr	r3, [r3, #0]
+ 8001a64:	687a      	ldr	r2, [r7, #4]
+ 8001a66:	6dd2      	ldr	r2, [r2, #92]	; 0x5c
+ 8001a68:	4413      	add	r3, r2
+ 8001a6a:	681b      	ldr	r3, [r3, #0]
+ 8001a6c:	4608      	mov	r0, r1
+ 8001a6e:	4798      	blx	r3
 	}
 }
- 8001a6c:	bf00      	nop
- 8001a6e:	3708      	adds	r7, #8
- 8001a70:	46bd      	mov	sp, r7
- 8001a72:	bd80      	pop	{r7, pc}
+ 8001a70:	bf00      	nop
+ 8001a72:	3708      	adds	r7, #8
+ 8001a74:	46bd      	mov	sp, r7
+ 8001a76:	bd80      	pop	{r7, pc}
 
-08001a74 <_ZN6SX12804InitEv>:
+08001a78 <_ZN6SX12804InitEv>:
  * \brief Radio hardware registers initialization
  */
 const RadioRegisters_t RadioRegsInit[] = RADIO_INIT_REGISTERS_VALUE;
 
 void SX1280::Init( void )
 {
- 8001a74:	b580      	push	{r7, lr}
- 8001a76:	b082      	sub	sp, #8
- 8001a78:	af00      	add	r7, sp, #0
- 8001a7a:	6078      	str	r0, [r7, #4]
+ 8001a78:	b580      	push	{r7, lr}
+ 8001a7a:	b082      	sub	sp, #8
+ 8001a7c:	af00      	add	r7, sp, #0
+ 8001a7e:	6078      	str	r0, [r7, #4]
     Reset( );
- 8001a7c:	687b      	ldr	r3, [r7, #4]
- 8001a7e:	681b      	ldr	r3, [r3, #0]
- 8001a80:	3308      	adds	r3, #8
+ 8001a80:	687b      	ldr	r3, [r7, #4]
  8001a82:	681b      	ldr	r3, [r3, #0]
- 8001a84:	6878      	ldr	r0, [r7, #4]
- 8001a86:	4798      	blx	r3
+ 8001a84:	3308      	adds	r3, #8
+ 8001a86:	681b      	ldr	r3, [r3, #0]
+ 8001a88:	6878      	ldr	r0, [r7, #4]
+ 8001a8a:	4798      	blx	r3
     IoIrqInit( dioIrq );
- 8001a88:	687b      	ldr	r3, [r7, #4]
- 8001a8a:	681b      	ldr	r3, [r3, #0]
- 8001a8c:	3334      	adds	r3, #52	; 0x34
+ 8001a8c:	687b      	ldr	r3, [r7, #4]
  8001a8e:	681b      	ldr	r3, [r3, #0]
- 8001a90:	687a      	ldr	r2, [r7, #4]
- 8001a92:	322c      	adds	r2, #44	; 0x2c
- 8001a94:	ca06      	ldmia	r2, {r1, r2}
- 8001a96:	6878      	ldr	r0, [r7, #4]
- 8001a98:	4798      	blx	r3
+ 8001a90:	3334      	adds	r3, #52	; 0x34
+ 8001a92:	681b      	ldr	r3, [r3, #0]
+ 8001a94:	687a      	ldr	r2, [r7, #4]
+ 8001a96:	322c      	adds	r2, #44	; 0x2c
+ 8001a98:	ca06      	ldmia	r2, {r1, r2}
+ 8001a9a:	6878      	ldr	r0, [r7, #4]
+ 8001a9c:	4798      	blx	r3
     Wakeup( );
- 8001a9a:	687b      	ldr	r3, [r7, #4]
- 8001a9c:	681b      	ldr	r3, [r3, #0]
- 8001a9e:	3338      	adds	r3, #56	; 0x38
+ 8001a9e:	687b      	ldr	r3, [r7, #4]
  8001aa0:	681b      	ldr	r3, [r3, #0]
- 8001aa2:	6878      	ldr	r0, [r7, #4]
- 8001aa4:	4798      	blx	r3
-    SetRegistersDefault( );
+ 8001aa2:	3338      	adds	r3, #56	; 0x38
+ 8001aa4:	681b      	ldr	r3, [r3, #0]
  8001aa6:	6878      	ldr	r0, [r7, #4]
- 8001aa8:	f000 f804 	bl	8001ab4 <_ZN6SX128019SetRegistersDefaultEv>
+ 8001aa8:	4798      	blx	r3
+    SetRegistersDefault( );
+ 8001aaa:	6878      	ldr	r0, [r7, #4]
+ 8001aac:	f000 f804 	bl	8001ab8 <_ZN6SX128019SetRegistersDefaultEv>
 }
- 8001aac:	bf00      	nop
- 8001aae:	3708      	adds	r7, #8
- 8001ab0:	46bd      	mov	sp, r7
- 8001ab2:	bd80      	pop	{r7, pc}
+ 8001ab0:	bf00      	nop
+ 8001ab2:	3708      	adds	r7, #8
+ 8001ab4:	46bd      	mov	sp, r7
+ 8001ab6:	bd80      	pop	{r7, pc}
 
-08001ab4 <_ZN6SX128019SetRegistersDefaultEv>:
+08001ab8 <_ZN6SX128019SetRegistersDefaultEv>:
 
 void SX1280::SetRegistersDefault( void )
 {
- 8001ab4:	b480      	push	{r7}
- 8001ab6:	b085      	sub	sp, #20
- 8001ab8:	af00      	add	r7, sp, #0
- 8001aba:	6078      	str	r0, [r7, #4]
+ 8001ab8:	b480      	push	{r7}
+ 8001aba:	b085      	sub	sp, #20
+ 8001abc:	af00      	add	r7, sp, #0
+ 8001abe:	6078      	str	r0, [r7, #4]
     for( int16_t i = 0; i < sizeof( RadioRegsInit ) / sizeof( RadioRegisters_t ); i++ )
- 8001abc:	2300      	movs	r3, #0
- 8001abe:	81fb      	strh	r3, [r7, #14]
+ 8001ac0:	2300      	movs	r3, #0
+ 8001ac2:	81fb      	strh	r3, [r7, #14]
     {
         WriteRegister( RadioRegsInit[i].Addr, RadioRegsInit[i].Value );
     }
 }
- 8001ac0:	bf00      	nop
- 8001ac2:	3714      	adds	r7, #20
- 8001ac4:	46bd      	mov	sp, r7
- 8001ac6:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8001aca:	4770      	bx	lr
+ 8001ac4:	bf00      	nop
+ 8001ac6:	3714      	adds	r7, #20
+ 8001ac8:	46bd      	mov	sp, r7
+ 8001aca:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8001ace:	4770      	bx	lr
 
-08001acc <_ZN6SX128018GetFirmwareVersionEv>:
+08001ad0 <_ZN6SX128018GetFirmwareVersionEv>:
 
 uint16_t SX1280::GetFirmwareVersion( void )
 {
- 8001acc:	b590      	push	{r4, r7, lr}
- 8001ace:	b083      	sub	sp, #12
- 8001ad0:	af00      	add	r7, sp, #0
- 8001ad2:	6078      	str	r0, [r7, #4]
+ 8001ad0:	b590      	push	{r4, r7, lr}
+ 8001ad2:	b083      	sub	sp, #12
+ 8001ad4:	af00      	add	r7, sp, #0
+ 8001ad6:	6078      	str	r0, [r7, #4]
     return( ( ( ReadRegister( REG_LR_FIRMWARE_VERSION_MSB ) ) << 8 ) | ( ReadRegister( REG_LR_FIRMWARE_VERSION_MSB + 1 ) ) );
- 8001ad4:	687b      	ldr	r3, [r7, #4]
- 8001ad6:	681b      	ldr	r3, [r3, #0]
- 8001ad8:	3324      	adds	r3, #36	; 0x24
+ 8001ad8:	687b      	ldr	r3, [r7, #4]
  8001ada:	681b      	ldr	r3, [r3, #0]
- 8001adc:	f240 1153 	movw	r1, #339	; 0x153
- 8001ae0:	6878      	ldr	r0, [r7, #4]
- 8001ae2:	4798      	blx	r3
- 8001ae4:	4603      	mov	r3, r0
- 8001ae6:	021b      	lsls	r3, r3, #8
- 8001ae8:	b21c      	sxth	r4, r3
- 8001aea:	687b      	ldr	r3, [r7, #4]
- 8001aec:	681b      	ldr	r3, [r3, #0]
- 8001aee:	3324      	adds	r3, #36	; 0x24
+ 8001adc:	3324      	adds	r3, #36	; 0x24
+ 8001ade:	681b      	ldr	r3, [r3, #0]
+ 8001ae0:	f240 1153 	movw	r1, #339	; 0x153
+ 8001ae4:	6878      	ldr	r0, [r7, #4]
+ 8001ae6:	4798      	blx	r3
+ 8001ae8:	4603      	mov	r3, r0
+ 8001aea:	021b      	lsls	r3, r3, #8
+ 8001aec:	b21c      	sxth	r4, r3
+ 8001aee:	687b      	ldr	r3, [r7, #4]
  8001af0:	681b      	ldr	r3, [r3, #0]
- 8001af2:	f44f 71aa 	mov.w	r1, #340	; 0x154
- 8001af6:	6878      	ldr	r0, [r7, #4]
- 8001af8:	4798      	blx	r3
- 8001afa:	4603      	mov	r3, r0
- 8001afc:	b21b      	sxth	r3, r3
- 8001afe:	4323      	orrs	r3, r4
+ 8001af2:	3324      	adds	r3, #36	; 0x24
+ 8001af4:	681b      	ldr	r3, [r3, #0]
+ 8001af6:	f44f 71aa 	mov.w	r1, #340	; 0x154
+ 8001afa:	6878      	ldr	r0, [r7, #4]
+ 8001afc:	4798      	blx	r3
+ 8001afe:	4603      	mov	r3, r0
  8001b00:	b21b      	sxth	r3, r3
- 8001b02:	b29b      	uxth	r3, r3
+ 8001b02:	4323      	orrs	r3, r4
+ 8001b04:	b21b      	sxth	r3, r3
+ 8001b06:	b29b      	uxth	r3, r3
 }
- 8001b04:	4618      	mov	r0, r3
- 8001b06:	370c      	adds	r7, #12
- 8001b08:	46bd      	mov	sp, r7
- 8001b0a:	bd90      	pop	{r4, r7, pc}
+ 8001b08:	4618      	mov	r0, r3
+ 8001b0a:	370c      	adds	r7, #12
+ 8001b0c:	46bd      	mov	sp, r7
+ 8001b0e:	bd90      	pop	{r4, r7, pc}
 
-08001b0c <_ZN6SX12809GetStatusEv>:
+08001b10 <_ZN6SX12809GetStatusEv>:
 
 RadioStatus_t SX1280::GetStatus( void )
 {
- 8001b0c:	b590      	push	{r4, r7, lr}
- 8001b0e:	b085      	sub	sp, #20
- 8001b10:	af00      	add	r7, sp, #0
- 8001b12:	6078      	str	r0, [r7, #4]
+ 8001b10:	b590      	push	{r4, r7, lr}
+ 8001b12:	b085      	sub	sp, #20
+ 8001b14:	af00      	add	r7, sp, #0
+ 8001b16:	6078      	str	r0, [r7, #4]
     uint8_t stat = 0;
- 8001b14:	2300      	movs	r3, #0
- 8001b16:	73fb      	strb	r3, [r7, #15]
+ 8001b18:	2300      	movs	r3, #0
+ 8001b1a:	73fb      	strb	r3, [r7, #15]
     RadioStatus_t status;
 
     ReadCommand( RADIO_GET_STATUS, ( uint8_t * )&stat, 1 );
- 8001b18:	687b      	ldr	r3, [r7, #4]
- 8001b1a:	681b      	ldr	r3, [r3, #0]
- 8001b1c:	3314      	adds	r3, #20
- 8001b1e:	681c      	ldr	r4, [r3, #0]
- 8001b20:	f107 020f 	add.w	r2, r7, #15
- 8001b24:	2301      	movs	r3, #1
- 8001b26:	21c0      	movs	r1, #192	; 0xc0
- 8001b28:	6878      	ldr	r0, [r7, #4]
- 8001b2a:	47a0      	blx	r4
+ 8001b1c:	687b      	ldr	r3, [r7, #4]
+ 8001b1e:	681b      	ldr	r3, [r3, #0]
+ 8001b20:	3314      	adds	r3, #20
+ 8001b22:	681c      	ldr	r4, [r3, #0]
+ 8001b24:	f107 020f 	add.w	r2, r7, #15
+ 8001b28:	2301      	movs	r3, #1
+ 8001b2a:	21c0      	movs	r1, #192	; 0xc0
+ 8001b2c:	6878      	ldr	r0, [r7, #4]
+ 8001b2e:	47a0      	blx	r4
     status.Value = stat;
- 8001b2c:	7bfb      	ldrb	r3, [r7, #15]
- 8001b2e:	733b      	strb	r3, [r7, #12]
+ 8001b30:	7bfb      	ldrb	r3, [r7, #15]
+ 8001b32:	733b      	strb	r3, [r7, #12]
     return( status );
- 8001b30:	7b3b      	ldrb	r3, [r7, #12]
+ 8001b34:	7b3b      	ldrb	r3, [r7, #12]
 }
- 8001b32:	4618      	mov	r0, r3
- 8001b34:	3714      	adds	r7, #20
- 8001b36:	46bd      	mov	sp, r7
- 8001b38:	bd90      	pop	{r4, r7, pc}
+ 8001b36:	4618      	mov	r0, r3
+ 8001b38:	3714      	adds	r7, #20
+ 8001b3a:	46bd      	mov	sp, r7
+ 8001b3c:	bd90      	pop	{r4, r7, pc}
 
-08001b3a <_ZN6SX12809GetOpModeEv>:
+08001b3e <_ZN6SX12809GetOpModeEv>:
 
 RadioOperatingModes_t SX1280::GetOpMode( void )
 {
- 8001b3a:	b480      	push	{r7}
- 8001b3c:	b083      	sub	sp, #12
- 8001b3e:	af00      	add	r7, sp, #0
- 8001b40:	6078      	str	r0, [r7, #4]
+ 8001b3e:	b480      	push	{r7}
+ 8001b40:	b083      	sub	sp, #12
+ 8001b42:	af00      	add	r7, sp, #0
+ 8001b44:	6078      	str	r0, [r7, #4]
     return( OperatingMode );
- 8001b42:	687b      	ldr	r3, [r7, #4]
- 8001b44:	f893 3028 	ldrb.w	r3, [r3, #40]	; 0x28
+ 8001b46:	687b      	ldr	r3, [r7, #4]
+ 8001b48:	f893 3028 	ldrb.w	r3, [r3, #40]	; 0x28
 }
- 8001b48:	4618      	mov	r0, r3
- 8001b4a:	370c      	adds	r7, #12
- 8001b4c:	46bd      	mov	sp, r7
- 8001b4e:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8001b52:	4770      	bx	lr
+ 8001b4c:	4618      	mov	r0, r3
+ 8001b4e:	370c      	adds	r7, #12
+ 8001b50:	46bd      	mov	sp, r7
+ 8001b52:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8001b56:	4770      	bx	lr
 
-08001b54 <_ZN6SX128010SetStandbyE19RadioStandbyModes_t>:
+08001b58 <_ZN6SX128010SetStandbyE19RadioStandbyModes_t>:
     OperatingMode = MODE_SLEEP;
     WriteCommand( RADIO_SET_SLEEP, &sleep, 1 );
 }
 
 void SX1280::SetStandby( RadioStandbyModes_t standbyConfig )
 {
- 8001b54:	b590      	push	{r4, r7, lr}
- 8001b56:	b083      	sub	sp, #12
- 8001b58:	af00      	add	r7, sp, #0
- 8001b5a:	6078      	str	r0, [r7, #4]
- 8001b5c:	460b      	mov	r3, r1
- 8001b5e:	70fb      	strb	r3, [r7, #3]
+ 8001b58:	b590      	push	{r4, r7, lr}
+ 8001b5a:	b083      	sub	sp, #12
+ 8001b5c:	af00      	add	r7, sp, #0
+ 8001b5e:	6078      	str	r0, [r7, #4]
+ 8001b60:	460b      	mov	r3, r1
+ 8001b62:	70fb      	strb	r3, [r7, #3]
     WriteCommand( RADIO_SET_STANDBY, ( uint8_t* )&standbyConfig, 1 );
- 8001b60:	687b      	ldr	r3, [r7, #4]
- 8001b62:	681b      	ldr	r3, [r3, #0]
- 8001b64:	3310      	adds	r3, #16
- 8001b66:	681c      	ldr	r4, [r3, #0]
- 8001b68:	1cfa      	adds	r2, r7, #3
- 8001b6a:	2301      	movs	r3, #1
- 8001b6c:	2180      	movs	r1, #128	; 0x80
- 8001b6e:	6878      	ldr	r0, [r7, #4]
- 8001b70:	47a0      	blx	r4
+ 8001b64:	687b      	ldr	r3, [r7, #4]
+ 8001b66:	681b      	ldr	r3, [r3, #0]
+ 8001b68:	3310      	adds	r3, #16
+ 8001b6a:	681c      	ldr	r4, [r3, #0]
+ 8001b6c:	1cfa      	adds	r2, r7, #3
+ 8001b6e:	2301      	movs	r3, #1
+ 8001b70:	2180      	movs	r1, #128	; 0x80
+ 8001b72:	6878      	ldr	r0, [r7, #4]
+ 8001b74:	47a0      	blx	r4
     if( standbyConfig == STDBY_RC )
- 8001b72:	78fb      	ldrb	r3, [r7, #3]
- 8001b74:	2b00      	cmp	r3, #0
- 8001b76:	d104      	bne.n	8001b82 <_ZN6SX128010SetStandbyE19RadioStandbyModes_t+0x2e>
+ 8001b76:	78fb      	ldrb	r3, [r7, #3]
+ 8001b78:	2b00      	cmp	r3, #0
+ 8001b7a:	d104      	bne.n	8001b86 <_ZN6SX128010SetStandbyE19RadioStandbyModes_t+0x2e>
     {
         OperatingMode = MODE_STDBY_RC;
- 8001b78:	687b      	ldr	r3, [r7, #4]
- 8001b7a:	2202      	movs	r2, #2
- 8001b7c:	f883 2028 	strb.w	r2, [r3, #40]	; 0x28
+ 8001b7c:	687b      	ldr	r3, [r7, #4]
+ 8001b7e:	2202      	movs	r2, #2
+ 8001b80:	f883 2028 	strb.w	r2, [r3, #40]	; 0x28
     }
     else
     {
         OperatingMode = MODE_STDBY_XOSC;
     }
 }
- 8001b80:	e003      	b.n	8001b8a <_ZN6SX128010SetStandbyE19RadioStandbyModes_t+0x36>
+ 8001b84:	e003      	b.n	8001b8e <_ZN6SX128010SetStandbyE19RadioStandbyModes_t+0x36>
         OperatingMode = MODE_STDBY_XOSC;
- 8001b82:	687b      	ldr	r3, [r7, #4]
- 8001b84:	2203      	movs	r2, #3
- 8001b86:	f883 2028 	strb.w	r2, [r3, #40]	; 0x28
+ 8001b86:	687b      	ldr	r3, [r7, #4]
+ 8001b88:	2203      	movs	r2, #3
+ 8001b8a:	f883 2028 	strb.w	r2, [r3, #40]	; 0x28
 }
- 8001b8a:	bf00      	nop
- 8001b8c:	370c      	adds	r7, #12
- 8001b8e:	46bd      	mov	sp, r7
- 8001b90:	bd90      	pop	{r4, r7, pc}
+ 8001b8e:	bf00      	nop
+ 8001b90:	370c      	adds	r7, #12
+ 8001b92:	46bd      	mov	sp, r7
+ 8001b94:	bd90      	pop	{r4, r7, pc}
 
-08001b92 <_ZN6SX12805SetTxE10TickTime_s>:
+08001b96 <_ZN6SX12805SetTxE10TickTime_s>:
     WriteCommand( RADIO_SET_FS, 0, 0 );
     OperatingMode = MODE_FS;
 }
 
 void SX1280::SetTx( TickTime_t timeout )
 {
- 8001b92:	b590      	push	{r4, r7, lr}
- 8001b94:	b085      	sub	sp, #20
- 8001b96:	af00      	add	r7, sp, #0
- 8001b98:	6078      	str	r0, [r7, #4]
- 8001b9a:	6039      	str	r1, [r7, #0]
+ 8001b96:	b590      	push	{r4, r7, lr}
+ 8001b98:	b085      	sub	sp, #20
+ 8001b9a:	af00      	add	r7, sp, #0
+ 8001b9c:	6078      	str	r0, [r7, #4]
+ 8001b9e:	6039      	str	r1, [r7, #0]
     uint8_t buf[3];
     buf[0] = timeout.PeriodBase;
- 8001b9c:	783b      	ldrb	r3, [r7, #0]
- 8001b9e:	733b      	strb	r3, [r7, #12]
+ 8001ba0:	783b      	ldrb	r3, [r7, #0]
+ 8001ba2:	733b      	strb	r3, [r7, #12]
     buf[1] = ( uint8_t )( ( timeout.PeriodBaseCount >> 8 ) & 0x00FF );
- 8001ba0:	887b      	ldrh	r3, [r7, #2]
- 8001ba2:	0a1b      	lsrs	r3, r3, #8
- 8001ba4:	b29b      	uxth	r3, r3
- 8001ba6:	b2db      	uxtb	r3, r3
- 8001ba8:	737b      	strb	r3, [r7, #13]
+ 8001ba4:	887b      	ldrh	r3, [r7, #2]
+ 8001ba6:	0a1b      	lsrs	r3, r3, #8
+ 8001ba8:	b29b      	uxth	r3, r3
+ 8001baa:	b2db      	uxtb	r3, r3
+ 8001bac:	737b      	strb	r3, [r7, #13]
     buf[2] = ( uint8_t )( timeout.PeriodBaseCount & 0x00FF );
- 8001baa:	887b      	ldrh	r3, [r7, #2]
- 8001bac:	b2db      	uxtb	r3, r3
- 8001bae:	73bb      	strb	r3, [r7, #14]
+ 8001bae:	887b      	ldrh	r3, [r7, #2]
+ 8001bb0:	b2db      	uxtb	r3, r3
+ 8001bb2:	73bb      	strb	r3, [r7, #14]
 
     ClearIrqStatus( IRQ_RADIO_ALL );
- 8001bb0:	f64f 71ff 	movw	r1, #65535	; 0xffff
- 8001bb4:	6878      	ldr	r0, [r7, #4]
- 8001bb6:	f000 fad2 	bl	800215e <_ZN6SX128014ClearIrqStatusEt>
+ 8001bb4:	f64f 71ff 	movw	r1, #65535	; 0xffff
+ 8001bb8:	6878      	ldr	r0, [r7, #4]
+ 8001bba:	f000 fad0 	bl	800215e <_ZN6SX128014ClearIrqStatusEt>
 
     // If the radio is doing ranging operations, then apply the specific calls
     // prior to SetTx
     if( GetPacketType( true ) == PACKET_TYPE_RANGING )
- 8001bba:	2101      	movs	r1, #1
- 8001bbc:	6878      	ldr	r0, [r7, #4]
- 8001bbe:	f000 f86b 	bl	8001c98 <_ZN6SX128013GetPacketTypeEb>
- 8001bc2:	4603      	mov	r3, r0
- 8001bc4:	2b02      	cmp	r3, #2
- 8001bc6:	bf0c      	ite	eq
- 8001bc8:	2301      	moveq	r3, #1
- 8001bca:	2300      	movne	r3, #0
- 8001bcc:	b2db      	uxtb	r3, r3
- 8001bce:	2b00      	cmp	r3, #0
- 8001bd0:	d003      	beq.n	8001bda <_ZN6SX12805SetTxE10TickTime_s+0x48>
+ 8001bbe:	2101      	movs	r1, #1
+ 8001bc0:	6878      	ldr	r0, [r7, #4]
+ 8001bc2:	f000 f86b 	bl	8001c9c <_ZN6SX128013GetPacketTypeEb>
+ 8001bc6:	4603      	mov	r3, r0
+ 8001bc8:	2b02      	cmp	r3, #2
+ 8001bca:	bf0c      	ite	eq
+ 8001bcc:	2301      	moveq	r3, #1
+ 8001bce:	2300      	movne	r3, #0
+ 8001bd0:	b2db      	uxtb	r3, r3
+ 8001bd2:	2b00      	cmp	r3, #0
+ 8001bd4:	d003      	beq.n	8001bde <_ZN6SX12805SetTxE10TickTime_s+0x48>
     {
         SetRangingRole( RADIO_RANGING_ROLE_MASTER );
- 8001bd2:	2101      	movs	r1, #1
- 8001bd4:	6878      	ldr	r0, [r7, #4]
- 8001bd6:	f000 fb43 	bl	8002260 <_ZN6SX128014SetRangingRoleE19RadioRangingRoles_t>
+ 8001bd6:	2101      	movs	r1, #1
+ 8001bd8:	6878      	ldr	r0, [r7, #4]
+ 8001bda:	f000 fb41 	bl	8002260 <_ZN6SX128014SetRangingRoleE19RadioRangingRoles_t>
     }
     WriteCommand( RADIO_SET_TX, buf, 3 );
- 8001bda:	687b      	ldr	r3, [r7, #4]
- 8001bdc:	681b      	ldr	r3, [r3, #0]
- 8001bde:	3310      	adds	r3, #16
- 8001be0:	681c      	ldr	r4, [r3, #0]
- 8001be2:	f107 020c 	add.w	r2, r7, #12
- 8001be6:	2303      	movs	r3, #3
- 8001be8:	2183      	movs	r1, #131	; 0x83
- 8001bea:	6878      	ldr	r0, [r7, #4]
- 8001bec:	47a0      	blx	r4
+ 8001bde:	687b      	ldr	r3, [r7, #4]
+ 8001be0:	681b      	ldr	r3, [r3, #0]
+ 8001be2:	3310      	adds	r3, #16
+ 8001be4:	681c      	ldr	r4, [r3, #0]
+ 8001be6:	f107 020c 	add.w	r2, r7, #12
+ 8001bea:	2303      	movs	r3, #3
+ 8001bec:	2183      	movs	r1, #131	; 0x83
+ 8001bee:	6878      	ldr	r0, [r7, #4]
+ 8001bf0:	47a0      	blx	r4
     OperatingMode = MODE_TX;
- 8001bee:	687b      	ldr	r3, [r7, #4]
- 8001bf0:	2206      	movs	r2, #6
- 8001bf2:	f883 2028 	strb.w	r2, [r3, #40]	; 0x28
+ 8001bf2:	687b      	ldr	r3, [r7, #4]
+ 8001bf4:	2206      	movs	r2, #6
+ 8001bf6:	f883 2028 	strb.w	r2, [r3, #40]	; 0x28
 }
- 8001bf6:	bf00      	nop
- 8001bf8:	3714      	adds	r7, #20
- 8001bfa:	46bd      	mov	sp, r7
- 8001bfc:	bd90      	pop	{r4, r7, pc}
+ 8001bfa:	bf00      	nop
+ 8001bfc:	3714      	adds	r7, #20
+ 8001bfe:	46bd      	mov	sp, r7
+ 8001c00:	bd90      	pop	{r4, r7, pc}
 
-08001bfe <_ZN6SX12805SetRxE10TickTime_s>:
+08001c02 <_ZN6SX12805SetRxE10TickTime_s>:
 
 void SX1280::SetRx( TickTime_t timeout )
 {
- 8001bfe:	b590      	push	{r4, r7, lr}
- 8001c00:	b085      	sub	sp, #20
- 8001c02:	af00      	add	r7, sp, #0
- 8001c04:	6078      	str	r0, [r7, #4]
- 8001c06:	6039      	str	r1, [r7, #0]
+ 8001c02:	b590      	push	{r4, r7, lr}
+ 8001c04:	b085      	sub	sp, #20
+ 8001c06:	af00      	add	r7, sp, #0
+ 8001c08:	6078      	str	r0, [r7, #4]
+ 8001c0a:	6039      	str	r1, [r7, #0]
     uint8_t buf[3];
     buf[0] = timeout.PeriodBase;
- 8001c08:	783b      	ldrb	r3, [r7, #0]
- 8001c0a:	733b      	strb	r3, [r7, #12]
+ 8001c0c:	783b      	ldrb	r3, [r7, #0]
+ 8001c0e:	733b      	strb	r3, [r7, #12]
     buf[1] = ( uint8_t )( ( timeout.PeriodBaseCount >> 8 ) & 0x00FF );
- 8001c0c:	887b      	ldrh	r3, [r7, #2]
- 8001c0e:	0a1b      	lsrs	r3, r3, #8
- 8001c10:	b29b      	uxth	r3, r3
- 8001c12:	b2db      	uxtb	r3, r3
- 8001c14:	737b      	strb	r3, [r7, #13]
+ 8001c10:	887b      	ldrh	r3, [r7, #2]
+ 8001c12:	0a1b      	lsrs	r3, r3, #8
+ 8001c14:	b29b      	uxth	r3, r3
+ 8001c16:	b2db      	uxtb	r3, r3
+ 8001c18:	737b      	strb	r3, [r7, #13]
     buf[2] = ( uint8_t )( timeout.PeriodBaseCount & 0x00FF );
- 8001c16:	887b      	ldrh	r3, [r7, #2]
- 8001c18:	b2db      	uxtb	r3, r3
- 8001c1a:	73bb      	strb	r3, [r7, #14]
+ 8001c1a:	887b      	ldrh	r3, [r7, #2]
+ 8001c1c:	b2db      	uxtb	r3, r3
+ 8001c1e:	73bb      	strb	r3, [r7, #14]
 
     ClearIrqStatus( IRQ_RADIO_ALL );
- 8001c1c:	f64f 71ff 	movw	r1, #65535	; 0xffff
- 8001c20:	6878      	ldr	r0, [r7, #4]
- 8001c22:	f000 fa9c 	bl	800215e <_ZN6SX128014ClearIrqStatusEt>
+ 8001c20:	f64f 71ff 	movw	r1, #65535	; 0xffff
+ 8001c24:	6878      	ldr	r0, [r7, #4]
+ 8001c26:	f000 fa9a 	bl	800215e <_ZN6SX128014ClearIrqStatusEt>
 
     // If the radio is doing ranging operations, then apply the specific calls
     // prior to SetRx
     if( GetPacketType( true ) == PACKET_TYPE_RANGING )
- 8001c26:	2101      	movs	r1, #1
- 8001c28:	6878      	ldr	r0, [r7, #4]
- 8001c2a:	f000 f835 	bl	8001c98 <_ZN6SX128013GetPacketTypeEb>
- 8001c2e:	4603      	mov	r3, r0
- 8001c30:	2b02      	cmp	r3, #2
- 8001c32:	bf0c      	ite	eq
- 8001c34:	2301      	moveq	r3, #1
- 8001c36:	2300      	movne	r3, #0
- 8001c38:	b2db      	uxtb	r3, r3
- 8001c3a:	2b00      	cmp	r3, #0
- 8001c3c:	d003      	beq.n	8001c46 <_ZN6SX12805SetRxE10TickTime_s+0x48>
+ 8001c2a:	2101      	movs	r1, #1
+ 8001c2c:	6878      	ldr	r0, [r7, #4]
+ 8001c2e:	f000 f835 	bl	8001c9c <_ZN6SX128013GetPacketTypeEb>
+ 8001c32:	4603      	mov	r3, r0
+ 8001c34:	2b02      	cmp	r3, #2
+ 8001c36:	bf0c      	ite	eq
+ 8001c38:	2301      	moveq	r3, #1
+ 8001c3a:	2300      	movne	r3, #0
+ 8001c3c:	b2db      	uxtb	r3, r3
+ 8001c3e:	2b00      	cmp	r3, #0
+ 8001c40:	d003      	beq.n	8001c4a <_ZN6SX12805SetRxE10TickTime_s+0x48>
     {
         SetRangingRole( RADIO_RANGING_ROLE_SLAVE );
- 8001c3e:	2100      	movs	r1, #0
- 8001c40:	6878      	ldr	r0, [r7, #4]
- 8001c42:	f000 fb0d 	bl	8002260 <_ZN6SX128014SetRangingRoleE19RadioRangingRoles_t>
+ 8001c42:	2100      	movs	r1, #0
+ 8001c44:	6878      	ldr	r0, [r7, #4]
+ 8001c46:	f000 fb0b 	bl	8002260 <_ZN6SX128014SetRangingRoleE19RadioRangingRoles_t>
     }
     WriteCommand( RADIO_SET_RX, buf, 3 );
- 8001c46:	687b      	ldr	r3, [r7, #4]
- 8001c48:	681b      	ldr	r3, [r3, #0]
- 8001c4a:	3310      	adds	r3, #16
- 8001c4c:	681c      	ldr	r4, [r3, #0]
- 8001c4e:	f107 020c 	add.w	r2, r7, #12
- 8001c52:	2303      	movs	r3, #3
- 8001c54:	2182      	movs	r1, #130	; 0x82
- 8001c56:	6878      	ldr	r0, [r7, #4]
- 8001c58:	47a0      	blx	r4
+ 8001c4a:	687b      	ldr	r3, [r7, #4]
+ 8001c4c:	681b      	ldr	r3, [r3, #0]
+ 8001c4e:	3310      	adds	r3, #16
+ 8001c50:	681c      	ldr	r4, [r3, #0]
+ 8001c52:	f107 020c 	add.w	r2, r7, #12
+ 8001c56:	2303      	movs	r3, #3
+ 8001c58:	2182      	movs	r1, #130	; 0x82
+ 8001c5a:	6878      	ldr	r0, [r7, #4]
+ 8001c5c:	47a0      	blx	r4
     OperatingMode = MODE_RX;
- 8001c5a:	687b      	ldr	r3, [r7, #4]
- 8001c5c:	2205      	movs	r2, #5
- 8001c5e:	f883 2028 	strb.w	r2, [r3, #40]	; 0x28
+ 8001c5e:	687b      	ldr	r3, [r7, #4]
+ 8001c60:	2205      	movs	r2, #5
+ 8001c62:	f883 2028 	strb.w	r2, [r3, #40]	; 0x28
 }
- 8001c62:	bf00      	nop
- 8001c64:	3714      	adds	r7, #20
- 8001c66:	46bd      	mov	sp, r7
- 8001c68:	bd90      	pop	{r4, r7, pc}
+ 8001c66:	bf00      	nop
+ 8001c68:	3714      	adds	r7, #20
+ 8001c6a:	46bd      	mov	sp, r7
+ 8001c6c:	bd90      	pop	{r4, r7, pc}
 
-08001c6a <_ZN6SX128013SetPacketTypeE18RadioPacketTypes_t>:
+08001c6e <_ZN6SX128013SetPacketTypeE18RadioPacketTypes_t>:
 {
     WriteCommand( RADIO_SET_TXCONTINUOUSPREAMBLE, 0, 0 );
 }
 
 void SX1280::SetPacketType( RadioPacketTypes_t packetType )
 {
- 8001c6a:	b590      	push	{r4, r7, lr}
- 8001c6c:	b083      	sub	sp, #12
- 8001c6e:	af00      	add	r7, sp, #0
- 8001c70:	6078      	str	r0, [r7, #4]
- 8001c72:	460b      	mov	r3, r1
- 8001c74:	70fb      	strb	r3, [r7, #3]
+ 8001c6e:	b590      	push	{r4, r7, lr}
+ 8001c70:	b083      	sub	sp, #12
+ 8001c72:	af00      	add	r7, sp, #0
+ 8001c74:	6078      	str	r0, [r7, #4]
+ 8001c76:	460b      	mov	r3, r1
+ 8001c78:	70fb      	strb	r3, [r7, #3]
     // Save packet type internally to avoid questioning the radio
     this->PacketType = packetType;
- 8001c76:	78fa      	ldrb	r2, [r7, #3]
- 8001c78:	687b      	ldr	r3, [r7, #4]
- 8001c7a:	f883 2029 	strb.w	r2, [r3, #41]	; 0x29
+ 8001c7a:	78fa      	ldrb	r2, [r7, #3]
+ 8001c7c:	687b      	ldr	r3, [r7, #4]
+ 8001c7e:	f883 2029 	strb.w	r2, [r3, #41]	; 0x29
 
     WriteCommand( RADIO_SET_PACKETTYPE, ( uint8_t* )&packetType, 1 );
- 8001c7e:	687b      	ldr	r3, [r7, #4]
- 8001c80:	681b      	ldr	r3, [r3, #0]
- 8001c82:	3310      	adds	r3, #16
- 8001c84:	681c      	ldr	r4, [r3, #0]
- 8001c86:	1cfa      	adds	r2, r7, #3
- 8001c88:	2301      	movs	r3, #1
- 8001c8a:	218a      	movs	r1, #138	; 0x8a
- 8001c8c:	6878      	ldr	r0, [r7, #4]
- 8001c8e:	47a0      	blx	r4
+ 8001c82:	687b      	ldr	r3, [r7, #4]
+ 8001c84:	681b      	ldr	r3, [r3, #0]
+ 8001c86:	3310      	adds	r3, #16
+ 8001c88:	681c      	ldr	r4, [r3, #0]
+ 8001c8a:	1cfa      	adds	r2, r7, #3
+ 8001c8c:	2301      	movs	r3, #1
+ 8001c8e:	218a      	movs	r1, #138	; 0x8a
+ 8001c90:	6878      	ldr	r0, [r7, #4]
+ 8001c92:	47a0      	blx	r4
 }
- 8001c90:	bf00      	nop
- 8001c92:	370c      	adds	r7, #12
- 8001c94:	46bd      	mov	sp, r7
- 8001c96:	bd90      	pop	{r4, r7, pc}
+ 8001c94:	bf00      	nop
+ 8001c96:	370c      	adds	r7, #12
+ 8001c98:	46bd      	mov	sp, r7
+ 8001c9a:	bd90      	pop	{r4, r7, pc}
 
-08001c98 <_ZN6SX128013GetPacketTypeEb>:
+08001c9c <_ZN6SX128013GetPacketTypeEb>:
 
 RadioPacketTypes_t SX1280::GetPacketType( bool returnLocalCopy )
 {
- 8001c98:	b590      	push	{r4, r7, lr}
- 8001c9a:	b085      	sub	sp, #20
- 8001c9c:	af00      	add	r7, sp, #0
- 8001c9e:	6078      	str	r0, [r7, #4]
- 8001ca0:	460b      	mov	r3, r1
- 8001ca2:	70fb      	strb	r3, [r7, #3]
+ 8001c9c:	b590      	push	{r4, r7, lr}
+ 8001c9e:	b085      	sub	sp, #20
+ 8001ca0:	af00      	add	r7, sp, #0
+ 8001ca2:	6078      	str	r0, [r7, #4]
+ 8001ca4:	460b      	mov	r3, r1
+ 8001ca6:	70fb      	strb	r3, [r7, #3]
     RadioPacketTypes_t packetType = PACKET_TYPE_NONE;
- 8001ca4:	230f      	movs	r3, #15
- 8001ca6:	73fb      	strb	r3, [r7, #15]
+ 8001ca8:	230f      	movs	r3, #15
+ 8001caa:	73fb      	strb	r3, [r7, #15]
     if( returnLocalCopy == false )
- 8001ca8:	78fb      	ldrb	r3, [r7, #3]
- 8001caa:	2b00      	cmp	r3, #0
- 8001cac:	d114      	bne.n	8001cd8 <_ZN6SX128013GetPacketTypeEb+0x40>
+ 8001cac:	78fb      	ldrb	r3, [r7, #3]
+ 8001cae:	2b00      	cmp	r3, #0
+ 8001cb0:	d114      	bne.n	8001cdc <_ZN6SX128013GetPacketTypeEb+0x40>
     {
         ReadCommand( RADIO_GET_PACKETTYPE, ( uint8_t* )&packetType, 1 );
- 8001cae:	687b      	ldr	r3, [r7, #4]
- 8001cb0:	681b      	ldr	r3, [r3, #0]
- 8001cb2:	3314      	adds	r3, #20
- 8001cb4:	681c      	ldr	r4, [r3, #0]
- 8001cb6:	f107 020f 	add.w	r2, r7, #15
- 8001cba:	2301      	movs	r3, #1
- 8001cbc:	2103      	movs	r1, #3
- 8001cbe:	6878      	ldr	r0, [r7, #4]
- 8001cc0:	47a0      	blx	r4
+ 8001cb2:	687b      	ldr	r3, [r7, #4]
+ 8001cb4:	681b      	ldr	r3, [r3, #0]
+ 8001cb6:	3314      	adds	r3, #20
+ 8001cb8:	681c      	ldr	r4, [r3, #0]
+ 8001cba:	f107 020f 	add.w	r2, r7, #15
+ 8001cbe:	2301      	movs	r3, #1
+ 8001cc0:	2103      	movs	r1, #3
+ 8001cc2:	6878      	ldr	r0, [r7, #4]
+ 8001cc4:	47a0      	blx	r4
         if( this->PacketType != packetType )
- 8001cc2:	687b      	ldr	r3, [r7, #4]
- 8001cc4:	f893 2029 	ldrb.w	r2, [r3, #41]	; 0x29
- 8001cc8:	7bfb      	ldrb	r3, [r7, #15]
- 8001cca:	429a      	cmp	r2, r3
- 8001ccc:	d008      	beq.n	8001ce0 <_ZN6SX128013GetPacketTypeEb+0x48>
+ 8001cc6:	687b      	ldr	r3, [r7, #4]
+ 8001cc8:	f893 2029 	ldrb.w	r2, [r3, #41]	; 0x29
+ 8001ccc:	7bfb      	ldrb	r3, [r7, #15]
+ 8001cce:	429a      	cmp	r2, r3
+ 8001cd0:	d008      	beq.n	8001ce4 <_ZN6SX128013GetPacketTypeEb+0x48>
         {
             this->PacketType = packetType;
- 8001cce:	7bfa      	ldrb	r2, [r7, #15]
- 8001cd0:	687b      	ldr	r3, [r7, #4]
- 8001cd2:	f883 2029 	strb.w	r2, [r3, #41]	; 0x29
- 8001cd6:	e003      	b.n	8001ce0 <_ZN6SX128013GetPacketTypeEb+0x48>
+ 8001cd2:	7bfa      	ldrb	r2, [r7, #15]
+ 8001cd4:	687b      	ldr	r3, [r7, #4]
+ 8001cd6:	f883 2029 	strb.w	r2, [r3, #41]	; 0x29
+ 8001cda:	e003      	b.n	8001ce4 <_ZN6SX128013GetPacketTypeEb+0x48>
         }
     }
     else
     {
         packetType = this->PacketType;
- 8001cd8:	687b      	ldr	r3, [r7, #4]
- 8001cda:	f893 3029 	ldrb.w	r3, [r3, #41]	; 0x29
- 8001cde:	73fb      	strb	r3, [r7, #15]
+ 8001cdc:	687b      	ldr	r3, [r7, #4]
+ 8001cde:	f893 3029 	ldrb.w	r3, [r3, #41]	; 0x29
+ 8001ce2:	73fb      	strb	r3, [r7, #15]
     }
     return packetType;
- 8001ce0:	7bfb      	ldrb	r3, [r7, #15]
+ 8001ce4:	7bfb      	ldrb	r3, [r7, #15]
 }
- 8001ce2:	4618      	mov	r0, r3
- 8001ce4:	3714      	adds	r7, #20
- 8001ce6:	46bd      	mov	sp, r7
- 8001ce8:	bd90      	pop	{r4, r7, pc}
- 8001cea:	0000      	movs	r0, r0
- 8001cec:	0000      	movs	r0, r0
+ 8001ce6:	4618      	mov	r0, r3
+ 8001ce8:	3714      	adds	r7, #20
+ 8001cea:	46bd      	mov	sp, r7
+ 8001cec:	bd90      	pop	{r4, r7, pc}
 	...
 
 08001cf0 <_ZN6SX128014SetRfFrequencyEm>:
@@ -3704,7 +3704,7 @@ void SX1280::SetModulationParams( ModulationParams_t *modParams )
  8001dde:	781b      	ldrb	r3, [r3, #0]
  8001de0:	4619      	mov	r1, r3
  8001de2:	6878      	ldr	r0, [r7, #4]
- 8001de4:	f7ff ff41 	bl	8001c6a <_ZN6SX128013SetPacketTypeE18RadioPacketTypes_t>
+ 8001de4:	f7ff ff43 	bl	8001c6e <_ZN6SX128013SetPacketTypeE18RadioPacketTypes_t>
     }
 
     switch( modParams->PacketType )
@@ -3852,7 +3852,7 @@ void SX1280::SetPacketParams( PacketParams_t *packetParams )
  8001ed6:	781b      	ldrb	r3, [r3, #0]
  8001ed8:	4619      	mov	r1, r3
  8001eda:	6878      	ldr	r0, [r7, #4]
- 8001edc:	f7ff fec5 	bl	8001c6a <_ZN6SX128013SetPacketTypeE18RadioPacketTypes_t>
+ 8001edc:	f7ff fec7 	bl	8001c6e <_ZN6SX128013SetPacketTypeE18RadioPacketTypes_t>
     }
 
     switch( packetParams->PacketType )
@@ -4071,7 +4071,7 @@ void SX1280::GetRxBufferStatus( uint8_t *rxPayloadLength, uint8_t *rxStartBuffer
     if( ( this -> GetPacketType( true ) == PACKET_TYPE_LORA ) && ( ReadRegister( REG_LR_PACKETPARAMS ) >> 7 == 1 ) )
  8002030:	2101      	movs	r1, #1
  8002032:	68f8      	ldr	r0, [r7, #12]
- 8002034:	f7ff fe30 	bl	8001c98 <_ZN6SX128013GetPacketTypeEb>
+ 8002034:	f7ff fe32 	bl	8001c9c <_ZN6SX128013GetPacketTypeEb>
  8002038:	4603      	mov	r3, r0
  800203a:	2b01      	cmp	r3, #1
  800203c:	d10e      	bne.n	800205c <_ZN6SX128017GetRxBufferStatusEPhS0_+0x4c>
@@ -4110,7 +4110,7 @@ void SX1280::GetRxBufferStatus( uint8_t *rxPayloadLength, uint8_t *rxStartBuffer
     else if( this -> GetPacketType( true ) == PACKET_TYPE_BLE )
  800207c:	2101      	movs	r1, #1
  800207e:	68f8      	ldr	r0, [r7, #12]
- 8002080:	f7ff fe0a 	bl	8001c98 <_ZN6SX128013GetPacketTypeEb>
+ 8002080:	f7ff fe0c 	bl	8001c9c <_ZN6SX128013GetPacketTypeEb>
  8002084:	4603      	mov	r3, r0
  8002086:	2b04      	cmp	r3, #4
  8002088:	bf0c      	ite	eq
@@ -4431,7 +4431,7 @@ void SX1280::SendPayload( uint8_t *payload, uint8_t size, TickTime_t timeout, ui
     SetTx( timeout );
  8002250:	6839      	ldr	r1, [r7, #0]
  8002252:	68f8      	ldr	r0, [r7, #12]
- 8002254:	f7ff fc9d 	bl	8001b92 <_ZN6SX12805SetTxE10TickTime_s>
+ 8002254:	f7ff fc9f 	bl	8001b96 <_ZN6SX12805SetTxE10TickTime_s>
 }
  8002258:	bf00      	nop
  800225a:	3710      	adds	r7, #16
@@ -4560,7 +4560,7 @@ void SX1280::ProcessIrqs( void )
     packetType = GetPacketType( true );
  80022ea:	2101      	movs	r1, #1
  80022ec:	6878      	ldr	r0, [r7, #4]
- 80022ee:	f7ff fcd3 	bl	8001c98 <_ZN6SX128013GetPacketTypeEb>
+ 80022ee:	f7ff fcd5 	bl	8001c9c <_ZN6SX128013GetPacketTypeEb>
  80022f2:	4603      	mov	r3, r0
  80022f4:	73fb      	strb	r3, [r7, #15]
     uint16_t irqRegs = GetIrqStatus( );
